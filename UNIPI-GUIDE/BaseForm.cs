@@ -24,9 +24,9 @@ namespace UNIPI_GUIDE
 
         private void eventsButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
             Events events = new Events();
             events.Show();
+            this.Hide();
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)

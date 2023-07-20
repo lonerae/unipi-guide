@@ -15,6 +15,9 @@ namespace UNIPI_GUIDE
     public partial class Events : BaseForm
     {
         List<DateTime> eventDates = new List<DateTime>();
+        int currentPage = 1;
+        int commentsPerPage = 5;
+
         public Events()
         {
             InitializeComponent();
@@ -25,6 +28,13 @@ namespace UNIPI_GUIDE
             // adding based on SELECT query
             eventDates.Add(new DateTime(2023, 7, 30));
             calendar.BoldedDates = eventDates.ToArray();
+            for (int i = currentPage; i < currentPage + commentsPerPage; i++)
+            {
+                RichTextBox temp = new RichTextBox();
+                temp.Size = new Size(commentsPanel.Width, commentBox.Height);
+                temp.Text = i.ToString();
+                commentsPanel.Controls.Add(temp);
+            }
         }
 
         private void calendar_DateSelected(object sender, DateRangeEventArgs e)
@@ -32,7 +42,20 @@ namespace UNIPI_GUIDE
             if (eventDates.Contains(calendar.SelectionRange.Start))
             {
                 // event description based on SELECT...WHERE query
-                MessageBox.Show("Event", calendar.SelectionRange.Start.ToShortDateString());
+               eventDescrBox.Text = "Lorem ipsum " + calendar.SelectionRange.Start.ToShortDateString() + " ipsum lorem.";
+            }
+        }
+
+        private void nextButton_Click(object sender, EventArgs e)
+        {
+            currentPage++;
+            commentsPanel.Controls.Clear();
+            for (int i = currentPage; i < currentPage + commentsPerPage; i++)
+            {
+                RichTextBox temp = new RichTextBox();
+                temp.Size = new Size(commentsPanel.Width, commentBox.Height);
+                temp.Text = i.ToString();
+                commentsPanel.Controls.Add(temp);
             }
         }
     }
