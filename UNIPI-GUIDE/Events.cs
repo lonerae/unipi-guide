@@ -12,7 +12,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace UNIPI_GUIDE
 {
-    public partial class Events : Form
+    public partial class Events : BaseForm
     {
         List<DateTime> eventDates = new List<DateTime>();
         public Events()
