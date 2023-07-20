@@ -35,9 +35,11 @@
             // 
             this.calendar.Location = new System.Drawing.Point(18, 91);
             this.calendar.MaxDate = new System.DateTime(2024, 12, 31, 0, 0, 0, 0);
+            this.calendar.MaxSelectionCount = 1;
             this.calendar.MinDate = new System.DateTime(2023, 1, 1, 0, 0, 0, 0);
             this.calendar.Name = "calendar";
             this.calendar.TabIndex = 0;
+            this.calendar.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.calendar_DateSelected);
             // 
             // Events
             // 
