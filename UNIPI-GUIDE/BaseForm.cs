@@ -20,6 +20,7 @@ namespace UNIPI_GUIDE
         private void navigateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             navPanel.Visible = !navPanel.Visible;
+            if (navPanel.Visible) navPanel.BringToFront();
         }
 
         private void eventsButton_Click(object sender, EventArgs e)

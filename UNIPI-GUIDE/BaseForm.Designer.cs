@@ -95,7 +95,7 @@
             // 
             this.aboutToolStripMenuItem.Font = new System.Drawing.Font("Arial", 15F);
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 28);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(166, 28);
             this.aboutToolStripMenuItem.Text = "Σχετικά...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -103,7 +103,7 @@
             // 
             this.exitToolStripMenuItem.Font = new System.Drawing.Font("Arial", 15F);
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 28);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(166, 28);
             this.exitToolStripMenuItem.Text = "Έξοδος";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 

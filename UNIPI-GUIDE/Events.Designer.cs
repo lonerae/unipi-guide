@@ -36,8 +36,8 @@
             this.commentsPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.prevButton = new System.Windows.Forms.Button();
             this.nextButton = new System.Windows.Forms.Button();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.button8 = new System.Windows.Forms.Button();
+            this.pageBox = new System.Windows.Forms.RichTextBox();
+            this.pageBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // calendar
@@ -103,6 +103,7 @@
             this.prevButton.TabIndex = 10;
             this.prevButton.Text = "<";
             this.prevButton.UseVisualStyleBackColor = true;
+            this.prevButton.Click += new System.EventHandler(this.prevButton_Click);
             // 
             // nextButton
             // 
@@ -115,23 +116,25 @@
             this.nextButton.UseVisualStyleBackColor = true;
             this.nextButton.Click += new System.EventHandler(this.nextButton_Click);
             // 
-            // richTextBox1
+            // pageBox
             // 
-            this.richTextBox1.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.richTextBox1.Location = new System.Drawing.Point(591, 483);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(65, 34);
-            this.richTextBox1.TabIndex = 12;
-            this.richTextBox1.Text = "";
+            this.pageBox.Font = new System.Drawing.Font("Arial", 9.75F);
+            this.pageBox.Location = new System.Drawing.Point(735, 483);
+            this.pageBox.Name = "pageBox";
+            this.pageBox.Size = new System.Drawing.Size(65, 34);
+            this.pageBox.TabIndex = 12;
+            this.pageBox.Text = "";
             // 
-            // button8
+            // pageBtn
             // 
-            this.button8.Location = new System.Drawing.Point(662, 485);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(49, 34);
-            this.button8.TabIndex = 13;
-            this.button8.Text = "button8";
-            this.button8.UseVisualStyleBackColor = true;
+            this.pageBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.pageBtn.Location = new System.Drawing.Point(627, 483);
+            this.pageBtn.Name = "pageBtn";
+            this.pageBtn.Size = new System.Drawing.Size(102, 34);
+            this.pageBtn.TabIndex = 13;
+            this.pageBtn.Text = "άλμα στην...";
+            this.pageBtn.UseVisualStyleBackColor = true;
+            this.pageBtn.Click += new System.EventHandler(this.pageBtn_Click);
             // 
             // Events
             // 
@@ -139,8 +142,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(1264, 681);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.pageBtn);
+            this.Controls.Add(this.pageBox);
             this.Controls.Add(this.nextButton);
             this.Controls.Add(this.prevButton);
             this.Controls.Add(this.button5);
@@ -160,8 +163,8 @@
             this.Controls.SetChildIndex(this.button5, 0);
             this.Controls.SetChildIndex(this.prevButton, 0);
             this.Controls.SetChildIndex(this.nextButton, 0);
-            this.Controls.SetChildIndex(this.richTextBox1, 0);
-            this.Controls.SetChildIndex(this.button8, 0);
+            this.Controls.SetChildIndex(this.pageBox, 0);
+            this.Controls.SetChildIndex(this.pageBtn, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -177,7 +180,7 @@
         private System.Windows.Forms.FlowLayoutPanel commentsPanel;
         private System.Windows.Forms.Button prevButton;
         private System.Windows.Forms.Button nextButton;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.RichTextBox pageBox;
+        private System.Windows.Forms.Button pageBtn;
     }
 }
