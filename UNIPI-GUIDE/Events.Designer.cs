@@ -89,6 +89,7 @@
             this.uploadBtn.TabIndex = 8;
             this.uploadBtn.Text = "Ανάρτηση";
             this.uploadBtn.UseVisualStyleBackColor = true;
+            this.uploadBtn.Click += new System.EventHandler(this.uploadBtn_Click);
             // 
             // commentsPanel
             // 

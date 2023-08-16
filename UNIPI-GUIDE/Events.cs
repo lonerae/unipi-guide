@@ -227,52 +227,17 @@ namespace UNIPI_GUIDE
 
         }
 
-        /*private void button1_Click(object sender, EventArgs e)
+        private void uploadBtn_Click(object sender, EventArgs e)
         {
+            /*
             connection.Open();
-            String selectSQL = "SELECT * FROM Student";
-            SQLiteCommand command = new SQLiteCommand(selectSQL, connection);
-            SQLiteDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                richTextBox1.AppendText(reader.GetString(2) + ", " + reader.GetString(3));
-                richTextBox1.AppendText(Environment.NewLine);
-            }
-            reader.Close();
-            command.Dispose();
-            connection.Close();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            connection = new SQLiteConnection(connectionString);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            connection.Open();
-            String selectSQL = "SELECT * FROM Student WHERE am='" + textBox1.Text + "'";
-            SQLiteCommand command = new SQLiteCommand(selectSQL, connection);
-            SQLiteDataReader reader = command.ExecuteReader();
-            while (reader.Read())
-            {
-                richTextBox1.AppendText(reader.GetString(0) + ", " + reader.GetString(1));
-                richTextBox1.AppendText(Environment.NewLine);
-            }
-            reader.Close();
-            command.Dispose();
-            connection.Close();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            connection.Open();
-            String insertSQL = "INSERT INTO Student VALUES('mppl2225','Eleni','eln@gmail.com','12345')";
+            String insertSQL = "INSERT INTO comment VALUES(,'','',0)";
             SQLiteCommand command = new SQLiteCommand(insertSQL, connection);
             int rowsAffected = command.ExecuteNonQuery();
             command.Dispose();
             connection.Close();
-            MessageBox.Show(rowsAffected.ToString(), "# of records inserted");
-        }*/
+            MessageBox.Show("Επιτυχής ανάρτηση!", "Info");
+            */
+        }
     }
 }
