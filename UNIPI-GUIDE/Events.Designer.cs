@@ -31,13 +31,14 @@
             this.calendar = new System.Windows.Forms.MonthCalendar();
             this.eventDescrBox = new System.Windows.Forms.RichTextBox();
             this.commentBox = new System.Windows.Forms.RichTextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.clearBtn = new System.Windows.Forms.Button();
+            this.uploadBtn = new System.Windows.Forms.Button();
             this.commentsPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.prevButton = new System.Windows.Forms.Button();
             this.nextButton = new System.Windows.Forms.Button();
             this.pageBox = new System.Windows.Forms.RichTextBox();
             this.pageBtn = new System.Windows.Forms.Button();
+            this.warnLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // calendar
@@ -69,23 +70,25 @@
             this.commentBox.TabIndex = 6;
             this.commentBox.Text = "";
             // 
-            // button3
+            // clearBtn
             // 
-            this.button3.Location = new System.Drawing.Point(1031, 578);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(221, 34);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.clearBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.clearBtn.Location = new System.Drawing.Point(1031, 578);
+            this.clearBtn.Name = "clearBtn";
+            this.clearBtn.Size = new System.Drawing.Size(221, 34);
+            this.clearBtn.TabIndex = 7;
+            this.clearBtn.Text = "Εκκαθάριση";
+            this.clearBtn.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // uploadBtn
             // 
-            this.button5.Location = new System.Drawing.Point(1031, 538);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(221, 34);
-            this.button5.TabIndex = 8;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
+            this.uploadBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.uploadBtn.Location = new System.Drawing.Point(1031, 538);
+            this.uploadBtn.Name = "uploadBtn";
+            this.uploadBtn.Size = new System.Drawing.Size(221, 34);
+            this.uploadBtn.TabIndex = 8;
+            this.uploadBtn.Text = "Ανάρτηση";
+            this.uploadBtn.UseVisualStyleBackColor = true;
             // 
             // commentsPanel
             // 
@@ -136,18 +139,32 @@
             this.pageBtn.UseVisualStyleBackColor = true;
             this.pageBtn.Click += new System.EventHandler(this.pageBtn_Click);
             // 
+            // warnLabel
+            // 
+            this.warnLabel.AutoSize = true;
+            this.warnLabel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.warnLabel.ForeColor = System.Drawing.Color.Red;
+            this.warnLabel.Location = new System.Drawing.Point(15, 645);
+            this.warnLabel.Name = "warnLabel";
+            this.warnLabel.Size = new System.Drawing.Size(648, 16);
+            this.warnLabel.TabIndex = 14;
+            this.warnLabel.Text = "Πρέπει να είστε συνδεδεμένοι για να μπορείτε να αναρτήσετε σχόλιο ή να ψηφίσετε κ" +
+    "άποιο υπάρχον.";
+            this.warnLabel.Visible = false;
+            // 
             // Events
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.warnLabel);
             this.Controls.Add(this.pageBtn);
             this.Controls.Add(this.pageBox);
             this.Controls.Add(this.nextButton);
             this.Controls.Add(this.prevButton);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.uploadBtn);
+            this.Controls.Add(this.clearBtn);
             this.Controls.Add(this.commentBox);
             this.Controls.Add(this.eventDescrBox);
             this.Controls.Add(this.commentsPanel);
@@ -159,12 +176,13 @@
             this.Controls.SetChildIndex(this.commentsPanel, 0);
             this.Controls.SetChildIndex(this.eventDescrBox, 0);
             this.Controls.SetChildIndex(this.commentBox, 0);
-            this.Controls.SetChildIndex(this.button3, 0);
-            this.Controls.SetChildIndex(this.button5, 0);
+            this.Controls.SetChildIndex(this.clearBtn, 0);
+            this.Controls.SetChildIndex(this.uploadBtn, 0);
             this.Controls.SetChildIndex(this.prevButton, 0);
             this.Controls.SetChildIndex(this.nextButton, 0);
             this.Controls.SetChildIndex(this.pageBox, 0);
             this.Controls.SetChildIndex(this.pageBtn, 0);
+            this.Controls.SetChildIndex(this.warnLabel, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -175,12 +193,13 @@
         private System.Windows.Forms.MonthCalendar calendar;
         private System.Windows.Forms.RichTextBox eventDescrBox;
         private System.Windows.Forms.RichTextBox commentBox;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button clearBtn;
+        private System.Windows.Forms.Button uploadBtn;
         private System.Windows.Forms.FlowLayoutPanel commentsPanel;
         private System.Windows.Forms.Button prevButton;
         private System.Windows.Forms.Button nextButton;
         private System.Windows.Forms.RichTextBox pageBox;
         private System.Windows.Forms.Button pageBtn;
+        private System.Windows.Forms.Label warnLabel;
     }
 }

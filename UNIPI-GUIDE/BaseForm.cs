@@ -12,9 +12,21 @@ namespace UNIPI_GUIDE
 {
     public partial class BaseForm : Form
     {
+        bool loggedIn = true;
+
         public BaseForm()
         {
             InitializeComponent();
+        }
+
+        public bool isLogged()
+        {
+            return loggedIn;
+        }
+
+        public void setLogged(bool loggedIn) 
+        {
+            this.loggedIn = loggedIn;
         }
 
         private void navigateToolStripMenuItem_Click(object sender, EventArgs e)

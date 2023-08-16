@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
+using Button = System.Windows.Forms.Button;
+using static System.Data.Entity.Infrastructure.Design.Executor;
+using static System.Windows.Forms.AxHost;
 
 namespace UNIPI_GUIDE
 {
@@ -22,6 +25,17 @@ namespace UNIPI_GUIDE
         List<DateTime> eventDates = new List<DateTime>();
         int currentPage = 1;
         int commentsPerPage = 3;
+
+        List<int> voteList = new List<int>();
+        enum BUTTON_ACTIONS
+        {
+            UP,
+            DOWN,
+            UNPRESSED
+        }
+        List<BUTTON_ACTIONS> buttonPressed = new List<BUTTON_ACTIONS>();
+
+       
 
         public Events()
         {
@@ -37,6 +51,13 @@ namespace UNIPI_GUIDE
             eventDates.Add(new DateTime(2023, 9, 5));
             eventDates.Add(new DateTime(2023, 9, 10));
             calendar.BoldedDates = eventDates.ToArray();
+
+            if (!isLogged())
+            {
+                uploadBtn.Enabled = false;
+                clearBtn.Enabled = false;
+                warnLabel.Visible = true;
+            }
         }
 
         private void calendar_DateSelected(object sender, DateRangeEventArgs e)
@@ -86,13 +107,99 @@ namespace UNIPI_GUIDE
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                RichTextBox temp = new RichTextBox();
-                temp.Size = new Size(commentsPanel.Width, commentBox.Height);
-                temp.Text = reader.GetString(2);
-                commentsPanel.Controls.Add(temp);
+                Panel panel = new Panel();
+                panel.Size = new Size(commentsPanel.Width, commentBox.Height);
+
+                RichTextBox bodyBox = new RichTextBox();
+                bodyBox.Size = new Size(commentsPanel.Width - 100, commentBox.Height / 2);
+                bodyBox.Text = reader.GetString(2);
+                bodyBox.ReadOnly = true;
+
+                LinkLabel authorLabel = new LinkLabel();
+                authorLabel.RightToLeft = RightToLeft.Yes;
+                authorLabel.Size = new Size(commentsPanel.Width - 100, commentBox.Height / 2);
+                authorLabel.Text = reader.GetString(1);
+                authorLabel.Location = new Point(bodyBox.Location.X, bodyBox.Location.Y + bodyBox.Height + 10);
+
+                Button upvote = new System.Windows.Forms.Button();
+                upvote.Size = new Size(25, commentBox.Height / 3);
+                upvote.Location = new Point(bodyBox.Location.X + bodyBox.Width + 40, bodyBox.Location.Y);
+                upvote.Text = "+1";
+                upvote.Name = "u" + reader.GetInt32(0).ToString();
+                RichTextBox ratingBox = new RichTextBox();
+                ratingBox.Size = new Size(25, commentBox.Height / 3);
+                ratingBox.Location = new Point(bodyBox.Location.X + bodyBox.Width + 40, upvote.Location.Y + upvote.Height);
+                ratingBox.Text = reader.GetInt32(3).ToString();
+                ratingBox.ReadOnly = true;
+                Button downvote = new System.Windows.Forms.Button();
+                downvote.Size = new Size(25, commentBox.Height / 3);
+                downvote.Location = new Point(bodyBox.Location.X + bodyBox.Width + 40, ratingBox.Location.Y + ratingBox.Height);
+                downvote.Text = "-1";
+                downvote.Name = "d" + reader.GetInt32(0).ToString();
+
+                panel.Controls.Add(bodyBox);
+                panel.Controls.Add(authorLabel);
+                panel.Controls.Add(upvote);
+                panel.Controls.Add(ratingBox);
+                panel.Controls.Add(downvote);
+
+                buttonPressed.Add(BUTTON_ACTIONS.UNPRESSED);
+                voteList.Add(reader.GetInt32(3));
+
+                if (!isLogged())
+                {
+                    upvote.Enabled = false;
+                    downvote.Enabled = false;
+                }
+                else
+                {
+                    upvote.Click += new EventHandler(addVote);
+                    downvote.Click += new EventHandler(subtractVote);
+                }
+
+                commentsPanel.Controls.Add(panel);
             }
             command.Dispose();
             connection.Close();
+        }
+
+        private void addVote(object sender, EventArgs e)
+        {
+            var btn = sender as Button;
+            setVote(btn, 1, BUTTON_ACTIONS.UP);
+        }
+
+        private void subtractVote(object sender, EventArgs e)
+        {
+            var btn = sender as Button;
+            setVote(btn, -1, BUTTON_ACTIONS.DOWN);
+        }
+
+        private void setVote(Button btn, int value, BUTTON_ACTIONS action)
+        {
+            int id = Int32.Parse(btn.Name.Substring(1));
+            BUTTON_ACTIONS prevValue = buttonPressed[id - 1];
+            if (prevValue == action) return;
+
+            connection.Open();
+            string updateSQL = "UPDATE comment SET rating = @value WHERE id = @id";
+            SQLiteCommand command = new SQLiteCommand(updateSQL, connection);
+            command.Parameters.AddWithValue("@value", voteList[id - 1] + value);
+            command.Parameters.AddWithValue("@id", id);
+            command.ExecuteNonQuery();
+            command.Dispose();
+            connection.Close();
+            if (prevValue == BUTTON_ACTIONS.UNPRESSED)
+            {
+                buttonPressed[id - 1] = action;
+            }
+            else if (prevValue != action) 
+            {
+                buttonPressed[id - 1] = BUTTON_ACTIONS.UNPRESSED;
+            }
+            voteList[id - 1] = voteList[id - 1] + value;
+            showComments(currentPage);
+
         }
 
         /*private void button1_Click(object sender, EventArgs e)
