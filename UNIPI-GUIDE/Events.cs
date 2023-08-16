@@ -47,11 +47,7 @@ namespace UNIPI_GUIDE
             connection = new SQLiteConnection(connectionString);
             showComments(currentPage);
 
-            // adding based on SELECT query
-            eventDates.Add(new DateTime(2023, 9, 5));
-            eventDates.Add(new DateTime(2023, 9, 10));
-            calendar.BoldedDates = eventDates.ToArray();
-
+            addEvents();   
             if (!isLogged())
             {
                 uploadBtn.Enabled = false;
@@ -60,13 +56,38 @@ namespace UNIPI_GUIDE
             }
         }
 
+        private void addEvents()
+        {
+            connection.Open();
+            string selectSQL = "SELECT * FROM event";
+            SQLiteCommand command = new SQLiteCommand(selectSQL, connection);
+            SQLiteDataReader reader = command.ExecuteReader();
+            while (reader.Read())
+            {
+                eventDates.Add(new DateTime(reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3)));
+            }
+            calendar.BoldedDates = eventDates.ToArray();
+            command.Dispose();
+            connection.Close();
+        }
+
         private void calendar_DateSelected(object sender, DateRangeEventArgs e)
         {
-            if (eventDates.Contains(calendar.SelectionRange.Start))
+            if (!eventDates.Contains(calendar.SelectionRange.Start))
             {
-                // event description based on SELECT...WHERE query
-               eventDescrBox.Text = "Lorem ipsum " + calendar.SelectionRange.Start.ToShortDateString() + " ipsum lorem.";
+                eventDescrBox.Clear();
+                return;
             }
+            connection.Open();
+            string selectSQL = "SELECT description FROM event WHERE year=@year AND month=@month AND day=@day";
+            SQLiteCommand command = new SQLiteCommand(selectSQL, connection);
+            command.Parameters.AddWithValue("@year", calendar.SelectionRange.Start.Year);
+            command.Parameters.AddWithValue("@month", calendar.SelectionRange.Start.Month);
+            command.Parameters.AddWithValue("@day", calendar.SelectionRange.Start.Day);
+            SQLiteDataReader reader = command.ExecuteReader();
+            if (reader.Read()) eventDescrBox.Text = reader.GetString(0);
+            command.Dispose();
+            connection.Close();
         }
 
         private void nextButton_Click(object sender, EventArgs e)
@@ -113,6 +134,7 @@ namespace UNIPI_GUIDE
                 RichTextBox bodyBox = new RichTextBox();
                 bodyBox.Size = new Size(commentsPanel.Width - 100, commentBox.Height / 2);
                 bodyBox.Text = reader.GetString(2);
+                bodyBox.Font = new Font("Arial", 18);
                 bodyBox.ReadOnly = true;
 
                 LinkLabel authorLabel = new LinkLabel();
@@ -121,26 +143,29 @@ namespace UNIPI_GUIDE
                 authorLabel.Text = reader.GetString(1);
                 authorLabel.Location = new Point(bodyBox.Location.X, bodyBox.Location.Y + bodyBox.Height + 10);
 
-                Button upvote = new System.Windows.Forms.Button();
-                upvote.Size = new Size(25, commentBox.Height / 3);
-                upvote.Location = new Point(bodyBox.Location.X + bodyBox.Width + 40, bodyBox.Location.Y);
-                upvote.Text = "+1";
-                upvote.Name = "u" + reader.GetInt32(0).ToString();
                 RichTextBox ratingBox = new RichTextBox();
-                ratingBox.Size = new Size(25, commentBox.Height / 3);
-                ratingBox.Location = new Point(bodyBox.Location.X + bodyBox.Width + 40, upvote.Location.Y + upvote.Height);
+                ratingBox.Size = new Size(50, commentBox.Height / 2);
+                ratingBox.Location = new Point(bodyBox.Location.X + bodyBox.Width + 40, bodyBox.Location.Y);
                 ratingBox.Text = reader.GetInt32(3).ToString();
-                ratingBox.ReadOnly = true;
-                Button downvote = new System.Windows.Forms.Button();
-                downvote.Size = new Size(25, commentBox.Height / 3);
+                ratingBox.Font = new Font("Arial", 16, FontStyle.Bold);
+                Button downvote = new Button();
+                downvote.Size = new Size(25, commentBox.Height / 2);
                 downvote.Location = new Point(bodyBox.Location.X + bodyBox.Width + 40, ratingBox.Location.Y + ratingBox.Height);
-                downvote.Text = "-1";
+                downvote.Font = new Font("Arial", 16, FontStyle.Bold);
+                downvote.Text = "-";
                 downvote.Name = "d" + reader.GetInt32(0).ToString();
+                Button upvote = new Button();
+                upvote.Size = new Size(25, commentBox.Height / 2);
+                upvote.Location = new Point(downvote.Location.X + downvote.Width, ratingBox.Location.Y + ratingBox.Height);
+                upvote.Font = new Font("Arial", 16, FontStyle.Bold);
+                upvote.Text = "+";
+                upvote.Name = "u" + reader.GetInt32(0).ToString();
+                ratingBox.ReadOnly = true;
 
                 panel.Controls.Add(bodyBox);
                 panel.Controls.Add(authorLabel);
-                panel.Controls.Add(upvote);
                 panel.Controls.Add(ratingBox);
+                panel.Controls.Add(upvote);
                 panel.Controls.Add(downvote);
 
                 buttonPressed.Add(BUTTON_ACTIONS.UNPRESSED);
