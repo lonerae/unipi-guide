@@ -13,6 +13,7 @@ namespace UNIPI_GUIDE
     public partial class BaseForm : Form
     {
         bool loggedIn = true;
+        string username = "MAlve";
 
         public BaseForm()
         {
@@ -27,6 +28,16 @@ namespace UNIPI_GUIDE
         public void setLogged(bool loggedIn) 
         {
             this.loggedIn = loggedIn;
+        }
+
+        public string getUsername()
+        {
+            return username;
+        }
+
+        public void setUsername(string username) 
+        {
+            this.username = username;        
         }
 
         private void navigateToolStripMenuItem_Click(object sender, EventArgs e)

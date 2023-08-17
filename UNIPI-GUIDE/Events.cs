@@ -115,16 +115,18 @@ namespace UNIPI_GUIDE
 
         private void showComments(int currentPage)
         {
-            int index = (currentPage - 1) * commentsPerPage + 1;
+            //int index = (currentPage - 1) * commentsPerPage + 1;
             commentsPanel.Controls.Clear();
 
             connection.Open();
-            int start = index - 1;
-            int end = index + commentsPerPage;
-            string selectSQL = "SELECT * FROM comment WHERE id>@start AND id<@end";
-            SQLiteCommand command = new SQLiteCommand(selectSQL, connection);
-            command.Parameters.AddWithValue("@start", start);
-            command.Parameters.AddWithValue("@end", end);
+            string countSQL = "SELECT count(*) FROM comment";
+            SQLiteCommand command = new SQLiteCommand(countSQL, connection);
+            Int32 count = Convert.ToInt32(command.ExecuteScalar());
+
+            string selectSQL = "SELECT * FROM comment ORDER BY id DESC LIMIT @limit OFFSET @offset";
+            command = new SQLiteCommand(selectSQL, connection);
+            command.Parameters.AddWithValue("@limit", commentsPerPage);
+            command.Parameters.AddWithValue("@offset", commentsPerPage * (currentPage - 1));
             SQLiteDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
@@ -229,15 +231,19 @@ namespace UNIPI_GUIDE
 
         private void uploadBtn_Click(object sender, EventArgs e)
         {
-            /*
-            connection.Open();
-            String insertSQL = "INSERT INTO comment VALUES(,'','',0)";
-            SQLiteCommand command = new SQLiteCommand(insertSQL, connection);
-            int rowsAffected = command.ExecuteNonQuery();
-            command.Dispose();
-            connection.Close();
-            MessageBox.Show("Επιτυχής ανάρτηση!", "Info");
-            */
+            if (!commentBox.Text.Equals(""))
+            {
+                connection.Open();
+                String insertSQL = "INSERT INTO comment (author, body, rating) VALUES(@author, @body, 0)";
+                SQLiteCommand command = new SQLiteCommand(insertSQL, connection);
+                command.Parameters.AddWithValue("@author", getUsername());
+                command.Parameters.AddWithValue("@body", commentBox.Text);
+                int rowsAffected = command.ExecuteNonQuery();
+                command.Dispose();
+                connection.Close();
+                MessageBox.Show("Επιτυχής ανάρτηση!", "Info");
+                showComments(currentPage);
+            }
         }
     }
 }
