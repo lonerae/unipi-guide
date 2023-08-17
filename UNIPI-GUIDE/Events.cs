@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Data.SQLite;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 using Button = System.Windows.Forms.Button;
-using static System.Data.Entity.Infrastructure.Design.Executor;
-using static System.Windows.Forms.AxHost;
 
 namespace UNIPI_GUIDE
 {
@@ -25,17 +16,15 @@ namespace UNIPI_GUIDE
         List<DateTime> eventDates = new List<DateTime>();
         int currentPage = 1;
         int commentsPerPage = 3;
+        int maxPages;
 
         List<int> voteList = new List<int>();
+        // same as rating_actions
         enum BUTTON_ACTIONS
         {
-            UP,
-            DOWN,
-            UNPRESSED
+            UPVOTE,
+            DOWNVOTE
         }
-        List<BUTTON_ACTIONS> buttonPressed = new List<BUTTON_ACTIONS>();
-
-       
 
         public Events()
         {
@@ -46,8 +35,9 @@ namespace UNIPI_GUIDE
         {
             connection = new SQLiteConnection(connectionString);
             showComments(currentPage);
-
-            addEvents();   
+            setPagination();
+            pageDropdown.SelectedIndex = 0;
+            addEvents();
             if (!isLogged())
             {
                 uploadBtn.Enabled = false;
@@ -79,6 +69,7 @@ namespace UNIPI_GUIDE
                 return;
             }
             connection.Open();
+            //TODO: multiple events in same day???
             string selectSQL = "SELECT description FROM event WHERE year=@year AND month=@month AND day=@day";
             SQLiteCommand command = new SQLiteCommand(selectSQL, connection);
             command.Parameters.AddWithValue("@year", calendar.SelectionRange.Start.Year);
@@ -92,39 +83,40 @@ namespace UNIPI_GUIDE
 
         private void nextButton_Click(object sender, EventArgs e)
         {
+            if (currentPage >= maxPages) return;
             currentPage += 1;
             showComments(currentPage);
         }
 
         private void prevButton_Click(object sender, EventArgs e)
         {
-            if (currentPage == 1) return;
+            if (currentPage <= 1) return;
             currentPage -= 1;
             showComments(currentPage);
         }
 
-        private void pageBtn_Click(object sender, EventArgs e)
+        private void setPagination()
         {
-            if (pageBox.Text.All(char.IsDigit) &&
-                int.Parse(pageBox.Text) > 0)
+            connection.Open();
+            string countSQL = "SELECT count(*) FROM comment";
+            SQLiteCommand command = new SQLiteCommand(countSQL, connection);
+            Int32 count = Convert.ToInt32(command.ExecuteScalar());
+            command.Dispose();
+            connection.Close();
+            maxPages = (int)Math.Ceiling((double)count / commentsPerPage);
+
+            for (int i = 1; i <= maxPages; i++)
             {
-                currentPage = int.Parse(pageBox.Text);
-                showComments(currentPage);
+                pageDropdown.Items.Add(i.ToString());
             }
         }
 
         private void showComments(int currentPage)
         {
-            //int index = (currentPage - 1) * commentsPerPage + 1;
             commentsPanel.Controls.Clear();
-
             connection.Open();
-            string countSQL = "SELECT count(*) FROM comment";
-            SQLiteCommand command = new SQLiteCommand(countSQL, connection);
-            Int32 count = Convert.ToInt32(command.ExecuteScalar());
-
             string selectSQL = "SELECT * FROM comment ORDER BY id DESC LIMIT @limit OFFSET @offset";
-            command = new SQLiteCommand(selectSQL, connection);
+            SQLiteCommand command = new SQLiteCommand(selectSQL, connection);
             command.Parameters.AddWithValue("@limit", commentsPerPage);
             command.Parameters.AddWithValue("@offset", commentsPerPage * (currentPage - 1));
             SQLiteDataReader reader = command.ExecuteReader();
@@ -132,6 +124,7 @@ namespace UNIPI_GUIDE
             {
                 Panel panel = new Panel();
                 panel.Size = new Size(commentsPanel.Width, commentBox.Height);
+                panel.Name = "p" + reader.GetInt32(0).ToString();
 
                 RichTextBox bodyBox = new RichTextBox();
                 bodyBox.Size = new Size(commentsPanel.Width - 100, commentBox.Height / 2);
@@ -142,7 +135,7 @@ namespace UNIPI_GUIDE
                 LinkLabel authorLabel = new LinkLabel();
                 authorLabel.RightToLeft = RightToLeft.Yes;
                 authorLabel.Size = new Size(commentsPanel.Width - 100, commentBox.Height / 2);
-                authorLabel.Text = reader.GetString(1);
+                authorLabel.Text = findUsername(reader.GetInt32(1));
                 authorLabel.Location = new Point(bodyBox.Location.X, bodyBox.Location.Y + bodyBox.Height + 10);
 
                 RichTextBox ratingBox = new RichTextBox();
@@ -170,7 +163,6 @@ namespace UNIPI_GUIDE
                 panel.Controls.Add(upvote);
                 panel.Controls.Add(downvote);
 
-                buttonPressed.Add(BUTTON_ACTIONS.UNPRESSED);
                 voteList.Add(reader.GetInt32(3));
 
                 if (!isLogged())
@@ -186,6 +178,7 @@ namespace UNIPI_GUIDE
 
                 commentsPanel.Controls.Add(panel);
             }
+            setVotes();
             command.Dispose();
             connection.Close();
         }
@@ -193,16 +186,16 @@ namespace UNIPI_GUIDE
         private void addVote(object sender, EventArgs e)
         {
             var btn = sender as Button;
-            setVote(btn, 1, BUTTON_ACTIONS.UP);
+            //vote(btn, 1, BUTTON_ACTIONS.UPVOTE);
         }
 
         private void subtractVote(object sender, EventArgs e)
         {
             var btn = sender as Button;
-            setVote(btn, -1, BUTTON_ACTIONS.DOWN);
+            //vote(btn, -1, BUTTON_ACTIONS.DOWNVOTE);
         }
-
-        private void setVote(Button btn, int value, BUTTON_ACTIONS action)
+        /*
+        private void vote(Button btn, int value, BUTTON_ACTIONS action)
         {
             int id = Int32.Parse(btn.Name.Substring(1));
             BUTTON_ACTIONS prevValue = buttonPressed[id - 1];
@@ -228,22 +221,109 @@ namespace UNIPI_GUIDE
             showComments(currentPage);
 
         }
+        */
+        private void setVotes()
+        {
+            String findUser = "SELECT id FROM user WHERE username=@username";
+            SQLiteCommand findUserCommand = new SQLiteCommand(findUser, connection);
+            findUserCommand.Parameters.AddWithValue("@username", getUsername());
+            SQLiteDataReader findUserReader = findUserCommand.ExecuteReader();
+            if (findUserReader.Read())
+            {
+                String findVotes = "SELECT commentId, actionId  FROM user_rating WHERE userId=@userId";
+                SQLiteCommand findVotesCommand = new SQLiteCommand(findVotes, connection);
+                findVotesCommand.Parameters.AddWithValue("@userId", findUserReader.GetInt32(0));
+                SQLiteDataReader findVotesReader = findVotesCommand.ExecuteReader();
+                foreach (Control c in commentsPanel.Controls) Console.WriteLine(c.Name);
+                while (findVotesReader.Read())
+                {
+                    Panel parent = (Panel)commentsPanel.Controls["p" + findVotesReader.GetInt32(0).ToString()];
+                    if (parent != null)
+                    {
+                        string res;
+                        Button temp;
+                        switch (findVotesReader.GetInt32(1))
+                        {
+                            case 1:
+                                res = "u" + findVotesReader.GetInt32(0).ToString();
+                                temp = (Button)parent.Controls.Find(res, true).FirstOrDefault();
+                                temp.BackColor = Color.Green;
+                                break;
+                            case 2:
+                                res = "d" + findVotesReader.GetInt32(0).ToString();
+                                temp = (Button)parent.Controls.Find(res, true).FirstOrDefault();
+                                temp.BackColor = Color.Red;
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+                findVotesCommand.Dispose();
+            }
+            findUserCommand.Dispose();
+        }
 
         private void uploadBtn_Click(object sender, EventArgs e)
         {
             if (!commentBox.Text.Equals(""))
             {
                 connection.Open();
-                String insertSQL = "INSERT INTO comment (author, body, rating) VALUES(@author, @body, 0)";
-                SQLiteCommand command = new SQLiteCommand(insertSQL, connection);
-                command.Parameters.AddWithValue("@author", getUsername());
-                command.Parameters.AddWithValue("@body", commentBox.Text);
-                int rowsAffected = command.ExecuteNonQuery();
-                command.Dispose();
-                connection.Close();
-                MessageBox.Show("Επιτυχής ανάρτηση!", "Info");
-                showComments(currentPage);
+                String selectSQL = "SELECT id FROM user WHERE username=@username";
+                SQLiteCommand command = new SQLiteCommand(selectSQL, connection);
+                command.Parameters.AddWithValue("@username", getUsername());
+                SQLiteDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    String insertSQL = "INSERT INTO comment (userId, body, rating) VALUES(@author, @body, 0)";
+                    command = new SQLiteCommand(insertSQL, connection);
+                    command.Parameters.AddWithValue("@author", reader.GetInt32(0));
+                    command.Parameters.AddWithValue("@body", commentBox.Text);
+                    command.ExecuteNonQuery();
+                    command.Dispose();
+                    connection.Close();
+                    MessageBox.Show("Επιτυχής ανάρτηση!", "Info");
+                    setPagination();
+                    showComments(currentPage);
+                }
+                else
+                {
+                    MessageBox.Show("Άκυρος χρήστης", "Warning");
+                }
             }
+        }
+
+        private void clearBtn_Click(object sender, EventArgs e)
+        {
+            commentBox.Clear();
+        }
+
+        private void pageBtn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Int32 page = Int32.Parse(pageDropdown.SelectedItem.ToString());
+                if (page > 0 && page <= maxPages)
+                {
+                    currentPage = page;
+                    showComments(currentPage);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private string findUsername(int id)
+        {
+            String findUser = "SELECT username FROM user WHERE id=@id";
+            SQLiteCommand findUserCommand = new SQLiteCommand(findUser, connection);
+            findUserCommand.Parameters.AddWithValue("@id", id);
+            SQLiteDataReader findUserReader = findUserCommand.ExecuteReader();
+            findUserCommand.Dispose();
+            if (findUserReader.Read()) return findUserReader.GetString(0);
+            return "";
         }
     }
 }

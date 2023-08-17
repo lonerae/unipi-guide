@@ -13,7 +13,7 @@ namespace UNIPI_GUIDE
     public partial class BaseForm : Form
     {
         bool loggedIn = true;
-        string username = "MAlve";
+        string username = "malve";
 
         public BaseForm()
         {

@@ -36,9 +36,9 @@
             this.commentsPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.prevButton = new System.Windows.Forms.Button();
             this.nextButton = new System.Windows.Forms.Button();
-            this.pageBox = new System.Windows.Forms.RichTextBox();
             this.pageBtn = new System.Windows.Forms.Button();
             this.warnLabel = new System.Windows.Forms.Label();
+            this.pageDropdown = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // calendar
@@ -79,6 +79,7 @@
             this.clearBtn.TabIndex = 7;
             this.clearBtn.Text = "Εκκαθάριση";
             this.clearBtn.UseVisualStyleBackColor = true;
+            this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
             // 
             // uploadBtn
             // 
@@ -120,21 +121,12 @@
             this.nextButton.UseVisualStyleBackColor = true;
             this.nextButton.Click += new System.EventHandler(this.nextButton_Click);
             // 
-            // pageBox
-            // 
-            this.pageBox.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.pageBox.Location = new System.Drawing.Point(735, 483);
-            this.pageBox.Name = "pageBox";
-            this.pageBox.Size = new System.Drawing.Size(65, 34);
-            this.pageBox.TabIndex = 12;
-            this.pageBox.Text = "";
-            // 
             // pageBtn
             // 
-            this.pageBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.pageBtn.Location = new System.Drawing.Point(627, 483);
+            this.pageBtn.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.pageBtn.Location = new System.Drawing.Point(1031, 491);
             this.pageBtn.Name = "pageBtn";
-            this.pageBtn.Size = new System.Drawing.Size(102, 34);
+            this.pageBtn.Size = new System.Drawing.Size(102, 21);
             this.pageBtn.TabIndex = 13;
             this.pageBtn.Text = "άλμα στην...";
             this.pageBtn.UseVisualStyleBackColor = true;
@@ -153,15 +145,24 @@
     "άποιο υπάρχον.";
             this.warnLabel.Visible = false;
             // 
+            // pageDropdown
+            // 
+            this.pageDropdown.FormattingEnabled = true;
+            this.pageDropdown.Location = new System.Drawing.Point(1139, 491);
+            this.pageDropdown.MaxDropDownItems = 5;
+            this.pageDropdown.Name = "pageDropdown";
+            this.pageDropdown.Size = new System.Drawing.Size(113, 21);
+            this.pageDropdown.TabIndex = 15;
+            // 
             // Events
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.pageDropdown);
             this.Controls.Add(this.warnLabel);
             this.Controls.Add(this.pageBtn);
-            this.Controls.Add(this.pageBox);
             this.Controls.Add(this.nextButton);
             this.Controls.Add(this.prevButton);
             this.Controls.Add(this.uploadBtn);
@@ -181,9 +182,9 @@
             this.Controls.SetChildIndex(this.uploadBtn, 0);
             this.Controls.SetChildIndex(this.prevButton, 0);
             this.Controls.SetChildIndex(this.nextButton, 0);
-            this.Controls.SetChildIndex(this.pageBox, 0);
             this.Controls.SetChildIndex(this.pageBtn, 0);
             this.Controls.SetChildIndex(this.warnLabel, 0);
+            this.Controls.SetChildIndex(this.pageDropdown, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -199,8 +200,8 @@
         private System.Windows.Forms.FlowLayoutPanel commentsPanel;
         private System.Windows.Forms.Button prevButton;
         private System.Windows.Forms.Button nextButton;
-        private System.Windows.Forms.RichTextBox pageBox;
         private System.Windows.Forms.Button pageBtn;
         private System.Windows.Forms.Label warnLabel;
+        private System.Windows.Forms.ComboBox pageDropdown;
     }
 }
