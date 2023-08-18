@@ -8,6 +8,8 @@ using System.Linq;
 using System.Windows.Forms;
 using Button = System.Windows.Forms.Button;
 using System.Data.Common;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace UNIPI_GUIDE
 {
@@ -131,72 +133,76 @@ namespace UNIPI_GUIDE
                 command.Parameters.AddWithValue("@offset", commentsPerPage * (currentPage - 1));
                 using (SQLiteDataReader reader = command.ExecuteReader())
                 {
-                    while (reader.Read())
-                    {
-                        Panel panel = new Panel();
-                        panel.Size = new Size(commentsPanel.Width, commentBox.Height);
-                        panel.Name = "p" + reader.GetInt32(0).ToString();
-
-                        RichTextBox bodyBox = new RichTextBox();
-                        bodyBox.Size = new Size(commentsPanel.Width - 100, commentBox.Height / 2);
-                        bodyBox.Text = reader.GetString(2);
-                        bodyBox.Font = new Font("Arial", 18);
-                        bodyBox.ReadOnly = true;
-
-                        LinkLabel authorLabel = new LinkLabel();
-                        authorLabel.RightToLeft = RightToLeft.Yes;
-                        authorLabel.Size = new Size(commentsPanel.Width - 100, commentBox.Height / 2);
-                        authorLabel.Text = findUsername(reader.GetInt32(1));
-                        authorLabel.Location = new Point(bodyBox.Location.X, bodyBox.Location.Y + bodyBox.Height + 10);
-
-                        RichTextBox ratingBox = new RichTextBox();
-                        ratingBox.Size = new Size(50, commentBox.Height / 2);
-                        ratingBox.Location = new Point(bodyBox.Location.X + bodyBox.Width + 40, bodyBox.Location.Y);
-                        ratingBox.Text = reader.GetInt32(3).ToString();
-                        ratingBox.Font = new Font("Arial", 16, FontStyle.Bold);
-
-                        Button downvote = new Button();
-                        downvote.Size = new Size(25, commentBox.Height / 2 - 5);
-                        downvote.Location = new Point(bodyBox.Location.X + bodyBox.Width + 40, ratingBox.Location.Y + ratingBox.Height + 5);
-                        downvote.Font = new Font("Arial", 16, FontStyle.Bold);
-                        downvote.Text = "-";
-                        downvote.Name = "d" + reader.GetInt32(0).ToString();
-                        downvote.FlatStyle = FlatStyle.Flat;
-                        downvote.FlatAppearance.BorderSize = 0;
-
-                        Button upvote = new Button();
-                        upvote.Size = new Size(25, commentBox.Height / 2 - 5);
-                        upvote.Location = new Point(downvote.Location.X + downvote.Width, ratingBox.Location.Y + ratingBox.Height + 5);
-                        upvote.Font = new Font("Arial", 16, FontStyle.Bold);
-                        upvote.Text = "+";
-                        upvote.Name = "u" + reader.GetInt32(0).ToString();
-                        upvote.FlatStyle = FlatStyle.Flat;
-                        upvote.FlatAppearance.BorderSize = 0;
-
-                        ratingBox.ReadOnly = true;
-
-                        panel.Controls.Add(bodyBox);
-                        panel.Controls.Add(authorLabel);
-                        panel.Controls.Add(ratingBox);
-                        panel.Controls.Add(upvote);
-                        panel.Controls.Add(downvote);
-
-                        if (!isLogged())
-                        {
-                            upvote.Enabled = false;
-                            downvote.Enabled = false;
-                        }
-                        else
-                        {
-                            upvote.Click += new EventHandler(addVote);
-                            downvote.Click += new EventHandler(subtractVote);
-                        }
-
-                        commentsPanel.Controls.Add(panel);
-                    }
+                    drawCommentPanel(reader);
                 }    
             }
             setVotes();
+        }
+
+        private void drawCommentPanel(SQLiteDataReader reader)
+        {
+            while (reader.Read())
+            {
+                Panel panel = new Panel();
+                panel.Size = new Size(commentsPanel.Width, commentBox.Height);
+                panel.Name = "p" + reader.GetInt32(0).ToString();
+
+                RichTextBox bodyBox = new RichTextBox();
+                bodyBox.Size = new Size(commentsPanel.Width - 100, commentBox.Height / 2);
+                bodyBox.Text = reader.GetString(2);
+                bodyBox.Font = new Font("Arial", 18);
+                bodyBox.ReadOnly = true;
+
+                LinkLabel authorLabel = new LinkLabel();
+                authorLabel.RightToLeft = RightToLeft.Yes;
+                authorLabel.Size = new Size(commentsPanel.Width - 100, commentBox.Height / 2);
+                authorLabel.Text = findUsername(reader.GetInt32(1));
+                authorLabel.Location = new Point(bodyBox.Location.X, bodyBox.Location.Y + bodyBox.Height + 10);
+
+                RichTextBox ratingBox = new RichTextBox();
+                ratingBox.Size = new Size(50, commentBox.Height / 2);
+                ratingBox.Location = new Point(bodyBox.Location.X + bodyBox.Width + 40, bodyBox.Location.Y);
+                ratingBox.Text = reader.GetInt32(3).ToString();
+                ratingBox.Font = new Font("Arial", 16, FontStyle.Bold);
+                ratingBox.ReadOnly = true;
+
+                Button downvote = new Button();
+                downvote.Size = new Size(25, commentBox.Height / 2 - 5);
+                downvote.Location = new Point(bodyBox.Location.X + bodyBox.Width + 40, ratingBox.Location.Y + ratingBox.Height + 5);
+                downvote.Font = new Font("Arial", 16, FontStyle.Bold);
+                downvote.Text = "-";
+                downvote.Name = "d" + reader.GetInt32(0).ToString();
+                downvote.FlatStyle = FlatStyle.Flat;
+                downvote.FlatAppearance.BorderSize = 0;
+
+                Button upvote = new Button();
+                upvote.Size = new Size(25, commentBox.Height / 2 - 5);
+                upvote.Location = new Point(downvote.Location.X + downvote.Width, ratingBox.Location.Y + ratingBox.Height + 5);
+                upvote.Font = new Font("Arial", 16, FontStyle.Bold);
+                upvote.Text = "+";
+                upvote.Name = "u" + reader.GetInt32(0).ToString();
+                upvote.FlatStyle = FlatStyle.Flat;
+                upvote.FlatAppearance.BorderSize = 0;
+                
+                if (!isLogged())
+                {
+                    upvote.Enabled = false;
+                    downvote.Enabled = false;
+                }
+                else
+                {
+                    upvote.Click += new EventHandler(addVote);
+                    downvote.Click += new EventHandler(subtractVote);
+                }
+
+                panel.Controls.Add(bodyBox);
+                panel.Controls.Add(authorLabel);
+                panel.Controls.Add(ratingBox);
+                panel.Controls.Add(upvote);
+                panel.Controls.Add(downvote);
+
+                commentsPanel.Controls.Add(panel);
+            }
         }
 
         private void addVote(object sender, EventArgs e)
@@ -213,6 +219,7 @@ namespace UNIPI_GUIDE
         
         private void vote(Button btn, BUTTON_ACTIONS action)
         {
+            // SET ACTION AND VOTE-VALUE BASED ON BUTTON
             int value = 0;
             int actionId = 0;
             if (action == BUTTON_ACTIONS.UPVOTE)
@@ -226,6 +233,7 @@ namespace UNIPI_GUIDE
                 value = -1;
             }
 
+            // FIND WHETHER THE USER HAS ALREADY INTERACTED WITH SELECTED COMMENT AND THE SPECIFIC ACTION
             int userId = findUserId(getUsername());
             int commentId = Int32.Parse(btn.Name.Substring(1));
             string findAction = @"SELECT action 
@@ -255,6 +263,7 @@ namespace UNIPI_GUIDE
                 }    
             }
 
+            // GET THE COMMENT'S CURRENT RATING (SEEMED SAFER THAN TRUSTING THE FRONTEND)
             int finalValue = 0;
             string findRating = "SELECT rating FROM comment WHERE id = @id";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
@@ -269,6 +278,7 @@ namespace UNIPI_GUIDE
                 }
             }
 
+            // UPDATE COMMENT'S RATING
             string updateSQL = "UPDATE comment SET rating = @value WHERE id = @commentId";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             using (SQLiteCommand updateCommand = new SQLiteCommand(updateSQL, connection))
@@ -279,6 +289,7 @@ namespace UNIPI_GUIDE
                 updateCommand.ExecuteNonQuery();
             }
 
+            // UPDATE THE INTERACTION BY EITHER DELETING (ON RESET) OR CHANGING ACTION
             if (actionId == -1) 
             {
                 string deleteUserRating = "DELETE FROM user_rating WHERE userId = @userId AND commentId = @commentId";
@@ -309,26 +320,18 @@ namespace UNIPI_GUIDE
 
             }
 
+            // SHOW IT ALL FROM THE START
             showComments(currentPage);
         }
 
+        /**
+         *  Highlights the appropriate action, on occasion of previous interaction by user. 
+        */
         private void setVotes()
         {
-            int userId = -1;
-            String findUser = "SELECT id FROM user WHERE username=@username";
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            using (SQLiteCommand findUserCommand = new SQLiteCommand(findUser, connection))
-            {
-                connection.Open();
-                findUserCommand.Parameters.AddWithValue("@username", getUsername());
-                using (SQLiteDataReader findUserReader = findUserCommand.ExecuteReader())
-                {
-                    if (findUserReader.Read()) userId = findUserReader.GetInt32(0);
-                    else return;
-                }
-            }
+            int userId = findUserId(getUsername());
 
-            String findVotes = "SELECT commentId, actionId  FROM user_rating WHERE userId=@userId";
+            String findVotes = "SELECT commentId, actionId  FROM user_rating WHERE userId = @userId";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             using (SQLiteCommand findVotesCommand = new SQLiteCommand(findVotes, connection))
             {
@@ -336,6 +339,7 @@ namespace UNIPI_GUIDE
                 findVotesCommand.Parameters.AddWithValue("@userId", userId);
                 using (SQLiteDataReader findVotesReader = findVotesCommand.ExecuteReader())
                 {
+                    paintActionBackgrounds(findVotesReader);
                     while (findVotesReader.Read())
                     {
                         Panel parent = (Panel)commentsPanel.Controls["p" + findVotesReader.GetInt32(0).ToString()];
@@ -362,6 +366,34 @@ namespace UNIPI_GUIDE
                     }
                 }
             }
+        }
+
+        private void paintActionBackgrounds(SQLiteDataReader reader)
+        {
+            while (reader.Read())
+            {
+                Panel parent = (Panel)commentsPanel.Controls["p" + reader.GetInt32(0).ToString()];
+                if (parent != null)
+                {
+                    string res;
+                    Button temp;
+                    switch (reader.GetInt32(1))
+                    {
+                        case 1:
+                            res = "u" + reader.GetInt32(0).ToString();
+                            temp = (Button)parent.Controls.Find(res, true).FirstOrDefault();
+                            temp.BackColor = Color.Green;
+                            break;
+                        case 2:
+                            res = "d" + reader.GetInt32(0).ToString();
+                            temp = (Button)parent.Controls.Find(res, true).FirstOrDefault();
+                            temp.BackColor = Color.Red;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }       
         }
 
         private void uploadBtn_Click(object sender, EventArgs e)
