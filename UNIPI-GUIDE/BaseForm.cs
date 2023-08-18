@@ -110,20 +110,14 @@ namespace UNIPI_GUIDE
             if (navPanel.Visible) navPanel.BringToFront();
         }
 
-
-        //TODO: use the forms collection to avoid multiple reopenings
         private void homeBtn_Click(object sender, EventArgs e)
         {
-            Home home = new Home();
-            home.Show();
-            this.Hide();
+            changeForm(Application.OpenForms[0]);
         }
 
         private void eventsButton_Click(object sender, EventArgs e)
         {
-            Events events = new Events();
-            events.Show();
-            this.Hide();
+            changeForm(new Events());
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -135,10 +129,28 @@ namespace UNIPI_GUIDE
         {
             Application.Exit();
         }
+        
+        // HELPER FUNCTIONS
 
         /**
-        * Helper functions for common use
-        */
+         * Dispose every form except for the homepage, which is stored and resurfaced
+         */
+        protected void changeForm(Form form)
+        {
+            bool wasOnHome = ActiveForm == Application.OpenForms[0];
+            form.Show();
+            bool isOnHome = ActiveForm == Application.OpenForms[0];
+            if (wasOnHome)
+            {
+                if (!isOnHome) this.Hide();
+            }
+            else
+            {
+                this.Dispose();
+                form.Controls["navPanel"].Visible = false;
+            }
+        }
+
         protected string findUsername(int id)
         {
             using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))

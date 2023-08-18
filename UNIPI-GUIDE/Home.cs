@@ -34,9 +34,7 @@ namespace UNIPI_GUIDE
 
         private void historyBtn_Click(object sender, EventArgs e)
         {
-            History history = new History();
-            history.Show();
-            this.Hide();
+            changeForm(new History());
         }
     }
 }
