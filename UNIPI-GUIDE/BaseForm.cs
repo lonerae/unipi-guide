@@ -23,42 +23,73 @@ namespace UNIPI_GUIDE
 
         private void BaseForm_Load(object sender, EventArgs e)
         {
+            updateToolstrip();
+        }
+
+        private void updateToolstrip()
+        {
             if (loggedIn)
             {
                 loginToolStripMenuItem.Text = "Λογαριασμός";
                 loginToolStripMenuItem.Click += new EventHandler(showOwnInfo);
+                loginToolStripMenuItem.MouseHover += new EventHandler(showDropdown);
+                if (loginToolStripMenuItem.DropDownItems.Count == 0)
+                {
+                    ToolStripItem logoutToolStripMenuItem = loginToolStripMenuItem.DropDownItems.Add("Αποσύνδεση");
+                    logoutToolStripMenuItem.Click += new EventHandler(logout);
+                    logoutToolStripMenuItem.Font = new Font("Arial", 10);
+                }
             }
             else
             {
                 loginToolStripMenuItem.Text = "Σύνδεση";
                 loginToolStripMenuItem.Click += new EventHandler(login);
+                loginToolStripMenuItem.DropDownItems.Clear();
             }
         }
 
         private void login(object sender, EventArgs e)
         {
             //TODO: implement
+            loggedIn = true;
+            updateToolstrip();
+        }
+
+        private void showDropdown(object sender, EventArgs e)
+        {
+            loginToolStripMenuItem.DropDown.Show();
+        }
+
+        private void logout(object sender, EventArgs e)
+        {
+            //TODO: implement
+            loggedIn = false;
+            updateToolstrip();
         }
 
         private void showOwnInfo(object sender, EventArgs e)
         {
-            using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
-            using (SQLiteCommand command = new SQLiteCommand(Constants.SELECT_ACCOUNT_INFO_SQL, connection))
+            if (loggedIn)
             {
-                connection.Open();
-                command.Parameters.AddWithValue("@userId", findUserId(username));
-                using (SQLiteDataReader reader = command.ExecuteReader())
+                using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
+                using (SQLiteCommand command = new SQLiteCommand(Constants.SELECT_ACCOUNT_INFO_SQL, connection))
                 {
-                    if (reader.Read())
+                    connection.Open();
+                    command.Parameters.AddWithValue("@userId", findUserId(username));
+                    using (SQLiteDataReader reader = command.ExecuteReader())
                     {
-                        string accountInfo = "Όνομα: " + reader.GetString(0) + "\n\n" +
-                                         "Επώνυμο: " + reader.GetString(1) + "\n\n" +
-                                         "E-mail: " + reader.GetString(2) + "\n\n" +
-                                         "Τμήμα: " + reader.GetString(3);
-                        MessageBox.Show(accountInfo, "Πληροφορίες");
+                        if (reader.Read())
+                        {
+                            string accountInfo = "Όνομα: " + reader.GetString(0) + "\n\n" +
+                                             "Επώνυμο: " + reader.GetString(1) + "\n\n" +
+                                             "E-mail: " + reader.GetString(2) + "\n\n" +
+                                             "Τμήμα: " + reader.GetString(3);
+                            MessageBox.Show(accountInfo, "Πληροφορίες");
+                        }
                     }
                 }
             }
+           
         }
 
         // ONLY WORKS FOR THE LINK LABELS OF EVENTS FORM FOR NOW
