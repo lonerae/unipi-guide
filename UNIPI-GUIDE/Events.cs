@@ -158,6 +158,7 @@ namespace UNIPI_GUIDE
                 authorLabel.Size = new Size(commentsPanel.Width - 100, commentBox.Height / 2);
                 authorLabel.Text = findUsername(reader.GetInt32(1));
                 authorLabel.Location = new Point(bodyBox.Location.X, bodyBox.Location.Y + bodyBox.Height + 10);
+                authorLabel.Name = "l" + reader.GetInt32(1);
 
                 RichTextBox ratingBox = new RichTextBox();
                 ratingBox.Size = new Size(50, commentBox.Height / 2);
@@ -193,6 +194,7 @@ namespace UNIPI_GUIDE
                 {
                     upvote.Click += new EventHandler(addVote);
                     downvote.Click += new EventHandler(subtractVote);
+                    authorLabel.Click += new EventHandler(showAccountInfo);
                 }
 
                 panel.Controls.Add(bodyBox);

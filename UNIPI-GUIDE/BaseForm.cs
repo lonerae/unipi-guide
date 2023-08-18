@@ -15,6 +15,11 @@ namespace UNIPI_GUIDE
     {
         //TODO: move to constants class
         string connectionString = "DataSource = unipiGuide.db;Version = 3";
+        string selectInfo = @"SELECT ui.firstname, ui.lastname, ui.email, d.name
+                                FROM userInfo AS ui
+                                INNER JOIN department AS d
+                                    ON ui.departmentId = d.id
+                                WHERE userId = @userId";
 
         bool loggedIn = true;
         string username = "malve";
@@ -29,7 +34,7 @@ namespace UNIPI_GUIDE
             if (loggedIn)
             {
                 loginToolStripMenuItem.Text = "Λογαριασμός";
-                loginToolStripMenuItem.Click += new EventHandler(showAccountInfo);
+                loginToolStripMenuItem.Click += new EventHandler(showOwnInfo);
             }
             else
             {
@@ -43,18 +48,36 @@ namespace UNIPI_GUIDE
             //TODO: implement
         }
 
-        private void showAccountInfo(object sender, EventArgs e)
+        private void showOwnInfo(object sender, EventArgs e)
         {
-            string selectInfo = @"SELECT ui.firstname, ui.lastname, ui.email, d.name
-                                FROM userInfo AS ui
-                                INNER JOIN department AS d
-                                    ON ui.departmentId = d.id
-                                WHERE userId = @userId";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             using (SQLiteCommand command = new SQLiteCommand(selectInfo, connection))
             {
                 connection.Open();
                 command.Parameters.AddWithValue("@userId", findUserId(username));
+                using (SQLiteDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        string accountInfo = "Όνομα: " + reader.GetString(0) + "\n\n" +
+                                         "Επώνυμο: " + reader.GetString(1) + "\n\n" +
+                                         "E-mail: " + reader.GetString(2) + "\n\n" +
+                                         "Τμήμα: " + reader.GetString(3);
+                        MessageBox.Show(accountInfo, "Πληροφορίες");
+                    }
+                }
+            }
+        }
+
+        // ONLY WORKS FOR THE LINK LABELS OF EVENTS FORM FOR NOW
+        protected void showAccountInfo(object sender, EventArgs e)
+        {
+            LinkLabel linkLabel = (LinkLabel) sender;
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SQLiteCommand command = new SQLiteCommand(selectInfo, connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@userId", linkLabel.Name.Substring(1));
                 using (SQLiteDataReader reader = command.ExecuteReader())
                 {
                     if (reader.Read())
