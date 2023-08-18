@@ -37,10 +37,9 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.navPanel = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
             this.eventsButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.homeBtn = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.navPanel.SuspendLayout();
             this.SuspendLayout();
@@ -109,26 +108,14 @@
             // navPanel
             // 
             this.navPanel.BackColor = System.Drawing.Color.White;
-            this.navPanel.Controls.Add(this.button4);
             this.navPanel.Controls.Add(this.eventsButton);
             this.navPanel.Controls.Add(this.button2);
-            this.navPanel.Controls.Add(this.button1);
+            this.navPanel.Controls.Add(this.homeBtn);
             this.navPanel.Location = new System.Drawing.Point(0, 43);
             this.navPanel.Name = "navPanel";
-            this.navPanel.Size = new System.Drawing.Size(200, 279);
+            this.navPanel.Size = new System.Drawing.Size(200, 209);
             this.navPanel.TabIndex = 3;
             this.navPanel.Visible = false;
-            // 
-            // button4
-            // 
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.Font = new System.Drawing.Font("Arial", 20.25F);
-            this.button4.Location = new System.Drawing.Point(0, 207);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(200, 71);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Λεύκωμα";
-            this.button4.UseVisualStyleBackColor = true;
             // 
             // eventsButton
             // 
@@ -153,16 +140,17 @@
             this.button2.Text = "Σχολές";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // homeBtn
             // 
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Font = new System.Drawing.Font("Arial", 20.25F);
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(200, 71);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Αρχική";
-            this.button1.UseVisualStyleBackColor = true;
+            this.homeBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.homeBtn.Font = new System.Drawing.Font("Arial", 20.25F);
+            this.homeBtn.Location = new System.Drawing.Point(0, 0);
+            this.homeBtn.Name = "homeBtn";
+            this.homeBtn.Size = new System.Drawing.Size(200, 71);
+            this.homeBtn.TabIndex = 0;
+            this.homeBtn.Text = "Αρχική";
+            this.homeBtn.UseVisualStyleBackColor = true;
+            this.homeBtn.Click += new System.EventHandler(this.homeBtn_Click);
             // 
             // BaseForm
             // 
@@ -194,9 +182,8 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Panel navPanel;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button eventsButton;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button homeBtn;
     }
 }

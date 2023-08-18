@@ -31,5 +31,12 @@ namespace UNIPI_GUIDE
             counter++;
             if (counter > MAX_COUNTER) counter = 1;
         }
+
+        private void historyBtn_Click(object sender, EventArgs e)
+        {
+            History history = new History();
+            history.Show();
+            this.Hide();
+        }
     }
 }

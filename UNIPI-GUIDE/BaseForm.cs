@@ -13,14 +13,6 @@ namespace UNIPI_GUIDE
 {
     public partial class BaseForm : Form
     {
-        //TODO: move to constants class
-        string connectionString = "DataSource = unipiGuide.db;Version = 3";
-        string selectInfo = @"SELECT ui.firstname, ui.lastname, ui.email, d.name
-                                FROM userInfo AS ui
-                                INNER JOIN department AS d
-                                    ON ui.departmentId = d.id
-                                WHERE userId = @userId";
-
         bool loggedIn = true;
         string username = "malve";
 
@@ -50,8 +42,8 @@ namespace UNIPI_GUIDE
 
         private void showOwnInfo(object sender, EventArgs e)
         {
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            using (SQLiteCommand command = new SQLiteCommand(selectInfo, connection))
+            using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
+            using (SQLiteCommand command = new SQLiteCommand(Constants.SELECT_ACCOUNT_INFO_SQL, connection))
             {
                 connection.Open();
                 command.Parameters.AddWithValue("@userId", findUserId(username));
@@ -73,8 +65,8 @@ namespace UNIPI_GUIDE
         protected void showAccountInfo(object sender, EventArgs e)
         {
             LinkLabel linkLabel = (LinkLabel) sender;
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            using (SQLiteCommand command = new SQLiteCommand(selectInfo, connection))
+            using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
+            using (SQLiteCommand command = new SQLiteCommand(Constants.SELECT_ACCOUNT_INFO_SQL, connection))
             {
                 connection.Open();
                 command.Parameters.AddWithValue("@userId", linkLabel.Name.Substring(1));
@@ -118,6 +110,15 @@ namespace UNIPI_GUIDE
             if (navPanel.Visible) navPanel.BringToFront();
         }
 
+
+        //TODO: use the forms collection to avoid multiple reopenings
+        private void homeBtn_Click(object sender, EventArgs e)
+        {
+            Home home = new Home();
+            home.Show();
+            this.Hide();
+        }
+
         private void eventsButton_Click(object sender, EventArgs e)
         {
             Events events = new Events();
@@ -140,9 +141,8 @@ namespace UNIPI_GUIDE
         */
         protected string findUsername(int id)
         {
-            String findUser = "SELECT username FROM user WHERE id=@id";
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            using (SQLiteCommand findUserCommand = new SQLiteCommand(findUser, connection))
+            using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
+            using (SQLiteCommand findUserCommand = new SQLiteCommand(Constants.RETURN_USERNAME_FROM_ID_SQL, connection))
             {
                 connection.Open();
                 findUserCommand.Parameters.AddWithValue("@id", id);
@@ -156,9 +156,8 @@ namespace UNIPI_GUIDE
 
         protected int findUserId(string username)
         {
-            String findUser = "SELECT id FROM user WHERE username=@username";
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            using (SQLiteCommand findUserCommand = new SQLiteCommand(findUser, connection))
+            using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
+            using (SQLiteCommand findUserCommand = new SQLiteCommand(Constants.RETURN_ID_FROM_USERNAME_SQL, connection))
             {
                 connection.Open();
                 findUserCommand.Parameters.AddWithValue("@username", getUsername());

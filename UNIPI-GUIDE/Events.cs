@@ -15,8 +15,6 @@ namespace UNIPI_GUIDE
 {
     public partial class Events : BaseForm
     {
-        string connectionString = "DataSource = unipiGuide.db;Version = 3";
-
         List<DateTime> eventDates = new List<DateTime>();
         int currentPage = 1;
         int commentsPerPage = 3;
@@ -50,9 +48,8 @@ namespace UNIPI_GUIDE
 
         private void addEvents()
         {
-            string selectSQL = "SELECT * FROM event";
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            using (SQLiteCommand command = new SQLiteCommand(selectSQL, connection))
+            using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
+            using (SQLiteCommand command = new SQLiteCommand(Constants.RETURN_ALL_EVENTS_SQL, connection))
             {
                 connection.Open();
                 using (SQLiteDataReader reader = command.ExecuteReader())
@@ -74,9 +71,8 @@ namespace UNIPI_GUIDE
                 return;
             }
 
-            string selectSQL = "SELECT description FROM event WHERE year=@year AND month=@month AND day=@day";
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            using (SQLiteCommand command = new SQLiteCommand(selectSQL, connection))
+            using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
+            using (SQLiteCommand command = new SQLiteCommand(Constants.RETURN_EVENT_DESCRIPTION_BASED_ON_DATE_SQL, connection))
             {
                 connection.Open();
                 //TODO: multiple events in same day???
@@ -106,9 +102,8 @@ namespace UNIPI_GUIDE
 
         private void setPagination()
         {
-            string countSQL = "SELECT count(*) FROM comment";
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            using (SQLiteCommand command = new SQLiteCommand(countSQL, connection))
+            using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
+            using (SQLiteCommand command = new SQLiteCommand(Constants.COUNT_ALL_COMMENTS_SQL, connection))
             {
                 connection.Open();
                 Int32 count = Convert.ToInt32(command.ExecuteScalar());
@@ -124,9 +119,8 @@ namespace UNIPI_GUIDE
         private void showComments(int currentPage)
         {
             commentsPanel.Controls.Clear();
-            string selectSQL = "SELECT * FROM comment ORDER BY id DESC LIMIT @limit OFFSET @offset";
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            using (SQLiteCommand command = new SQLiteCommand(selectSQL, connection))
+            using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
+            using (SQLiteCommand command = new SQLiteCommand(Constants.RETURN_PAGE_OF_COMMENTS_SQL, connection))
             {
                 connection.Open();
                 command.Parameters.AddWithValue("@limit", commentsPerPage);
@@ -238,15 +232,8 @@ namespace UNIPI_GUIDE
             // FIND WHETHER THE USER HAS ALREADY INTERACTED WITH SELECTED COMMENT AND THE SPECIFIC ACTION
             int userId = findUserId(getUsername());
             int commentId = Int32.Parse(btn.Name.Substring(1));
-            string findAction = @"SELECT action 
-                                FROM rating_action AS ra
-                                INNER JOIN user_rating AS ur
-                                    ON ra.id = ur.actionID
-                                WHERE 
-                                    ur.userId=@userId 
-                                    AND ur.commentId=@commentId";
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            using (SQLiteCommand findActionCommand = new SQLiteCommand(findAction, connection))
+            using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
+            using (SQLiteCommand findActionCommand = new SQLiteCommand(Constants.RETURN_ACTION_OF_USER_ON_COMMENT_SQL, connection))
             {
                 connection.Open();
                 findActionCommand.Parameters.AddWithValue("@userId", userId);
@@ -267,9 +254,8 @@ namespace UNIPI_GUIDE
 
             // GET THE COMMENT'S CURRENT RATING (SEEMED SAFER THAN TRUSTING THE FRONTEND)
             int finalValue = 0;
-            string findRating = "SELECT rating FROM comment WHERE id = @id";
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            using (SQLiteCommand findRatingCommand = new SQLiteCommand(findRating, connection))
+            using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
+            using (SQLiteCommand findRatingCommand = new SQLiteCommand(Constants.RETURN_RATING_OF_COMMENT_SQL, connection))
             {
                 connection.Open();
                 findRatingCommand.Parameters.AddWithValue("@id", commentId);
@@ -281,9 +267,8 @@ namespace UNIPI_GUIDE
             }
 
             // UPDATE COMMENT'S RATING
-            string updateSQL = "UPDATE comment SET rating = @value WHERE id = @commentId";
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            using (SQLiteCommand updateCommand = new SQLiteCommand(updateSQL, connection))
+            using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
+            using (SQLiteCommand updateCommand = new SQLiteCommand(Constants.UPDATE_COMMENT_RATING_SQL, connection))
             {
                 connection.Open();
                 updateCommand.Parameters.AddWithValue("@value", finalValue);
@@ -294,9 +279,8 @@ namespace UNIPI_GUIDE
             // UPDATE THE INTERACTION BY EITHER DELETING (ON RESET) OR CHANGING ACTION
             if (actionId == -1) 
             {
-                string deleteUserRating = "DELETE FROM user_rating WHERE userId = @userId AND commentId = @commentId";
-                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-                using (SQLiteCommand deleteUserRatingCommand = new SQLiteCommand(deleteUserRating, connection))
+                using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
+                using (SQLiteCommand deleteUserRatingCommand = new SQLiteCommand(Constants.DELETE_USER_COMMENT_ASSOCIATION_SQL, connection))
                 {
                     connection.Open();
                     deleteUserRatingCommand.Parameters.AddWithValue("@userId", userId);
@@ -306,12 +290,8 @@ namespace UNIPI_GUIDE
             }
             else
             {
-                string updateUserRating = @"INSERT INTO user_rating (userId, commentId, actionId)  
-                                            VALUES(@userId, @commentId, @actionId)
-                                            ON CONFLICT(userId, commentId)
-                                            DO UPDATE SET actionId = @actionId";
-                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-                using (SQLiteCommand updateUserRatingCommand = new SQLiteCommand(updateUserRating, connection))
+                using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
+                using (SQLiteCommand updateUserRatingCommand = new SQLiteCommand(Constants.UPSERT_USER_COMMENT_ASSOCIATION_SQL, connection))
                 {
                     connection.Open();
                     updateUserRatingCommand.Parameters.AddWithValue("@userId", userId);
@@ -332,40 +312,14 @@ namespace UNIPI_GUIDE
         private void setVotes()
         {
             int userId = findUserId(getUsername());
-
-            String findVotes = "SELECT commentId, actionId  FROM user_rating WHERE userId = @userId";
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            using (SQLiteCommand findVotesCommand = new SQLiteCommand(findVotes, connection))
+            using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
+            using (SQLiteCommand findVotesCommand = new SQLiteCommand(Constants.RETURN_ASSOCIATED_COMMENTS_OF_USER_SQL, connection))
             {
                 connection.Open();
                 findVotesCommand.Parameters.AddWithValue("@userId", userId);
                 using (SQLiteDataReader findVotesReader = findVotesCommand.ExecuteReader())
                 {
                     paintActionBackgrounds(findVotesReader);
-                    while (findVotesReader.Read())
-                    {
-                        Panel parent = (Panel)commentsPanel.Controls["p" + findVotesReader.GetInt32(0).ToString()];
-                        if (parent != null)
-                        {
-                            string res;
-                            Button temp;
-                            switch (findVotesReader.GetInt32(1))
-                            {
-                                case 1:
-                                    res = "u" + findVotesReader.GetInt32(0).ToString();
-                                    temp = (Button)parent.Controls.Find(res, true).FirstOrDefault();
-                                    temp.BackColor = Color.Green;
-                                    break;
-                                case 2:
-                                    res = "d" + findVotesReader.GetInt32(0).ToString();
-                                    temp = (Button)parent.Controls.Find(res, true).FirstOrDefault();
-                                    temp.BackColor = Color.Red;
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
-                    }
                 }
             }
         }
@@ -403,10 +357,8 @@ namespace UNIPI_GUIDE
             if (!commentBox.Text.Equals(""))
             {
                 int userId = findUserId(getUsername());
-
-                String insertSQL = "INSERT INTO comment (userId, body, rating) VALUES (@author, @body, 0)";
-                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-                using (SQLiteCommand command = new SQLiteCommand(insertSQL, connection))
+                using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
+                using (SQLiteCommand command = new SQLiteCommand(Constants.INSERT_NEW_COMMENT_SQL, connection))
                 {
                     connection.Open();
                     command.Parameters.AddWithValue("@author", userId);

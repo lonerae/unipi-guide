@@ -34,7 +34,7 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.historyBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gallery)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,19 +95,20 @@
             this.button8.Text = "Χαιρετισμός Πρύτανη";
             this.button8.UseVisualStyleBackColor = false;
             // 
-            // button5
+            // historyBtn
             // 
-            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Arial", 20.25F);
-            this.button5.Location = new System.Drawing.Point(10, 442);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(617, 107);
-            this.button5.TabIndex = 7;
-            this.button5.Text = "Ιστορία";
-            this.button5.UseVisualStyleBackColor = false;
+            this.historyBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.historyBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.historyBtn.FlatAppearance.BorderSize = 0;
+            this.historyBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.historyBtn.Font = new System.Drawing.Font("Arial", 20.25F);
+            this.historyBtn.Location = new System.Drawing.Point(10, 442);
+            this.historyBtn.Name = "historyBtn";
+            this.historyBtn.Size = new System.Drawing.Size(617, 107);
+            this.historyBtn.TabIndex = 7;
+            this.historyBtn.Text = "Ιστορία";
+            this.historyBtn.UseVisualStyleBackColor = false;
+            this.historyBtn.Click += new System.EventHandler(this.historyBtn_Click);
             // 
             // Home
             // 
@@ -116,16 +117,21 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.historyBtn);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.gallery);
             this.Name = "Home";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UNIPI GUIDE";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Controls.SetChildIndex(this.gallery, 0);
+            this.Controls.SetChildIndex(this.button8, 0);
+            this.Controls.SetChildIndex(this.button7, 0);
+            this.Controls.SetChildIndex(this.historyBtn, 0);
+            this.Controls.SetChildIndex(this.button6, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gallery)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -135,7 +141,7 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button historyBtn;
     }
 }
 

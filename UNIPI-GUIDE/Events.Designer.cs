@@ -147,6 +147,7 @@
             // 
             // pageDropdown
             // 
+            this.pageDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.pageDropdown.FormattingEnabled = true;
             this.pageDropdown.Location = new System.Drawing.Point(1139, 491);
             this.pageDropdown.MaxDropDownItems = 5;
