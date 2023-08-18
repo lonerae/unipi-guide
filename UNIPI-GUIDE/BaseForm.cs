@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,12 +13,60 @@ namespace UNIPI_GUIDE
 {
     public partial class BaseForm : Form
     {
+        //TODO: move to constants class
+        string connectionString = "DataSource = unipiGuide.db;Version = 3";
+
         bool loggedIn = true;
         string username = "malve";
 
         public BaseForm()
         {
             InitializeComponent();
+        }
+
+        private void BaseForm_Load(object sender, EventArgs e)
+        {
+            if (loggedIn)
+            {
+                loginToolStripMenuItem.Text = "Λογαριασμός";
+                loginToolStripMenuItem.Click += new EventHandler(showAccountInfo);
+            }
+            else
+            {
+                loginToolStripMenuItem.Text = "Σύνδεση";
+                loginToolStripMenuItem.Click += new EventHandler(login);
+            }
+        }
+
+        private void login(object sender, EventArgs e)
+        {
+            //TODO: implement
+        }
+
+        private void showAccountInfo(object sender, EventArgs e)
+        {
+            string selectInfo = @"SELECT ui.firstname, ui.lastname, ui.email, d.name
+                                FROM userInfo AS ui
+                                INNER JOIN department AS d
+                                    ON ui.departmentId = d.id
+                                WHERE userId = @userId";
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SQLiteCommand command = new SQLiteCommand(selectInfo, connection))
+            {
+                connection.Open();
+                command.Parameters.AddWithValue("@userId", findUserId(username));
+                using (SQLiteDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        string accountInfo = "Όνομα: " + reader.GetString(0) + "\n\n" +
+                                         "Επώνυμο: " + reader.GetString(1) + "\n\n" +
+                                         "E-mail: " + reader.GetString(2) + "\n\n" +
+                                         "Τμήμα: " + reader.GetString(3);
+                        MessageBox.Show(accountInfo, "Πληροφορίες");
+                    }    
+                }
+            }
         }
 
         public bool isLogged()
@@ -61,6 +110,41 @@ namespace UNIPI_GUIDE
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        /**
+        * Helper functions for common use
+        */
+        protected string findUsername(int id)
+        {
+            String findUser = "SELECT username FROM user WHERE id=@id";
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SQLiteCommand findUserCommand = new SQLiteCommand(findUser, connection))
+            {
+                connection.Open();
+                findUserCommand.Parameters.AddWithValue("@id", id);
+                using (SQLiteDataReader findUserReader = findUserCommand.ExecuteReader())
+                {
+                    if (findUserReader.Read()) return findUserReader.GetString(0);
+                }
+                return "";
+            }
+        }
+
+        protected int findUserId(string username)
+        {
+            String findUser = "SELECT id FROM user WHERE username=@username";
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            using (SQLiteCommand findUserCommand = new SQLiteCommand(findUser, connection))
+            {
+                connection.Open();
+                findUserCommand.Parameters.AddWithValue("@username", getUsername());
+                using (SQLiteDataReader findUserReader = findUserCommand.ExecuteReader())
+                {
+                    if (findUserReader.Read()) return findUserReader.GetInt32(0);
+                }
+                return -1;
+            }
         }
     }
 }

@@ -400,23 +400,7 @@ namespace UNIPI_GUIDE
         {
             if (!commentBox.Text.Equals(""))
             {
-                int userId = 0;
-                String selectSQL = "SELECT id FROM user WHERE username=@username";
-                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-                using (SQLiteCommand command = new SQLiteCommand(selectSQL, connection))
-                {
-                    connection.Open();
-                    command.Parameters.AddWithValue("@username", getUsername());
-                    using (SQLiteDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read()) userId = reader.GetInt32(0);
-                        else
-                        {
-                            MessageBox.Show("Άκυρος χρήστης", "Warning");
-                            return;
-                        }
-                    }
-                }
+                int userId = findUserId(getUsername());
 
                 String insertSQL = "INSERT INTO comment (userId, body, rating) VALUES (@author, @body, 0)";
                 using (SQLiteConnection connection = new SQLiteConnection(connectionString))
@@ -425,10 +409,14 @@ namespace UNIPI_GUIDE
                     connection.Open();
                     command.Parameters.AddWithValue("@author", userId);
                     command.Parameters.AddWithValue("@body", commentBox.Text);
-                    command.ExecuteNonQuery();
-                    MessageBox.Show("Επιτυχής ανάρτηση!", "Info");
-                    setPagination();
-                    showComments(currentPage);
+                    int rows = command.ExecuteNonQuery();
+                    if (rows != -1)
+                    {
+                        MessageBox.Show("Επιτυχής ανάρτηση!", "Info");
+                        setPagination();
+                        showComments(currentPage);
+                    }
+                    else MessageBox.Show("Κάτι πήγε λάθος...", "Error");
                 }
             }
         }
@@ -449,42 +437,7 @@ namespace UNIPI_GUIDE
                     showComments(currentPage);
                 }
             }
-            catch (Exception)
-            {
-
-            }
-        }
-
-        private string findUsername(int id)
-        {
-            String findUser = "SELECT username FROM user WHERE id=@id";
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            using (SQLiteCommand findUserCommand = new SQLiteCommand(findUser, connection))
-            {
-                connection.Open();
-                findUserCommand.Parameters.AddWithValue("@id", id);
-                using (SQLiteDataReader findUserReader = findUserCommand.ExecuteReader())
-                {
-                    if (findUserReader.Read()) return findUserReader.GetString(0);
-                }
-                return "";
-            }
-        }
-
-        private int findUserId(string username)
-        {
-            String findUser = "SELECT id FROM user WHERE username=@username";
-            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
-            using (SQLiteCommand findUserCommand = new SQLiteCommand(findUser, connection))
-            {
-                connection.Open();
-                findUserCommand.Parameters.AddWithValue("@username", getUsername());
-                using (SQLiteDataReader findUserReader = findUserCommand.ExecuteReader())
-                {
-                    if (findUserReader.Read()) return findUserReader.GetInt32(0);
-                }
-                return -1;
-            }
+            catch (Exception) {} // in case of invalid input
         }
     }
 }

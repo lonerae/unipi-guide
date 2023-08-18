@@ -66,8 +66,7 @@
             this.loginToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.loginToolStripMenuItem.Font = new System.Drawing.Font("Arial", 18F);
             this.loginToolStripMenuItem.Name = "loginToolStripMenuItem";
-            this.loginToolStripMenuItem.Size = new System.Drawing.Size(117, 31);
-            this.loginToolStripMenuItem.Text = "Σύνδεση";
+            this.loginToolStripMenuItem.Size = new System.Drawing.Size(12, 31);
             // 
             // navigateToolStripMenuItem
             // 
@@ -176,6 +175,7 @@
             this.Name = "BaseForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BaseForm";
+            this.Load += new System.EventHandler(this.BaseForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.navPanel.ResumeLayout(false);
