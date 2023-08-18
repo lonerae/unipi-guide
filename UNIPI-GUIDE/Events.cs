@@ -214,8 +214,17 @@ namespace UNIPI_GUIDE
         private void vote(Button btn, BUTTON_ACTIONS action)
         {
             int value = 0;
-            if (action == BUTTON_ACTIONS.UPVOTE) value = 1;
-            else if (action == BUTTON_ACTIONS.DOWNVOTE) value = -1;
+            int actionId = 0;
+            if (action == BUTTON_ACTIONS.UPVOTE)
+            {
+                actionId = 1;
+                value = 1;
+            }
+            else if (action == BUTTON_ACTIONS.DOWNVOTE)
+            {
+                actionId = 2;
+                value = -1;
+            }
 
             int userId = findUserId(getUsername());
             int commentId = Int32.Parse(btn.Name.Substring(1));
@@ -236,9 +245,12 @@ namespace UNIPI_GUIDE
                 {
                     if (findActionReader.Read())
                     {
-                        if (findActionReader.GetString(0).Equals(action.ToString())) return;
-                        // one value for reset, one more for action
-                        else value *= 2;
+                        if (findActionReader.GetString(0).Equals(action.ToString()))
+                        {
+                            actionId = -1;
+                            value *= -1; // negative value for reset
+                        }
+                        else value *= 2; // one value for reset, one more for action
                     }
                 }    
             }
@@ -264,7 +276,37 @@ namespace UNIPI_GUIDE
                 connection.Open();
                 updateCommand.Parameters.AddWithValue("@value", finalValue);
                 updateCommand.Parameters.AddWithValue("@commentId", commentId);
-                int rows = updateCommand.ExecuteNonQuery();
+                updateCommand.ExecuteNonQuery();
+            }
+
+            if (actionId == -1) 
+            {
+                string deleteUserRating = "DELETE FROM user_rating WHERE userId = @userId AND commentId = @commentId";
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                using (SQLiteCommand deleteUserRatingCommand = new SQLiteCommand(deleteUserRating, connection))
+                {
+                    connection.Open();
+                    deleteUserRatingCommand.Parameters.AddWithValue("@userId", userId);
+                    deleteUserRatingCommand.Parameters.AddWithValue("@commentId", commentId);
+                    deleteUserRatingCommand.ExecuteNonQuery();
+                }
+            }
+            else
+            {
+                string updateUserRating = @"INSERT INTO user_rating (userId, commentId, actionId)  
+                                            VALUES(@userId, @commentId, @actionId)
+                                            ON CONFLICT(userId, commentId)
+                                            DO UPDATE SET actionId = @actionId";
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                using (SQLiteCommand updateUserRatingCommand = new SQLiteCommand(updateUserRating, connection))
+                {
+                    connection.Open();
+                    updateUserRatingCommand.Parameters.AddWithValue("@userId", userId);
+                    updateUserRatingCommand.Parameters.AddWithValue("@commentId", commentId);
+                    updateUserRatingCommand.Parameters.AddWithValue("@actionId", actionId);
+                    updateUserRatingCommand.ExecuteNonQuery();
+                }
+
             }
 
             showComments(currentPage);
@@ -351,7 +393,7 @@ namespace UNIPI_GUIDE
                     connection.Open();
                     command.Parameters.AddWithValue("@author", userId);
                     command.Parameters.AddWithValue("@body", commentBox.Text);
-                    int rows = command.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
                     MessageBox.Show("Επιτυχής ανάρτηση!", "Info");
                     setPagination();
                     showComments(currentPage);
