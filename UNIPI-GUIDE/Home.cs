@@ -36,5 +36,10 @@ namespace UNIPI_GUIDE
         {
             changeForm(new History());
         }
+
+        private void greetingBtn_Click(object sender, EventArgs e)
+        {
+            changeForm(new Greeting());
+        }
     }
 }

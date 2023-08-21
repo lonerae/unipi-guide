@@ -33,7 +33,7 @@
             this.galleryTimer = new System.Windows.Forms.Timer(this.components);
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
+            this.greetingBtn = new System.Windows.Forms.Button();
             this.historyBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gallery)).BeginInit();
             this.SuspendLayout();
@@ -81,19 +81,20 @@
             this.button7.Text = "Παροχές";
             this.button7.UseVisualStyleBackColor = false;
             // 
-            // button8
+            // greetingBtn
             // 
-            this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.button8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button8.FlatAppearance.BorderSize = 0;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Font = new System.Drawing.Font("Arial", 20.25F);
-            this.button8.Location = new System.Drawing.Point(637, 442);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(617, 107);
-            this.button8.TabIndex = 5;
-            this.button8.Text = "Χαιρετισμός Πρύτανη";
-            this.button8.UseVisualStyleBackColor = false;
+            this.greetingBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.greetingBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.greetingBtn.FlatAppearance.BorderSize = 0;
+            this.greetingBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.greetingBtn.Font = new System.Drawing.Font("Arial", 20.25F);
+            this.greetingBtn.Location = new System.Drawing.Point(637, 442);
+            this.greetingBtn.Name = "greetingBtn";
+            this.greetingBtn.Size = new System.Drawing.Size(617, 107);
+            this.greetingBtn.TabIndex = 5;
+            this.greetingBtn.Text = "Χαιρετισμός Πρύτανη";
+            this.greetingBtn.UseVisualStyleBackColor = false;
+            this.greetingBtn.Click += new System.EventHandler(this.greetingBtn_Click);
             // 
             // historyBtn
             // 
@@ -119,13 +120,13 @@
             this.Controls.Add(this.button6);
             this.Controls.Add(this.historyBtn);
             this.Controls.Add(this.button7);
-            this.Controls.Add(this.button8);
+            this.Controls.Add(this.greetingBtn);
             this.Controls.Add(this.gallery);
             this.Name = "Home";
             this.Text = "UNIPI GUIDE";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Controls.SetChildIndex(this.gallery, 0);
-            this.Controls.SetChildIndex(this.button8, 0);
+            this.Controls.SetChildIndex(this.greetingBtn, 0);
             this.Controls.SetChildIndex(this.button7, 0);
             this.Controls.SetChildIndex(this.historyBtn, 0);
             this.Controls.SetChildIndex(this.button6, 0);
@@ -140,7 +141,7 @@
         private System.Windows.Forms.Timer galleryTimer;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button greetingBtn;
         private System.Windows.Forms.Button historyBtn;
     }
 }

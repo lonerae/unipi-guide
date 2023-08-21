@@ -12,25 +12,27 @@ using static UNIPI_GUIDE.Constants;
 
 namespace UNIPI_GUIDE
 {
-    public partial class History : BaseForm
+    public partial class Greeting : BaseForm
     {
-        public History()
+        public Greeting()
         {
             InitializeComponent();
         }
 
-        private void History_Load(object sender, EventArgs e)
+        private void Greeting_Load(object sender, EventArgs e)
         {
             using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
-            using (SQLiteCommand command = new SQLiteCommand(Constants.RETURN_TEXT, connection)) {
+            using (SQLiteCommand command = new SQLiteCommand(Constants.RETURN_TEXT, connection))
+            {
                 connection.Open();
-                command.Parameters.AddWithValue("@key", TEXT_VALUES[TEXT_KEYS.HISTORY]); //TODO: list with all text keys?
+                command.Parameters.AddWithValue("@key", TEXT_VALUES[TEXT_KEYS.GREETING]);
                 using (SQLiteDataReader reader = command.ExecuteReader())
                 {
-                    //TODO: voice for accessibility
-                    if (reader.Read()) historyTextBox.Text = reader.GetString(0).Replace("\\n", "\n");
+                    if (reader.Read()) greetingTextBox.Text = reader.GetString(0).Replace("\\n", "\n"); //TODO: global way to retrieve strings??
                 }
             }
         }
     }
+
+   
 }
