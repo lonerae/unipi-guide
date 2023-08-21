@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,8 +13,10 @@ namespace UNIPI_GUIDE
 {
     public partial class Home : BaseForm
     {
-        private const int MAX_COUNTER = 6;
-        private int counter = 2;
+        private int counter = 0;
+        private int maxCounter;
+
+        private List<string> imagePaths = new List<string>();
 
         public Home()
         {
@@ -22,14 +25,28 @@ namespace UNIPI_GUIDE
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            gallery.ImageLocation = "./assets/home/gallery1.jpg";
+            using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
+            using (SQLiteCommand command = new SQLiteCommand(Constants.RETURN_CAROUSEL_IMAGES, connection))
+            {
+                connection.Open();
+                using (SQLiteDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        imagePaths.Add(reader.GetString(0));
+
+                    }
+                }
+            }
+            maxCounter = imagePaths.Count() - 1;
+            gallery.ImageLocation = imagePaths[counter];
         }
 
         private void galleryTimer_Tick(object sender, EventArgs e)
         {
-            gallery.ImageLocation = "./assets/home/gallery" + counter + ".jpg";
             counter++;
-            if (counter > MAX_COUNTER) counter = 1;
+            if (counter > maxCounter) counter = 0;
+            gallery.ImageLocation = imagePaths[counter];
         }
 
         private void historyBtn_Click(object sender, EventArgs e)

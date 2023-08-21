@@ -58,5 +58,11 @@ namespace UNIPI_GUIDE
                                 WHERE userId = @userId";
         // APPTEXT
         public static readonly string RETURN_TEXT = "SELECT description FROM appText WHERE key = @key";
+        // APPIMAGE
+        public static readonly string RETURN_CAROUSEL_IMAGES = @"SELECT path 
+                                                                FROM appImage AS ai 
+                                                                INNER JOIN imageCategory AS ic
+                                                                    ON ai.categoryId = ic.id                
+                                                                WHERE ic.category = 'carousel'";
     }
 }
