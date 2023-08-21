@@ -72,7 +72,7 @@ namespace UNIPI_GUIDE
             if (loggedIn)
             {
                 using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
-                using (SQLiteCommand command = new SQLiteCommand(Constants.SELECT_ACCOUNT_INFO_SQL, connection))
+                using (SQLiteCommand command = new SQLiteCommand(Constants.RETURN_ACCOUNT_INFO_SQL, connection))
                 {
                     connection.Open();
                     command.Parameters.AddWithValue("@userId", findUserId(username));
@@ -97,7 +97,7 @@ namespace UNIPI_GUIDE
         {
             LinkLabel linkLabel = (LinkLabel) sender;
             using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
-            using (SQLiteCommand command = new SQLiteCommand(Constants.SELECT_ACCOUNT_INFO_SQL, connection))
+            using (SQLiteCommand command = new SQLiteCommand(Constants.RETURN_ACCOUNT_INFO_SQL, connection))
             {
                 connection.Open();
                 command.Parameters.AddWithValue("@userId", linkLabel.Name.Substring(1));

@@ -14,6 +14,11 @@ namespace UNIPI_GUIDE
 
         public static readonly string CONNECTION_STRING = "DataSource = unipiGuide.db;Version = 3";
 
+        public enum TEXT_KEYS { HISTORY, GREETING } 
+        public static readonly Dictionary<TEXT_KEYS, string> TEXT_VALUES = new Dictionary<TEXT_KEYS, string>() { 
+            {TEXT_KEYS.HISTORY , "history"} , 
+            {TEXT_KEYS.GREETING , "greeting"} };
+
         /** 
          * SQL STATEMENTS
          */
@@ -45,11 +50,13 @@ namespace UNIPI_GUIDE
                                                                                WHERE 
                                                                                    ur.userId=@userId 
                                                                                    AND ur.commentId=@commentId";
-
-        public static readonly string SELECT_ACCOUNT_INFO_SQL = @"SELECT ui.firstname, ui.lastname, ui.email, d.name
+        // USER_INFO
+        public static readonly string RETURN_ACCOUNT_INFO_SQL = @"SELECT ui.firstname, ui.lastname, ui.email, d.name
                                 FROM userInfo AS ui
                                 INNER JOIN department AS d
                                     ON ui.departmentId = d.id
                                 WHERE userId = @userId";
+        // APPTEXT
+        public static readonly string RETURN_TEXT = "SELECT description FROM appText WHERE key = @key";
     }
 }
