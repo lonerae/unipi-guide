@@ -51,12 +51,12 @@ namespace UNIPI_GUIDE
 
         private void historyBtn_Click(object sender, EventArgs e)
         {
-            changeForm(new History());
+            changeForm(new History(), false);
         }
 
         private void greetingBtn_Click(object sender, EventArgs e)
         {
-            changeForm(new Greeting());
+            changeForm(new Greeting(), false);
         }
     }
 }

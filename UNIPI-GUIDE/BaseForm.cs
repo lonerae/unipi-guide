@@ -143,12 +143,17 @@ namespace UNIPI_GUIDE
 
         private void homeBtn_Click(object sender, EventArgs e)
         {
-            changeForm(Application.OpenForms[0]);
+            changeForm(Application.OpenForms[0], false);
         }
 
         private void eventsButton_Click(object sender, EventArgs e)
         {
-            changeForm(new Events());
+            changeForm(new Events(), false);
+        }
+
+        private void contactToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            changeForm(new Contact(), true);
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -164,22 +169,27 @@ namespace UNIPI_GUIDE
         // HELPER FUNCTIONS
 
         /**
-         * Dispose every form except for the homepage, which is stored and resurfaced
+         * Dispose every form except for the homepage, which is stored and resurfaced.
+         * If popup is true, the form is displayed modally.
          */
-        protected void changeForm(Form form)
+        protected void changeForm(Form form, bool isPopup)
         {
-            bool wasOnHome = ActiveForm == Application.OpenForms[0];
-            form.Show();
-            bool isOnHome = ActiveForm == Application.OpenForms[0];
-            if (wasOnHome)
+            if (!isPopup)
             {
-                if (!isOnHome) this.Hide();
+                bool wasOnHome = ActiveForm == Application.OpenForms[0];
+                form.Show();
+                bool isOnHome = ActiveForm == Application.OpenForms[0];
+                if (wasOnHome)
+                {
+                    if (!isOnHome) this.Hide();
+                }
+                else
+                {
+                    this.Dispose();
+                    form.Controls["navPanel"].Visible = false;
+                }
             }
-            else
-            {
-                this.Dispose();
-                form.Controls["navPanel"].Visible = false;
-            }
+            else form.ShowDialog();
         }
 
         protected string findUsername(int id)
@@ -211,5 +221,6 @@ namespace UNIPI_GUIDE
                 return -1;
             }
         }
+
     }
 }

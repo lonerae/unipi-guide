@@ -79,6 +79,7 @@
             this.contactToolStripMenuItem.Name = "contactToolStripMenuItem";
             this.contactToolStripMenuItem.Size = new System.Drawing.Size(154, 31);
             this.contactToolStripMenuItem.Text = "Επικοινωνία";
+            this.contactToolStripMenuItem.Click += new System.EventHandler(this.contactToolStripMenuItem_Click);
             // 
             // generalToolStripMenuItem
             // 
