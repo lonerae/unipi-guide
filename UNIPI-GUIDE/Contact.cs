@@ -25,6 +25,12 @@ namespace UNIPI_GUIDE
             else MessageBox.Show("Το θέμα ή το κείμενο είναι κενό.", "Σφάλμα", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        private void clearBtn_Click(object sender, EventArgs e)
+        {
+            subjectTextBox.Clear();
+            bodyTextBox.Clear();
+        }
+
         private void Contact_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (bodyTextBox.Text != "")

@@ -24,7 +24,7 @@ namespace UNIPI_GUIDE
             using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
             using (SQLiteCommand command = new SQLiteCommand(Constants.RETURN_TEXT, connection)) {
                 connection.Open();
-                command.Parameters.AddWithValue("@key", TEXT_VALUES[TEXT_KEYS.HISTORY]); //TODO: list with all text keys?
+                command.Parameters.AddWithValue("@key", TEXT_VALUES[TEXT_KEYS.HISTORY]);
                 using (SQLiteDataReader reader = command.ExecuteReader())
                 {
                     //TODO: voice for accessibility

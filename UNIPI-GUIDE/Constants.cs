@@ -28,7 +28,13 @@ namespace UNIPI_GUIDE
         public static readonly string RETURN_ID_FROM_USERNAME_SQL = "SELECT id FROM user WHERE username=@username";
         // EVENT
         public static readonly string RETURN_ALL_EVENTS_SQL = "SELECT * FROM event";
-        public static readonly string RETURN_EVENT_DESCRIPTION_BASED_ON_DATE_SQL = "SELECT description FROM event WHERE year=@year AND month=@month AND day=@day";
+        public static readonly string RETURN_EVENT_DESCRIPTION_BASED_ON_DATE_SQL = @"SELECT description, hour, minute
+                                                                                     FROM event
+                                                                                     WHERE 
+                                                                                        year=@year AND 
+                                                                                        month=@month AND 
+                                                                                        day=@day
+                                                                                     ORDER BY hour ASC NULLS LAST, minute ASC NULLS FIRST";
         // COMMENT
         public static readonly string COUNT_ALL_COMMENTS_SQL = "SELECT count(*) FROM comment";
         public static readonly string RETURN_PAGE_OF_COMMENTS_SQL = "SELECT * FROM comment ORDER BY id DESC LIMIT @limit OFFSET @offset";

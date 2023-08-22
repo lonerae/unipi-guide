@@ -10,6 +10,7 @@ using Button = System.Windows.Forms.Button;
 using System.Data.Common;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
+using System.Text;
 
 namespace UNIPI_GUIDE
 {
@@ -68,16 +69,42 @@ namespace UNIPI_GUIDE
             using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
             using (SQLiteCommand command = new SQLiteCommand(Constants.RETURN_EVENT_DESCRIPTION_BASED_ON_DATE_SQL, connection))
             {
+                bool first = true;
                 connection.Open();
-                //TODO: multiple events in same day???
                 command.Parameters.AddWithValue("@year", calendar.SelectionRange.Start.Year);
                 command.Parameters.AddWithValue("@month", calendar.SelectionRange.Start.Month);
                 command.Parameters.AddWithValue("@day", calendar.SelectionRange.Start.Day);
                 using (SQLiteDataReader reader = command.ExecuteReader())
                 {
-                    if (reader.Read()) eventDescrBox.Text = reader.GetString(0);
+                    while (reader.Read())
+                    {
+                        string description = setDateEvents(reader);
+                        if (first)
+                        {
+                            eventDescrBox.Text = description.ToString();
+                            first = false;
+                        }
+                        else eventDescrBox.Text += "\n\n***\n" + description.ToString();
+
+                    }
                 }
             }
+        }
+
+        private string setDateEvents(SQLiteDataReader reader)
+        {
+            StringBuilder description = new StringBuilder();
+            if (reader.GetValue(1).GetType() != typeof(DBNull))
+            {
+
+                description.Append(Convert.ToInt32(reader.GetValue(1)).ToString("D2"));
+                description.Append(".");
+                if (reader.GetValue(2).GetType() != typeof(DBNull)) description.Append(Convert.ToInt32(reader.GetValue(2)).ToString("D2"));
+                else description.Append("00");
+                description.Append(" : ");
+            }
+            description.Append(reader.GetString(0));
+            return description.ToString();
         }
 
         private void nextButton_Click(object sender, EventArgs e)

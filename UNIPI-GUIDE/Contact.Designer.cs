@@ -34,6 +34,7 @@
             this.bodyTextBox = new System.Windows.Forms.RichTextBox();
             this.titleLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.clearBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // sendBtn
@@ -100,12 +101,28 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Φόρμα Επικοινωνίας";
             // 
+            // clearBtn
+            // 
+            this.clearBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.clearBtn.FlatAppearance.BorderSize = 0;
+            this.clearBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clearBtn.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.clearBtn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.clearBtn.Location = new System.Drawing.Point(400, 406);
+            this.clearBtn.Name = "clearBtn";
+            this.clearBtn.Size = new System.Drawing.Size(131, 32);
+            this.clearBtn.TabIndex = 7;
+            this.clearBtn.Text = "Εκκαθάριση";
+            this.clearBtn.UseVisualStyleBackColor = false;
+            this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
+            // 
             // Contact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(697, 450);
+            this.Controls.Add(this.clearBtn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.bodyTextBox);
@@ -127,5 +144,6 @@
         private System.Windows.Forms.RichTextBox bodyTextBox;
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button clearBtn;
     }
 }
