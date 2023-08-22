@@ -13,8 +13,9 @@ namespace UNIPI_GUIDE
 {
     public partial class BaseForm : Form
     {
-        static bool loggedIn;
-        string username = "malve";
+        // initially logged out
+        static bool loggedIn = false; 
+        static string username = "";
 
         public BaseForm()
         {
@@ -23,6 +24,14 @@ namespace UNIPI_GUIDE
 
         private void BaseForm_Load(object sender, EventArgs e)
         {
+            initializeToolstrip();
+        }
+
+        private void initializeToolstrip()
+        {
+            // event handlers should be added only once. learnt the hard way.
+            loginToolStripMenuItem.Click += new EventHandler(toggleHandler);
+            loginToolStripMenuItem.MouseHover += new EventHandler(showDropdown);
             updateToolstrip();
         }
 
@@ -31,8 +40,6 @@ namespace UNIPI_GUIDE
             if (isLogged())
             {
                 loginToolStripMenuItem.Text = "Λογαριασμός";
-                loginToolStripMenuItem.Click += new EventHandler(showOwnInfo);
-                loginToolStripMenuItem.MouseHover += new EventHandler(showDropdown);
                 if (loginToolStripMenuItem.DropDownItems.Count == 0)
                 {
                     ToolStripItem logoutToolStripMenuItem = loginToolStripMenuItem.DropDownItems.Add("Αποσύνδεση");
@@ -43,12 +50,17 @@ namespace UNIPI_GUIDE
             else
             {
                 loginToolStripMenuItem.Text = "Σύνδεση";
-                loginToolStripMenuItem.Click += new EventHandler(login);
                 loginToolStripMenuItem.DropDownItems.Clear();
             }
         }
 
-        private void login(object sender, EventArgs e)
+        private void toggleHandler(object sender, EventArgs e)
+        {
+            if (isLogged()) showOwnInfo();
+            else login();
+        }
+
+        private void login()
         {
             //TODO: implement
             loggedIn = true;
@@ -60,7 +72,7 @@ namespace UNIPI_GUIDE
 
         private void showDropdown(object sender, EventArgs e)
         {
-            loginToolStripMenuItem.DropDown.Show();
+            if (isLogged()) loginToolStripMenuItem.DropDown.Show();
         }
 
         private void logout(object sender, EventArgs e)
@@ -72,7 +84,7 @@ namespace UNIPI_GUIDE
             this.resetForm(isLogged());
         }
 
-        private void showOwnInfo(object sender, EventArgs e)
+        private void showOwnInfo()
         {
             if (isLogged())
             {
@@ -89,7 +101,7 @@ namespace UNIPI_GUIDE
                                              "Επώνυμο: " + reader.GetString(1) + "\n\n" +
                                              "E-mail: " + reader.GetString(2) + "\n\n" +
                                              "Τμήμα: " + reader.GetString(3);
-                            MessageBox.Show(accountInfo, "Πληροφορίες");
+                            MessageBox.Show(accountInfo, "Πληροφορίες", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }
@@ -114,7 +126,7 @@ namespace UNIPI_GUIDE
                                          "Επώνυμο: " + reader.GetString(1) + "\n\n" +
                                          "E-mail: " + reader.GetString(2) + "\n\n" +
                                          "Τμήμα: " + reader.GetString(3);
-                        MessageBox.Show(accountInfo, "Πληροφορίες");
+                        MessageBox.Show(accountInfo, "Πληροφορίες", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }    
                 }
             }
@@ -137,7 +149,7 @@ namespace UNIPI_GUIDE
 
         public void setUsername(string username) 
         {
-            this.username = username;        
+            BaseForm.username = username;        
         }
 
         private void navigateToolStripMenuItem_Click(object sender, EventArgs e)
@@ -170,6 +182,14 @@ namespace UNIPI_GUIDE
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void BaseForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                Application.Exit();
+            }
         }
 
         // HELPER FUNCTIONS
@@ -212,7 +232,7 @@ namespace UNIPI_GUIDE
          */
         protected void showLogInError()
         {
-            MessageBox.Show("Πρώτα πρέπει να συνδεθείτε ή να φτιάξετε λογαριασμό.", "Error");
+            MessageBox.Show("Πρώτα πρέπει να συνδεθείτε ή να φτιάξετε λογαριασμό.", "Σφάλμα", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         /**
@@ -256,14 +276,6 @@ namespace UNIPI_GUIDE
                     if (findUserReader.Read()) return findUserReader.GetInt32(0);
                 }
                 return -1;
-            }
-        }
-
-        private void BaseForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (e.CloseReason == CloseReason.UserClosing)
-            {
-                Application.Exit();
             }
         }
     }
