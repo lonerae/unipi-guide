@@ -424,5 +424,10 @@ namespace UNIPI_GUIDE
             }
             catch (Exception) {} // in case of invalid input
         }
+
+        protected override void resetForm(bool loggedIn)
+        {
+            showComments(currentPage);
+        }
     }
 }

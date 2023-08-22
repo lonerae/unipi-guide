@@ -13,8 +13,8 @@ namespace UNIPI_GUIDE
 {
     public partial class BaseForm : Form
     {
-        bool loggedIn = true;
-        string username = "malve";
+        bool loggedIn = false;
+        string username = "";
 
         public BaseForm()
         {
@@ -52,7 +52,10 @@ namespace UNIPI_GUIDE
         {
             //TODO: implement
             loggedIn = true;
+            username = "malve";
             updateToolstrip();
+            BaseForm f = (BaseForm) ActiveForm;
+            f.resetForm(loggedIn);
         }
 
         private void showDropdown(object sender, EventArgs e)
@@ -64,7 +67,9 @@ namespace UNIPI_GUIDE
         {
             //TODO: implement
             loggedIn = false;
+            username = "";
             updateToolstrip();
+            this.resetForm(loggedIn);
         }
 
         private void showOwnInfo(object sender, EventArgs e)
@@ -166,8 +171,18 @@ namespace UNIPI_GUIDE
         {
             Application.Exit();
         }
-        
+
+
+
         // HELPER FUNCTIONS
+
+        /**
+       * Implemented on Forms that have components that react differently to logged in users
+       */
+        protected virtual void resetForm(bool loggedIn)
+        {
+
+        }
 
         /**
          * Dispose every form except for the homepage, which is stored and resurfaced.
