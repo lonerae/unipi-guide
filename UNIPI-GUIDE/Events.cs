@@ -79,12 +79,13 @@ namespace UNIPI_GUIDE
                     while (reader.Read())
                     {
                         string description = setDateEvents(reader);
+                        string delimiter = "\n-------------------------------------------------------------------------------------------------------------------------\n";
                         if (first)
                         {
                             eventDescrBox.Text = description.ToString();
                             first = false;
                         }
-                        else eventDescrBox.Text += "\n\n***\n" + description.ToString();
+                        else eventDescrBox.Text += delimiter + description.ToString();
 
                     }
                 }
