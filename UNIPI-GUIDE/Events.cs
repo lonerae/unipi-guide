@@ -32,7 +32,7 @@ namespace UNIPI_GUIDE
         {
             InitializeComponent();
         }
-
+        
         private void Events_Load(object sender, EventArgs e)
         {
             showComments(currentPage);

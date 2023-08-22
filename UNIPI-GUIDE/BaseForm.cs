@@ -13,8 +13,8 @@ namespace UNIPI_GUIDE
 {
     public partial class BaseForm : Form
     {
-        bool loggedIn = false;
-        string username = "";
+        static bool loggedIn;
+        string username = "malve";
 
         public BaseForm()
         {
@@ -28,7 +28,7 @@ namespace UNIPI_GUIDE
 
         private void updateToolstrip()
         {
-            if (loggedIn)
+            if (isLogged())
             {
                 loginToolStripMenuItem.Text = "Λογαριασμός";
                 loginToolStripMenuItem.Click += new EventHandler(showOwnInfo);
@@ -55,7 +55,7 @@ namespace UNIPI_GUIDE
             username = "malve";
             updateToolstrip();
             BaseForm f = (BaseForm) ActiveForm;
-            f.resetForm(loggedIn);
+            f.resetForm(isLogged());
         }
 
         private void showDropdown(object sender, EventArgs e)
@@ -69,12 +69,12 @@ namespace UNIPI_GUIDE
             loggedIn = false;
             username = "";
             updateToolstrip();
-            this.resetForm(loggedIn);
+            this.resetForm(isLogged());
         }
 
         private void showOwnInfo(object sender, EventArgs e)
         {
-            if (loggedIn)
+            if (isLogged())
             {
                 using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
                 using (SQLiteCommand command = new SQLiteCommand(Constants.RETURN_ACCOUNT_INFO_SQL, connection))
@@ -127,7 +127,7 @@ namespace UNIPI_GUIDE
 
         public void setLogged(bool loggedIn) 
         {
-            this.loggedIn = loggedIn;
+            BaseForm.loggedIn = loggedIn;
         }
 
         public string getUsername()
@@ -158,7 +158,7 @@ namespace UNIPI_GUIDE
 
         private void contactToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (loggedIn) changeForm(new Contact(), true);
+            if (isLogged()) changeForm(new Contact(), true);
             else showLogInError();
         }
 
@@ -172,8 +172,6 @@ namespace UNIPI_GUIDE
             Application.Exit();
         }
 
-
-
         // HELPER FUNCTIONS
 
         /**
@@ -181,7 +179,6 @@ namespace UNIPI_GUIDE
        */
         protected virtual void resetForm(bool loggedIn)
         {
-
         }
 
         /**
@@ -192,6 +189,7 @@ namespace UNIPI_GUIDE
         {
             if (!isPopup)
             {
+                bool safetyMeasure = this.isLogged();
                 bool wasOnHome = ActiveForm == Application.OpenForms[0];
                 form.Show();
                 bool isOnHome = ActiveForm == Application.OpenForms[0];
@@ -202,6 +200,7 @@ namespace UNIPI_GUIDE
                 else
                 {
                     this.Dispose();
+                    if (isOnHome) ((BaseForm) Application.OpenForms[0]).updateToolstrip(); // toolstrip was resurfaced, not reinitialized
                     form.Controls["navPanel"].Visible = false;
                 }
             }
