@@ -28,7 +28,7 @@ namespace UNIPI_GUIDE
                 command.Parameters.AddWithValue("@key", TEXT_VALUES[TEXT_KEYS.GREETING]);
                 using (SQLiteDataReader reader = command.ExecuteReader())
                 {
-                    if (reader.Read()) greetingTextBox.Text = reader.GetString(0).Replace("\\n", "\n"); //TODO: global way to retrieve strings??
+                    if (reader.Read()) greetingTextBox.Text = readMultilineFromDB(reader.GetString(0));
                 }
             }
         }

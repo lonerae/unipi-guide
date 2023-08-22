@@ -207,11 +207,25 @@ namespace UNIPI_GUIDE
             else form.ShowDialog();
         }
 
+        /**
+         * Displayed on all actions denied to logged out users.
+         */
         protected void showLogInError()
         {
             MessageBox.Show("Πρώτα πρέπει να συνδεθείτε ή να φτιάξετε λογαριασμό.", "Error");
         }
 
+        /**
+         * Displays texts read from the database correctly.
+         */
+        protected string readMultilineFromDB(string retrieved)
+        {
+            return retrieved.Replace("\\n", "\n");
+        }
+
+        /**
+         * Returns username based on account's id.
+         */
         protected string findUsername(int id)
         {
             using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
@@ -227,6 +241,9 @@ namespace UNIPI_GUIDE
             }
         }
 
+        /**
+         * Returns id based on account's username.
+         */
         protected int findUserId(string username)
         {
             using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))

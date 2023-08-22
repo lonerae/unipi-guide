@@ -28,7 +28,7 @@ namespace UNIPI_GUIDE
                 using (SQLiteDataReader reader = command.ExecuteReader())
                 {
                     //TODO: voice for accessibility
-                    if (reader.Read()) historyTextBox.Text = reader.GetString(0).Replace("\\n", "\n");
+                    if (reader.Read()) historyTextBox.Text = readMultilineFromDB(reader.GetString(0));
                 }
             }
         }
