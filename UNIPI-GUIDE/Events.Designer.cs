@@ -37,7 +37,6 @@
             this.prevButton = new System.Windows.Forms.Button();
             this.nextButton = new System.Windows.Forms.Button();
             this.pageBtn = new System.Windows.Forms.Button();
-            this.warnLabel = new System.Windows.Forms.Label();
             this.pageDropdown = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
@@ -132,19 +131,6 @@
             this.pageBtn.UseVisualStyleBackColor = true;
             this.pageBtn.Click += new System.EventHandler(this.pageBtn_Click);
             // 
-            // warnLabel
-            // 
-            this.warnLabel.AutoSize = true;
-            this.warnLabel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.warnLabel.ForeColor = System.Drawing.Color.Red;
-            this.warnLabel.Location = new System.Drawing.Point(15, 645);
-            this.warnLabel.Name = "warnLabel";
-            this.warnLabel.Size = new System.Drawing.Size(648, 16);
-            this.warnLabel.TabIndex = 14;
-            this.warnLabel.Text = "Πρέπει να είστε συνδεδεμένοι για να μπορείτε να αναρτήσετε σχόλιο ή να ψηφίσετε κ" +
-    "άποιο υπάρχον.";
-            this.warnLabel.Visible = false;
-            // 
             // pageDropdown
             // 
             this.pageDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -162,7 +148,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.pageDropdown);
-            this.Controls.Add(this.warnLabel);
             this.Controls.Add(this.pageBtn);
             this.Controls.Add(this.nextButton);
             this.Controls.Add(this.prevButton);
@@ -184,7 +169,6 @@
             this.Controls.SetChildIndex(this.prevButton, 0);
             this.Controls.SetChildIndex(this.nextButton, 0);
             this.Controls.SetChildIndex(this.pageBtn, 0);
-            this.Controls.SetChildIndex(this.warnLabel, 0);
             this.Controls.SetChildIndex(this.pageDropdown, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -202,7 +186,6 @@
         private System.Windows.Forms.Button prevButton;
         private System.Windows.Forms.Button nextButton;
         private System.Windows.Forms.Button pageBtn;
-        private System.Windows.Forms.Label warnLabel;
         private System.Windows.Forms.ComboBox pageDropdown;
     }
 }

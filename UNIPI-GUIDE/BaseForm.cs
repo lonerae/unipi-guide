@@ -153,7 +153,8 @@ namespace UNIPI_GUIDE
 
         private void contactToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            changeForm(new Contact(), true);
+            if (loggedIn) changeForm(new Contact(), true);
+            else showLogInError();
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -190,6 +191,11 @@ namespace UNIPI_GUIDE
                 }
             }
             else form.ShowDialog();
+        }
+
+        protected void showLogInError()
+        {
+            MessageBox.Show("Πρώτα πρέπει να συνδεθείτε ή να φτιάξετε λογαριασμό.", "Error");
         }
 
         protected string findUsername(int id)

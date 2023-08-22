@@ -19,7 +19,24 @@ namespace UNIPI_GUIDE
 
         private void sendBtn_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("mailto:unipi_guide@info.gr?subject=test&body=testcontent");
+            string subject = subjectTextBox.Text;
+            string body = bodyTextBox.Text.Replace("\n", "%0d%0A"); // regular line breaks were ignored
+            if (subject != "" && body != "") System.Diagnostics.Process.Start("mailto:malvertis@protonmail.com?subject=" + subject + "&body=" + body);
+            else MessageBox.Show("Το θέμα ή το κείμενο είναι κενό.", "Σφάλμα", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void Contact_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (bodyTextBox.Text != "")
+            {
+                if (MessageBox.Show("Έχετε κείμενο που δεν έχει σταλεί. Είστε σίγουροι ότι θέλετε να φύγετε?",
+                                    "Υπενθύμιση",
+                                    MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Question) == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+            }
         }
     }
 }

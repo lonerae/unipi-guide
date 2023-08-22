@@ -38,12 +38,6 @@ namespace UNIPI_GUIDE
             setPagination();
             pageDropdown.SelectedIndex = 0;
             addEvents();
-            if (!isLogged())
-            {
-                uploadBtn.Enabled = false;
-                clearBtn.Enabled = false;
-                warnLabel.Visible = true;
-            }
         }
 
         private void addEvents()
@@ -181,8 +175,9 @@ namespace UNIPI_GUIDE
                 
                 if (!isLogged())
                 {
-                    upvote.Enabled = false;
-                    downvote.Enabled = false;
+                    upvote.Click += new EventHandler(error);
+                    downvote.Click += new EventHandler(error);
+                    authorLabel.Click += new EventHandler(error);
                 }
                 else
                 {
@@ -199,6 +194,11 @@ namespace UNIPI_GUIDE
 
                 commentsPanel.Controls.Add(panel);
             }
+        }
+
+        private void error(object sender, EventArgs e)
+        {
+            showLogInError();
         }
 
         private void addVote(object sender, EventArgs e)
@@ -354,25 +354,29 @@ namespace UNIPI_GUIDE
 
         private void uploadBtn_Click(object sender, EventArgs e)
         {
-            if (!commentBox.Text.Equals(""))
+            if (isLogged())
             {
-                int userId = findUserId(getUsername());
-                using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
-                using (SQLiteCommand command = new SQLiteCommand(Constants.INSERT_NEW_COMMENT_SQL, connection))
+                if (!commentBox.Text.Equals(""))
                 {
-                    connection.Open();
-                    command.Parameters.AddWithValue("@author", userId);
-                    command.Parameters.AddWithValue("@body", commentBox.Text);
-                    int rows = command.ExecuteNonQuery();
-                    if (rows != -1)
+                    int userId = findUserId(getUsername());
+                    using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
+                    using (SQLiteCommand command = new SQLiteCommand(Constants.INSERT_NEW_COMMENT_SQL, connection))
                     {
-                        MessageBox.Show("Επιτυχής ανάρτηση!", "Info");
-                        setPagination();
-                        showComments(currentPage);
+                        connection.Open();
+                        command.Parameters.AddWithValue("@author", userId);
+                        command.Parameters.AddWithValue("@body", commentBox.Text);
+                        int rows = command.ExecuteNonQuery();
+                        if (rows != -1)
+                        {
+                            MessageBox.Show("Επιτυχής ανάρτηση!", "Info");
+                            setPagination();
+                            showComments(currentPage);
+                        }
+                        else MessageBox.Show("Κάτι πήγε λάθος...", "Error");
                     }
-                    else MessageBox.Show("Κάτι πήγε λάθος...", "Error");
                 }
             }
+            else showLogInError();
         }
 
         private void clearBtn_Click(object sender, EventArgs e)
