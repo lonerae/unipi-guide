@@ -11,6 +11,7 @@ using System.Data.Common;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 using System.Text;
+using static UNIPI_GUIDE.Program;
 
 namespace UNIPI_GUIDE
 {
@@ -21,7 +22,6 @@ namespace UNIPI_GUIDE
         int commentsPerPage = 3;
         int maxPages;
 
-        // same as rating_actions
         enum BUTTON_ACTIONS
         {
             UPVOTE,
@@ -78,14 +78,13 @@ namespace UNIPI_GUIDE
                 {
                     while (reader.Read())
                     {
-                        string description = setDateEvents(reader);
-                        string delimiter = "\n-------------------------------------------------------------------------------------------------------------------------\n";
+                        string description = setDateEvents(reader);                       
                         if (first)
                         {
                             eventDescrBox.Text = description.ToString();
                             first = false;
                         }
-                        else eventDescrBox.Text += delimiter + description.ToString();
+                        else eventDescrBox.Text += Constants.EVENT_DELIMITER + description.ToString();
 
                     }
                 }
@@ -201,7 +200,7 @@ namespace UNIPI_GUIDE
                 upvote.FlatStyle = FlatStyle.Flat;
                 upvote.FlatAppearance.BorderSize = 0;
                 
-                if (!isLogged())
+                if (!User.loggedIn)
                 {
                     upvote.Click += new EventHandler(error);
                     downvote.Click += new EventHandler(error);
@@ -257,14 +256,13 @@ namespace UNIPI_GUIDE
                 value = -1;
             }
 
-            // FIND WHETHER THE USER HAS ALREADY INTERACTED WITH SELECTED COMMENT AND THE SPECIFIC ACTION
-            int userId = findUserId(getUsername());
+            // FIND WHETHER THE USER HAS ALREADY INTERACTED WITH SELECTED COMMENT AND THE SPECIFIC ACTION            
             int commentId = Int32.Parse(btn.Name.Substring(1));
             using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
             using (SQLiteCommand findActionCommand = new SQLiteCommand(Constants.RETURN_ACTION_OF_USER_ON_COMMENT_SQL, connection))
             {
                 connection.Open();
-                findActionCommand.Parameters.AddWithValue("@userId", userId);
+                findActionCommand.Parameters.AddWithValue("@userId", User.id);
                 findActionCommand.Parameters.AddWithValue("@commentId", commentId);
                 using (SQLiteDataReader findActionReader = findActionCommand.ExecuteReader())
                 {
@@ -311,7 +309,7 @@ namespace UNIPI_GUIDE
                 using (SQLiteCommand deleteUserRatingCommand = new SQLiteCommand(Constants.DELETE_USER_COMMENT_ASSOCIATION_SQL, connection))
                 {
                     connection.Open();
-                    deleteUserRatingCommand.Parameters.AddWithValue("@userId", userId);
+                    deleteUserRatingCommand.Parameters.AddWithValue("@userId", User.id);
                     deleteUserRatingCommand.Parameters.AddWithValue("@commentId", commentId);
                     deleteUserRatingCommand.ExecuteNonQuery();
                 }
@@ -322,7 +320,7 @@ namespace UNIPI_GUIDE
                 using (SQLiteCommand updateUserRatingCommand = new SQLiteCommand(Constants.UPSERT_USER_COMMENT_ASSOCIATION_SQL, connection))
                 {
                     connection.Open();
-                    updateUserRatingCommand.Parameters.AddWithValue("@userId", userId);
+                    updateUserRatingCommand.Parameters.AddWithValue("@userId", User.id);
                     updateUserRatingCommand.Parameters.AddWithValue("@commentId", commentId);
                     updateUserRatingCommand.Parameters.AddWithValue("@actionId", actionId);
                     updateUserRatingCommand.ExecuteNonQuery();
@@ -339,12 +337,11 @@ namespace UNIPI_GUIDE
         */
         private void setVotes()
         {
-            int userId = findUserId(getUsername());
             using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
             using (SQLiteCommand findVotesCommand = new SQLiteCommand(Constants.RETURN_ASSOCIATED_COMMENTS_OF_USER_SQL, connection))
             {
                 connection.Open();
-                findVotesCommand.Parameters.AddWithValue("@userId", userId);
+                findVotesCommand.Parameters.AddWithValue("@userId", User.id);
                 using (SQLiteDataReader findVotesReader = findVotesCommand.ExecuteReader())
                 {
                     paintActionBackgrounds(findVotesReader);
@@ -382,16 +379,15 @@ namespace UNIPI_GUIDE
 
         private void uploadBtn_Click(object sender, EventArgs e)
         {
-            if (isLogged())
+            if (User.loggedIn)
             {
                 if (!commentBox.Text.Equals(""))
                 {
-                    int userId = findUserId(getUsername());
                     using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
                     using (SQLiteCommand command = new SQLiteCommand(Constants.INSERT_NEW_COMMENT_SQL, connection))
                     {
                         connection.Open();
-                        command.Parameters.AddWithValue("@author", userId);
+                        command.Parameters.AddWithValue("@author", User.id);
                         command.Parameters.AddWithValue("@body", commentBox.Text);
                         int rows = command.ExecuteNonQuery();
                         if (rows != -1)

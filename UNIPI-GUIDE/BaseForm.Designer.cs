@@ -40,6 +40,7 @@
             this.eventsButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.homeBtn = new System.Windows.Forms.Button();
+            this.papeiButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.navPanel.SuspendLayout();
             this.SuspendLayout();
@@ -153,12 +154,26 @@
             this.homeBtn.UseVisualStyleBackColor = true;
             this.homeBtn.Click += new System.EventHandler(this.homeBtn_Click);
             // 
+            // papeiButton
+            // 
+            this.papeiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.papeiButton.Font = new System.Drawing.Font("Arial", 20.25F);
+            this.papeiButton.Location = new System.Drawing.Point(0, 250);
+            this.papeiButton.Name = "papeiButton";
+            this.papeiButton.Size = new System.Drawing.Size(200, 71);
+            this.papeiButton.TabIndex = 3;
+            this.papeiButton.Tag = "premium";
+            this.papeiButton.Text = "Το ΠΑΠΕΙ μας";
+            this.papeiButton.UseVisualStyleBackColor = true;
+            this.papeiButton.Visible = false;
+            // 
             // BaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.papeiButton);
             this.Controls.Add(this.navPanel);
             this.Controls.Add(this.menuStrip1);
             this.Name = "BaseForm";
@@ -187,5 +202,6 @@
         private System.Windows.Forms.Button eventsButton;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button homeBtn;
+        private System.Windows.Forms.Button papeiButton;
     }
 }

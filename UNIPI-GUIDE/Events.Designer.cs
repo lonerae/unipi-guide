@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Events));
             this.calendar = new System.Windows.Forms.MonthCalendar();
             this.eventDescrBox = new System.Windows.Forms.RichTextBox();
             this.commentBox = new System.Windows.Forms.RichTextBox();
@@ -157,8 +158,9 @@
             this.Controls.Add(this.eventDescrBox);
             this.Controls.Add(this.commentsPanel);
             this.Controls.Add(this.calendar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Events";
-            this.Text = "Events";
+            this.Text = "Εκδηλώσεις | UNIPI-GUIDE";
             this.Load += new System.EventHandler(this.Events_Load);
             this.Controls.SetChildIndex(this.calendar, 0);
             this.Controls.SetChildIndex(this.commentsPanel, 0);

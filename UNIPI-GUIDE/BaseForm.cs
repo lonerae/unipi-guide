@@ -8,15 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static UNIPI_GUIDE.Program;
 
 namespace UNIPI_GUIDE
 {
     public partial class BaseForm : Form
     {
-        // initially logged out
-        static bool loggedIn = false; 
-        static string username = "";
-
         public BaseForm()
         {
             InitializeComponent();
@@ -37,7 +34,7 @@ namespace UNIPI_GUIDE
 
         private void updateToolstrip()
         {
-            if (isLogged())
+            if (User.loggedIn)
             {
                 loginToolStripMenuItem.Text = "Λογαριασμός";
                 if (loginToolStripMenuItem.DropDownItems.Count == 0)
@@ -56,43 +53,47 @@ namespace UNIPI_GUIDE
 
         private void toggleHandler(object sender, EventArgs e)
         {
-            if (isLogged()) showOwnInfo();
+            if (User.loggedIn) showOwnInfo();
             else login();
         }
 
         private void login()
         {
-            //TODO: implement
-            loggedIn = true;
-            username = "malve";
+            LoginForm login = new LoginForm();
+            login.ShowDialog();
             updateToolstrip();
-            BaseForm f = (BaseForm) ActiveForm;
-            f.resetForm(isLogged());
+            this.resetForm(User.loggedIn);
+            if (navPanel.Visible)
+            {
+                papeiButton.Visible = true;
+                papeiButton.BringToFront();
+            }
         }
 
         private void showDropdown(object sender, EventArgs e)
         {
-            if (isLogged()) loginToolStripMenuItem.DropDown.Show();
+            if (User.loggedIn) loginToolStripMenuItem.DropDown.Show();
         }
 
         private void logout(object sender, EventArgs e)
         {
-            //TODO: implement
-            loggedIn = false;
-            username = "";
+            User.loggedIn = false;
+            User.id = -1;
+            User.username = "";
             updateToolstrip();
-            this.resetForm(isLogged());
+            this.resetForm(User.loggedIn);
+            if (navPanel.Visible) papeiButton.Visible = false;
         }
 
         private void showOwnInfo()
         {
-            if (isLogged())
+            if (User.loggedIn)
             {
                 using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
                 using (SQLiteCommand command = new SQLiteCommand(Constants.RETURN_ACCOUNT_INFO_SQL, connection))
                 {
                     connection.Open();
-                    command.Parameters.AddWithValue("@userId", findUserId(username));
+                    command.Parameters.AddWithValue("@userId", User.id);
                     using (SQLiteDataReader reader = command.ExecuteReader())
                     {
                         if (reader.Read())
@@ -132,28 +133,13 @@ namespace UNIPI_GUIDE
             }
         }
 
-        public bool isLogged()
-        {
-            return loggedIn;
-        }
-
-        public void setLogged(bool loggedIn) 
-        {
-            BaseForm.loggedIn = loggedIn;
-        }
-
-        public string getUsername()
-        {
-            return username;
-        }
-
-        public void setUsername(string username) 
-        {
-            BaseForm.username = username;        
-        }
-
         private void navigateToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (User.loggedIn)
+            {
+                papeiButton.Visible = !papeiButton.Visible;
+                papeiButton.BringToFront();
+            }
             navPanel.Visible = !navPanel.Visible;
             if (navPanel.Visible) navPanel.BringToFront();
         }
@@ -170,7 +156,7 @@ namespace UNIPI_GUIDE
 
         private void contactToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (isLogged()) changeForm(new Contact(), true);
+            if (User.loggedIn) changeForm(new Contact(), true);
             else showLogInError();
         }
 
@@ -209,7 +195,7 @@ namespace UNIPI_GUIDE
         {
             if (!isPopup)
             {
-                bool safetyMeasure = this.isLogged();
+                bool safetyMeasure = User.loggedIn;
                 bool wasOnHome = ActiveForm == Application.OpenForms[0];
                 form.Show();
                 bool isOnHome = ActiveForm == Application.OpenForms[0];
@@ -233,15 +219,7 @@ namespace UNIPI_GUIDE
         protected void showLogInError()
         {
             MessageBox.Show("Πρώτα πρέπει να συνδεθείτε ή να φτιάξετε λογαριασμό.", "Σφάλμα", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        /**
-         * Displays texts read from the database correctly.
-         */
-        protected string readMultilineFromDB(string retrieved)
-        {
-            return retrieved.Replace("\\n", "\n");
-        }
+        }     
 
         /**
          * Returns username based on account's id.
@@ -258,24 +236,6 @@ namespace UNIPI_GUIDE
                     if (findUserReader.Read()) return findUserReader.GetString(0);
                 }
                 return "";
-            }
-        }
-
-        /**
-         * Returns id based on account's username.
-         */
-        protected int findUserId(string username)
-        {
-            using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
-            using (SQLiteCommand findUserCommand = new SQLiteCommand(Constants.RETURN_ID_FROM_USERNAME_SQL, connection))
-            {
-                connection.Open();
-                findUserCommand.Parameters.AddWithValue("@username", getUsername());
-                using (SQLiteDataReader findUserReader = findUserCommand.ExecuteReader())
-                {
-                    if (findUserReader.Read()) return findUserReader.GetInt32(0);
-                }
-                return -1;
             }
         }
     }

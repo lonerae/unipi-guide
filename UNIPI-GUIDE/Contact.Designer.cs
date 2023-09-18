@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Contact));
             this.sendBtn = new System.Windows.Forms.Button();
             this.subjectTextBox = new System.Windows.Forms.RichTextBox();
             this.subjectLabel = new System.Windows.Forms.Label();
@@ -129,8 +130,9 @@
             this.Controls.Add(this.subjectLabel);
             this.Controls.Add(this.subjectTextBox);
             this.Controls.Add(this.sendBtn);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Contact";
-            this.Text = "Contact";
+            this.Text = "Επικοινωνία | UNIPI-GUIDE";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Contact_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();

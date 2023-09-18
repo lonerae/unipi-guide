@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.gallery = new System.Windows.Forms.PictureBox();
             this.galleryTimer = new System.Windows.Forms.Timer(this.components);
             this.button6 = new System.Windows.Forms.Button();
@@ -122,8 +123,9 @@
             this.Controls.Add(this.button7);
             this.Controls.Add(this.greetingBtn);
             this.Controls.Add(this.gallery);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Home";
-            this.Text = "UNIPI GUIDE";
+            this.Text = "Αρχική | UNIPI-GUIDE";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Controls.SetChildIndex(this.gallery, 0);
             this.Controls.SetChildIndex(this.greetingBtn, 0);

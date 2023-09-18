@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(History));
             this.historyTextBox = new System.Windows.Forms.RichTextBox();
-            this.button8 = new System.Windows.Forms.Button();
+            this.greetingButton = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.titleLabel = new System.Windows.Forms.Label();
+            this.speakerBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.speakerBox)).BeginInit();
             this.SuspendLayout();
             // 
             // historyTextBox
@@ -45,19 +48,20 @@
             this.historyTextBox.TabIndex = 4;
             this.historyTextBox.Text = "";
             // 
-            // button8
+            // greetingButton
             // 
-            this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.button8.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button8.FlatAppearance.BorderSize = 0;
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Font = new System.Drawing.Font("Arial", 20.25F);
-            this.button8.Location = new System.Drawing.Point(33, 542);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(374, 107);
-            this.button8.TabIndex = 6;
-            this.button8.Text = "Χαιρετισμός Πρύτανη";
-            this.button8.UseVisualStyleBackColor = false;
+            this.greetingButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.greetingButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.greetingButton.FlatAppearance.BorderSize = 0;
+            this.greetingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.greetingButton.Font = new System.Drawing.Font("Arial", 20.25F);
+            this.greetingButton.Location = new System.Drawing.Point(33, 542);
+            this.greetingButton.Name = "greetingButton";
+            this.greetingButton.Size = new System.Drawing.Size(374, 107);
+            this.greetingButton.TabIndex = 6;
+            this.greetingButton.Text = "Χαιρετισμός Πρύτανη";
+            this.greetingButton.UseVisualStyleBackColor = false;
+            this.greetingButton.Click += new System.EventHandler(this.greetingButton_Click);
             // 
             // button6
             // 
@@ -97,24 +101,40 @@
             this.titleLabel.TabIndex = 9;
             this.titleLabel.Text = "Ιστορία του Ιδρύματος";
             // 
+            // speakerBox
+            // 
+            this.speakerBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.speakerBox.Image = ((System.Drawing.Image)(resources.GetObject("speakerBox.Image")));
+            this.speakerBox.Location = new System.Drawing.Point(1178, 74);
+            this.speakerBox.Name = "speakerBox";
+            this.speakerBox.Size = new System.Drawing.Size(50, 50);
+            this.speakerBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.speakerBox.TabIndex = 10;
+            this.speakerBox.TabStop = false;
+            this.speakerBox.Click += new System.EventHandler(this.speakerBox_Click);
+            // 
             // History
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.speakerBox);
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
-            this.Controls.Add(this.button8);
+            this.Controls.Add(this.greetingButton);
             this.Controls.Add(this.historyTextBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "History";
-            this.Text = "History";
+            this.Text = "Ιστορία | UNIPI-GUIDE";
             this.Load += new System.EventHandler(this.History_Load);
             this.Controls.SetChildIndex(this.historyTextBox, 0);
-            this.Controls.SetChildIndex(this.button8, 0);
+            this.Controls.SetChildIndex(this.greetingButton, 0);
             this.Controls.SetChildIndex(this.button6, 0);
             this.Controls.SetChildIndex(this.button7, 0);
             this.Controls.SetChildIndex(this.titleLabel, 0);
+            this.Controls.SetChildIndex(this.speakerBox, 0);
+            ((System.ComponentModel.ISupportInitialize)(this.speakerBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,9 +143,10 @@
         #endregion
 
         private System.Windows.Forms.RichTextBox historyTextBox;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button greetingButton;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Label titleLabel;
+        private System.Windows.Forms.PictureBox speakerBox;
     }
 }

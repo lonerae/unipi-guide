@@ -18,6 +18,13 @@ namespace UNIPI_GUIDE
         public static readonly Dictionary<TEXT_KEYS, string> TEXT_VALUES = new Dictionary<TEXT_KEYS, string>() { 
             {TEXT_KEYS.HISTORY , "history"} , 
             {TEXT_KEYS.GREETING , "greeting"} };
+        public static readonly string EVENT_DELIMITER = "\n-------------------------------------------------------------------------------------------------------------------------\n";
+
+        /**
+         * MESSAGES 
+         */
+        public static readonly string POPUP_SOURCE = "Σύστημα";       
+        public static readonly string INVALID_CREDENTIALS_ERROR = "Λάθος στοιχεία χρήστη";
 
         /** 
          * SQL STATEMENTS
@@ -25,6 +32,7 @@ namespace UNIPI_GUIDE
 
         // USER
         public static readonly string RETURN_USERNAME_FROM_ID_SQL = "SELECT username FROM user WHERE id=@id";
+        public static readonly string RETURN_ID_FROM_USERNAME_AND_PASSWORD = "SELECT id FROM user WHERE username = @username AND password = @password";
         public static readonly string RETURN_ID_FROM_USERNAME_SQL = "SELECT id FROM user WHERE username=@username";
         // EVENT
         public static readonly string RETURN_ALL_EVENTS_SQL = "SELECT * FROM event";
