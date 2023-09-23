@@ -86,6 +86,12 @@
     <Compile Include="Events.Designer.cs">
       <DependentUpon>Events.cs</DependentUpon>
     </Compile>
+    <Compile Include="Features.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features.Designer.cs">
+      <DependentUpon>Features.cs</DependentUpon>
+    </Compile>
     <Compile Include="Greeting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Events.resx">
       <DependentUpon>Events.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features.resx">
+      <DependentUpon>Features.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Greeting.resx">
       <DependentUpon>Greeting.cs</DependentUpon>

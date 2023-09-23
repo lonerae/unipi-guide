@@ -1,6 +1,6 @@
 ﻿namespace UNIPI_GUIDE
 {
-    partial class Home
+    partial class Features
     {
         /// <summary>
         /// Required designer variable.
@@ -28,31 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
-            this.gallery = new System.Windows.Forms.PictureBox();
-            this.galleryTimer = new System.Windows.Forms.Timer(this.components);
+            this.descrBox = new System.Windows.Forms.RichTextBox();
             this.locationBtn = new System.Windows.Forms.Button();
-            this.featureBtn = new System.Windows.Forms.Button();
             this.greetingBtn = new System.Windows.Forms.Button();
             this.historyBtn = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.gallery)).BeginInit();
+            this.featureTree = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
-            // gallery
+            // descrBox
             // 
-            this.gallery.Location = new System.Drawing.Point(10, 46);
-            this.gallery.Name = "gallery";
-            this.gallery.Size = new System.Drawing.Size(1244, 386);
-            this.gallery.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.gallery.TabIndex = 1;
-            this.gallery.TabStop = false;
-            // 
-            // galleryTimer
-            // 
-            this.galleryTimer.Enabled = true;
-            this.galleryTimer.Interval = 10000;
-            this.galleryTimer.Tick += new System.EventHandler(this.galleryTimer_Tick);
+            this.descrBox.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.descrBox.Location = new System.Drawing.Point(444, 67);
+            this.descrBox.Name = "descrBox";
+            this.descrBox.Size = new System.Drawing.Size(784, 445);
+            this.descrBox.TabIndex = 4;
+            this.descrBox.Text = "";
             // 
             // locationBtn
             // 
@@ -61,28 +51,13 @@
             this.locationBtn.FlatAppearance.BorderSize = 0;
             this.locationBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.locationBtn.Font = new System.Drawing.Font("Arial", 20.25F);
-            this.locationBtn.Location = new System.Drawing.Point(10, 559);
+            this.locationBtn.Location = new System.Drawing.Point(854, 542);
             this.locationBtn.Name = "locationBtn";
-            this.locationBtn.Size = new System.Drawing.Size(617, 107);
-            this.locationBtn.TabIndex = 4;
-            this.locationBtn.Text = "Τοποθεσία / Πρόσβαση";
+            this.locationBtn.Size = new System.Drawing.Size(374, 107);
+            this.locationBtn.TabIndex = 14;
+            this.locationBtn.Text = "Τοποθεσία/Πρόσβαση";
             this.locationBtn.UseVisualStyleBackColor = false;
             this.locationBtn.Click += new System.EventHandler(this.locationBtn_Click);
-            // 
-            // featureBtn
-            // 
-            this.featureBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.featureBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.featureBtn.FlatAppearance.BorderSize = 0;
-            this.featureBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.featureBtn.Font = new System.Drawing.Font("Arial", 20.25F);
-            this.featureBtn.Location = new System.Drawing.Point(637, 559);
-            this.featureBtn.Name = "featureBtn";
-            this.featureBtn.Size = new System.Drawing.Size(617, 107);
-            this.featureBtn.TabIndex = 6;
-            this.featureBtn.Text = "Παροχές";
-            this.featureBtn.UseVisualStyleBackColor = false;
-            this.featureBtn.Click += new System.EventHandler(this.featureBtn_Click);
             // 
             // greetingBtn
             // 
@@ -91,11 +66,11 @@
             this.greetingBtn.FlatAppearance.BorderSize = 0;
             this.greetingBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.greetingBtn.Font = new System.Drawing.Font("Arial", 20.25F);
-            this.greetingBtn.Location = new System.Drawing.Point(637, 442);
+            this.greetingBtn.Location = new System.Drawing.Point(444, 542);
             this.greetingBtn.Name = "greetingBtn";
-            this.greetingBtn.Size = new System.Drawing.Size(617, 107);
-            this.greetingBtn.TabIndex = 5;
-            this.greetingBtn.Text = "Χαιρετισμός Πρύτανη";
+            this.greetingBtn.Size = new System.Drawing.Size(374, 107);
+            this.greetingBtn.TabIndex = 13;
+            this.greetingBtn.Text = "Χαιρετισμός";
             this.greetingBtn.UseVisualStyleBackColor = false;
             this.greetingBtn.Click += new System.EventHandler(this.greetingBtn_Click);
             // 
@@ -106,47 +81,52 @@
             this.historyBtn.FlatAppearance.BorderSize = 0;
             this.historyBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.historyBtn.Font = new System.Drawing.Font("Arial", 20.25F);
-            this.historyBtn.Location = new System.Drawing.Point(10, 442);
+            this.historyBtn.Location = new System.Drawing.Point(33, 542);
             this.historyBtn.Name = "historyBtn";
-            this.historyBtn.Size = new System.Drawing.Size(617, 107);
-            this.historyBtn.TabIndex = 7;
+            this.historyBtn.Size = new System.Drawing.Size(374, 107);
+            this.historyBtn.TabIndex = 12;
             this.historyBtn.Text = "Ιστορία";
             this.historyBtn.UseVisualStyleBackColor = false;
             this.historyBtn.Click += new System.EventHandler(this.historyBtn_Click);
             // 
-            // Home
+            // featureTree
+            // 
+            this.featureTree.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.featureTree.Location = new System.Drawing.Point(33, 67);
+            this.featureTree.Name = "featureTree";
+            this.featureTree.Size = new System.Drawing.Size(374, 445);
+            this.featureTree.TabIndex = 15;
+            this.featureTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.featureTree_AfterSelect);
+            // 
+            // Features
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.featureTree);
             this.Controls.Add(this.locationBtn);
-            this.Controls.Add(this.historyBtn);
-            this.Controls.Add(this.featureBtn);
             this.Controls.Add(this.greetingBtn);
-            this.Controls.Add(this.gallery);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Home";
-            this.Text = "Αρχική | UNIPI-GUIDE";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.Controls.SetChildIndex(this.gallery, 0);
-            this.Controls.SetChildIndex(this.greetingBtn, 0);
-            this.Controls.SetChildIndex(this.featureBtn, 0);
+            this.Controls.Add(this.historyBtn);
+            this.Controls.Add(this.descrBox);
+            this.Name = "Features";
+            this.Text = "Features";
+            this.Load += new System.EventHandler(this.Features_Load);
+            this.Controls.SetChildIndex(this.descrBox, 0);
             this.Controls.SetChildIndex(this.historyBtn, 0);
+            this.Controls.SetChildIndex(this.greetingBtn, 0);
             this.Controls.SetChildIndex(this.locationBtn, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.gallery)).EndInit();
+            this.Controls.SetChildIndex(this.featureTree, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.PictureBox gallery;
-        private System.Windows.Forms.Timer galleryTimer;
+
+        private System.Windows.Forms.RichTextBox descrBox;
         private System.Windows.Forms.Button locationBtn;
-        private System.Windows.Forms.Button featureBtn;
         private System.Windows.Forms.Button greetingBtn;
         private System.Windows.Forms.Button historyBtn;
+        private System.Windows.Forms.TreeView featureTree;
     }
 }
-
