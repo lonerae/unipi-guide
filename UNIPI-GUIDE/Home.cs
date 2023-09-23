@@ -58,5 +58,10 @@ namespace UNIPI_GUIDE
         {
             changeForm(new Greeting(), false);
         }
+
+        private void locationBtn_Click(object sender, EventArgs e)
+        {
+            changeForm(new Location(), false);
+        }
     }
 }

@@ -30,6 +30,8 @@ namespace UNIPI_GUIDE
          * SQL STATEMENTS
          */
 
+        // LINKS
+        public static readonly string RETURN_LOCATION_LINK = "SELECT url FROM link WHERE descr='LOCATION'";
         // USER
         public static readonly string RETURN_USERNAME_FROM_ID_SQL = "SELECT username FROM user WHERE id=@id";
         public static readonly string RETURN_ID_FROM_USERNAME_AND_PASSWORD = "SELECT id FROM user WHERE username = @username AND password = @password";

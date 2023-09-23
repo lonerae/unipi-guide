@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.gallery = new System.Windows.Forms.PictureBox();
             this.galleryTimer = new System.Windows.Forms.Timer(this.components);
-            this.button6 = new System.Windows.Forms.Button();
+            this.locationBtn = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.greetingBtn = new System.Windows.Forms.Button();
             this.historyBtn = new System.Windows.Forms.Button();
@@ -54,19 +54,20 @@
             this.galleryTimer.Interval = 10000;
             this.galleryTimer.Tick += new System.EventHandler(this.galleryTimer_Tick);
             // 
-            // button6
+            // locationBtn
             // 
-            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.button6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Arial", 20.25F);
-            this.button6.Location = new System.Drawing.Point(10, 559);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(617, 107);
-            this.button6.TabIndex = 4;
-            this.button6.Text = "Τοποθεσία / Πρόσβαση";
-            this.button6.UseVisualStyleBackColor = false;
+            this.locationBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.locationBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.locationBtn.FlatAppearance.BorderSize = 0;
+            this.locationBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.locationBtn.Font = new System.Drawing.Font("Arial", 20.25F);
+            this.locationBtn.Location = new System.Drawing.Point(10, 559);
+            this.locationBtn.Name = "locationBtn";
+            this.locationBtn.Size = new System.Drawing.Size(617, 107);
+            this.locationBtn.TabIndex = 4;
+            this.locationBtn.Text = "Τοποθεσία / Πρόσβαση";
+            this.locationBtn.UseVisualStyleBackColor = false;
+            this.locationBtn.Click += new System.EventHandler(this.locationBtn_Click);
             // 
             // button7
             // 
@@ -118,7 +119,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(1264, 681);
-            this.Controls.Add(this.button6);
+            this.Controls.Add(this.locationBtn);
             this.Controls.Add(this.historyBtn);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.greetingBtn);
@@ -131,7 +132,7 @@
             this.Controls.SetChildIndex(this.greetingBtn, 0);
             this.Controls.SetChildIndex(this.button7, 0);
             this.Controls.SetChildIndex(this.historyBtn, 0);
-            this.Controls.SetChildIndex(this.button6, 0);
+            this.Controls.SetChildIndex(this.locationBtn, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gallery)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -141,7 +142,7 @@
         #endregion
         private System.Windows.Forms.PictureBox gallery;
         private System.Windows.Forms.Timer galleryTimer;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button locationBtn;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button greetingBtn;
         private System.Windows.Forms.Button historyBtn;
