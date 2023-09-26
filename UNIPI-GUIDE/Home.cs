@@ -40,13 +40,40 @@ namespace UNIPI_GUIDE
             }
             maxCounter = imagePaths.Count() - 1;
             gallery.ImageLocation = imagePaths[counter];
+            galleryTwo.ImageLocation = imagePaths[counter+1];
         }
 
         private void galleryTimer_Tick(object sender, EventArgs e)
         {
-            counter++;
-            if (counter > maxCounter) counter = 0;
-            gallery.ImageLocation = imagePaths[counter];
+            if(gallery.Location.X < rightPanel.Location.X)
+            {
+                gallery.Location = new Point(gallery.Location.X + 8, gallery.Location.Y);
+            }
+            else
+            {
+                counter++;
+                gallery.Image = Image.FromFile(imagePaths[counter%maxCounter + 1]);
+                gallery.Location = new Point(245, gallery.Location.Y);
+                gallery.SendToBack();
+                galleryTimer.Enabled = false;
+            }
+            if (galleryTwo.Location.X < rightPanel.Location.X)
+            {
+                galleryTwo.Location = new Point(galleryTwo.Location.X + 8, galleryTwo.Location.Y);
+            }
+            else
+            {
+                counter++;
+                galleryTwo.Image = Image.FromFile(imagePaths[counter%maxCounter + 1]);
+                galleryTwo.Location = new Point(245, galleryTwo.Location.Y);
+                galleryTwo.SendToBack();
+                galleryTimer.Enabled = false;
+            }
+
+        }
+        private void photoTimer_Tick(object sender, EventArgs e)
+        {
+            galleryTimer.Enabled = true;
         }
 
         private void historyBtn_Click(object sender, EventArgs e)
