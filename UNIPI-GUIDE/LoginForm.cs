@@ -14,6 +14,7 @@ namespace UNIPI_GUIDE
 {
     public partial class LoginForm : Form
     {
+        // TODO: aesthetic fix
         public LoginForm()
         {
             InitializeComponent();           

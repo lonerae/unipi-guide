@@ -16,7 +16,7 @@ namespace UNIPI_GUIDE
 {
     public partial class OurForm : BaseForm
     {
-
+        // TODO: on logout redirect to home
         public OurForm()
         {
             InitializeComponent();
@@ -59,6 +59,7 @@ namespace UNIPI_GUIDE
                     builder.Append(row.Cells[0].Value).Append(" : ").Append(row.Cells[1].Value).Append("\n");
                 }
                 content.Write(builder.ToString());
+                MessageBox.Show("Επιτυχής εξαγωγή!", Constants.POPUP_SOURCE);
             }
         }
     }
