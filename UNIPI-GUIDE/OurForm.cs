@@ -4,15 +4,19 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace UNIPI_GUIDE
 {
     public partial class OurForm : BaseForm
     {
+
         public OurForm()
         {
             InitializeComponent();
@@ -41,6 +45,20 @@ namespace UNIPI_GUIDE
                         professorGrid.Rows.Add(new object[] { reader.GetString(reader.GetOrdinal("name")), reader.GetString(reader.GetOrdinal("email")) });
                     }
                 }
+            }
+        }
+
+        private void exportButton_Click(object sender, EventArgs e)
+        {
+            using (StreamWriter content = File.CreateText("cs_info.txt"))
+            {
+                StringBuilder builder = new StringBuilder();
+                builder.Append("Καθηγητής").Append(" | ").Append("E-mail").Append("\n");
+                foreach (DataGridViewRow row in professorGrid.Rows)
+                {
+                    builder.Append(row.Cells[0].Value).Append(" : ").Append(row.Cells[1].Value).Append("\n");
+                }
+                content.Write(builder.ToString());
             }
         }
     }
