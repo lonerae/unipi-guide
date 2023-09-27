@@ -58,6 +58,16 @@ namespace UNIPI_GUIDE
         {
             changeForm(new History(), false);
         }
+
+        private void locationButton_Click(object sender, EventArgs e)
+        {
+            changeForm(new Location(), false);
+        }
+
+        private void featuresButton_Click(object sender, EventArgs e)
+        {
+            changeForm(new Features(), false);
+        }
     }
 
    

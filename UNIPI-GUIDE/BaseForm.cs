@@ -17,6 +17,7 @@ namespace UNIPI_GUIDE
         public BaseForm()
         {
             InitializeComponent();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         private void BaseForm_Load(object sender, EventArgs e)
@@ -237,6 +238,11 @@ namespace UNIPI_GUIDE
                 }
                 return "";
             }
+        }
+
+        private void papeiButton_Click(object sender, EventArgs e)
+        {
+            changeForm(new OurForm(), false);
         }
     }
 }

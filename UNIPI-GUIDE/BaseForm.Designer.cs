@@ -166,6 +166,7 @@
             this.papeiButton.Text = "Το ΠΑΠΕΙ μας";
             this.papeiButton.UseVisualStyleBackColor = true;
             this.papeiButton.Visible = false;
+            this.papeiButton.Click += new System.EventHandler(this.papeiButton_Click);
             // 
             // BaseForm
             // 

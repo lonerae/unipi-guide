@@ -45,7 +45,7 @@ namespace UNIPI_GUIDE
 
         private void featureBtn_Click(object sender, EventArgs e)
         {
-            changeForm(new History(), false);
+            changeForm(new Features(), false);
         }
     }
 }

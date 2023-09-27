@@ -54,14 +54,19 @@ namespace UNIPI_GUIDE
             }
         }
 
-        private void button8_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void greetingButton_Click(object sender, EventArgs e)
         {
             changeForm(new Greeting(), false);
+        }
+
+        private void locationButton_Click(object sender, EventArgs e)
+        {
+            changeForm(new Location(), false);
+        }
+
+        private void featuresButton_Click(object sender, EventArgs e)
+        {
+            changeForm(new Features(), false);
         }
     }
 }

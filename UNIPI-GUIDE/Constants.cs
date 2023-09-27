@@ -80,5 +80,7 @@ namespace UNIPI_GUIDE
                                                                 INNER JOIN imageCategory AS ic
                                                                     ON ai.categoryId = ic.id                
                                                                 WHERE ic.category = 'carousel'";
+        // OUR PAPEI
+        public static readonly string RETURN_PROFESSOR = "SELECT * FROM professor";
     }
 }

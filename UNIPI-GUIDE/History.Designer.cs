@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(History));
             this.historyTextBox = new System.Windows.Forms.RichTextBox();
             this.greetingButton = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.locationButton = new System.Windows.Forms.Button();
+            this.featuresButton = new System.Windows.Forms.Button();
             this.titleLabel = new System.Windows.Forms.Label();
             this.speakerBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.speakerBox)).BeginInit();
@@ -63,33 +63,35 @@
             this.greetingButton.UseVisualStyleBackColor = false;
             this.greetingButton.Click += new System.EventHandler(this.greetingButton_Click);
             // 
-            // button6
+            // locationButton
             // 
-            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.button6.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Arial", 20.25F);
-            this.button6.Location = new System.Drawing.Point(444, 542);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(374, 107);
-            this.button6.TabIndex = 7;
-            this.button6.Text = "Τοποθεσία / Πρόσβαση";
-            this.button6.UseVisualStyleBackColor = false;
+            this.locationButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.locationButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.locationButton.FlatAppearance.BorderSize = 0;
+            this.locationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.locationButton.Font = new System.Drawing.Font("Arial", 20.25F);
+            this.locationButton.Location = new System.Drawing.Point(444, 542);
+            this.locationButton.Name = "locationButton";
+            this.locationButton.Size = new System.Drawing.Size(374, 107);
+            this.locationButton.TabIndex = 7;
+            this.locationButton.Text = "Τοποθεσία / Πρόσβαση";
+            this.locationButton.UseVisualStyleBackColor = false;
+            this.locationButton.Click += new System.EventHandler(this.locationButton_Click);
             // 
-            // button7
+            // featuresButton
             // 
-            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.button7.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button7.FlatAppearance.BorderSize = 0;
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Font = new System.Drawing.Font("Arial", 20.25F);
-            this.button7.Location = new System.Drawing.Point(854, 542);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(374, 107);
-            this.button7.TabIndex = 8;
-            this.button7.Text = "Παροχές";
-            this.button7.UseVisualStyleBackColor = false;
+            this.featuresButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.featuresButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.featuresButton.FlatAppearance.BorderSize = 0;
+            this.featuresButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.featuresButton.Font = new System.Drawing.Font("Arial", 20.25F);
+            this.featuresButton.Location = new System.Drawing.Point(854, 542);
+            this.featuresButton.Name = "featuresButton";
+            this.featuresButton.Size = new System.Drawing.Size(374, 107);
+            this.featuresButton.TabIndex = 8;
+            this.featuresButton.Text = "Παροχές";
+            this.featuresButton.UseVisualStyleBackColor = false;
+            this.featuresButton.Click += new System.EventHandler(this.featuresButton_Click);
             // 
             // titleLabel
             // 
@@ -120,8 +122,8 @@
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.speakerBox);
             this.Controls.Add(this.titleLabel);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
+            this.Controls.Add(this.featuresButton);
+            this.Controls.Add(this.locationButton);
             this.Controls.Add(this.greetingButton);
             this.Controls.Add(this.historyTextBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -130,8 +132,8 @@
             this.Load += new System.EventHandler(this.History_Load);
             this.Controls.SetChildIndex(this.historyTextBox, 0);
             this.Controls.SetChildIndex(this.greetingButton, 0);
-            this.Controls.SetChildIndex(this.button6, 0);
-            this.Controls.SetChildIndex(this.button7, 0);
+            this.Controls.SetChildIndex(this.locationButton, 0);
+            this.Controls.SetChildIndex(this.featuresButton, 0);
             this.Controls.SetChildIndex(this.titleLabel, 0);
             this.Controls.SetChildIndex(this.speakerBox, 0);
             ((System.ComponentModel.ISupportInitialize)(this.speakerBox)).EndInit();
@@ -144,8 +146,8 @@
 
         private System.Windows.Forms.RichTextBox historyTextBox;
         private System.Windows.Forms.Button greetingButton;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button locationButton;
+        private System.Windows.Forms.Button featuresButton;
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.PictureBox speakerBox;
     }
