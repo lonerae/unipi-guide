@@ -47,25 +47,25 @@ namespace UNIPI_GUIDE
         {
             if(gallery.Location.X < rightPanel.Location.X)
             {
-                gallery.Location = new Point(gallery.Location.X + 8, gallery.Location.Y);
+                gallery.Location = new Point(gallery.Location.X + 12, gallery.Location.Y);
             }
             else
             {
                 counter++;
                 gallery.Image = Image.FromFile(imagePaths[counter%maxCounter + 1]);
-                gallery.Location = new Point(245, gallery.Location.Y);
+                gallery.Location = new Point(93, gallery.Location.Y);
                 gallery.SendToBack();
                 galleryTimer.Enabled = false;
             }
             if (galleryTwo.Location.X < rightPanel.Location.X)
             {
-                galleryTwo.Location = new Point(galleryTwo.Location.X + 8, galleryTwo.Location.Y);
+                galleryTwo.Location = new Point(galleryTwo.Location.X + 12, galleryTwo.Location.Y);
             }
             else
             {
                 counter++;
                 galleryTwo.Image = Image.FromFile(imagePaths[counter%maxCounter + 1]);
-                galleryTwo.Location = new Point(245, galleryTwo.Location.Y);
+                galleryTwo.Location = new Point(93, galleryTwo.Location.Y);
                 galleryTwo.SendToBack();
                 galleryTimer.Enabled = false;
             }

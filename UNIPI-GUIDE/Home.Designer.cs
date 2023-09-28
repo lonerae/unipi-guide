@@ -10,7 +10,7 @@
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>tort
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -46,10 +46,10 @@
             // 
             // gallery
             // 
-            this.gallery.Location = new System.Drawing.Point(756, 244);
+            this.gallery.Location = new System.Drawing.Point(687, 202);
             this.gallery.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.gallery.Name = "gallery";
-            this.gallery.Size = new System.Drawing.Size(400, 250);
+            this.gallery.Size = new System.Drawing.Size(550, 340);
             this.gallery.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.gallery.TabIndex = 1;
             this.gallery.TabStop = false;
@@ -126,16 +126,16 @@
             // 
             // leftPanel
             // 
-            this.leftPanel.Location = new System.Drawing.Point(308, 144);
+            this.leftPanel.Location = new System.Drawing.Point(70, 65);
             this.leftPanel.Name = "leftPanel";
-            this.leftPanel.Size = new System.Drawing.Size(459, 424);
+            this.leftPanel.Size = new System.Drawing.Size(624, 551);
             this.leftPanel.TabIndex = 8;
             // 
             // rightPanel
             // 
-            this.rightPanel.Location = new System.Drawing.Point(1163, 144);
+            this.rightPanel.Location = new System.Drawing.Point(1219, 66);
             this.rightPanel.Name = "rightPanel";
-            this.rightPanel.Size = new System.Drawing.Size(684, 424);
+            this.rightPanel.Size = new System.Drawing.Size(677, 550);
             this.rightPanel.TabIndex = 9;
             // 
             // photoTimer
@@ -146,10 +146,10 @@
             // 
             // galleryTwo
             // 
-            this.galleryTwo.Location = new System.Drawing.Point(348, 244);
+            this.galleryTwo.Location = new System.Drawing.Point(129, 202);
             this.galleryTwo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.galleryTwo.Name = "galleryTwo";
-            this.galleryTwo.Size = new System.Drawing.Size(400, 250);
+            this.galleryTwo.Size = new System.Drawing.Size(550, 340);
             this.galleryTwo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.galleryTwo.TabIndex = 10;
             this.galleryTwo.TabStop = false;
@@ -160,27 +160,27 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(1896, 1048);
-            this.Controls.Add(this.rightPanel);
             this.Controls.Add(this.leftPanel);
+            this.Controls.Add(this.rightPanel);
+            this.Controls.Add(this.gallery);
             this.Controls.Add(this.locationBtn);
             this.Controls.Add(this.historyBtn);
             this.Controls.Add(this.featureBtn);
             this.Controls.Add(this.greetingBtn);
             this.Controls.Add(this.galleryTwo);
-            this.Controls.Add(this.gallery);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.Name = "Home";
             this.Text = "Αρχική | UNIPI-GUIDE";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Controls.SetChildIndex(this.gallery, 0);
             this.Controls.SetChildIndex(this.galleryTwo, 0);
             this.Controls.SetChildIndex(this.greetingBtn, 0);
             this.Controls.SetChildIndex(this.featureBtn, 0);
             this.Controls.SetChildIndex(this.historyBtn, 0);
             this.Controls.SetChildIndex(this.locationBtn, 0);
-            this.Controls.SetChildIndex(this.leftPanel, 0);
+            this.Controls.SetChildIndex(this.gallery, 0);
             this.Controls.SetChildIndex(this.rightPanel, 0);
+            this.Controls.SetChildIndex(this.leftPanel, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gallery)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.galleryTwo)).EndInit();
             this.ResumeLayout(false);
