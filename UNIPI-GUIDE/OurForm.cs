@@ -62,5 +62,14 @@ namespace UNIPI_GUIDE
                 MessageBox.Show("Επιτυχής εξαγωγή!", Constants.POPUP_SOURCE);
             }
         }
+
+        override protected void resetForm(bool loggedIn)
+        {
+            if (!loggedIn)
+            {
+                MessageBox.Show("Περιεχόμενο μόνο για εγγεγραμμένους χρήστες.", Constants.POPUP_SOURCE);
+                changeForm(new Home(), false);
+            }
+        }
     }
 }

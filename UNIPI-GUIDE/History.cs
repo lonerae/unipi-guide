@@ -32,7 +32,6 @@ namespace UNIPI_GUIDE
                 command.Parameters.AddWithValue("@key", TEXT_VALUES[TEXT_KEYS.HISTORY]);
                 using (SQLiteDataReader reader = command.ExecuteReader())
                 {
-                    //TODO: voice for accessibility
                     if (reader.Read()) historyTextBox.Text = Utils.readMultilineFromDB(reader.GetString(0));
                 }
             }
