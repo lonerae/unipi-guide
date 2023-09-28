@@ -46,10 +46,9 @@
             // 
             // gallery
             // 
-            this.gallery.Location = new System.Drawing.Point(687, 202);
-            this.gallery.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gallery.Location = new System.Drawing.Point(458, 131);
             this.gallery.Name = "gallery";
-            this.gallery.Size = new System.Drawing.Size(550, 340);
+            this.gallery.Size = new System.Drawing.Size(367, 221);
             this.gallery.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.gallery.TabIndex = 1;
             this.gallery.TabStop = false;
@@ -67,10 +66,9 @@
             this.locationBtn.FlatAppearance.BorderSize = 0;
             this.locationBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.locationBtn.Font = new System.Drawing.Font("Arial", 20.25F);
-            this.locationBtn.Location = new System.Drawing.Point(15, 860);
-            this.locationBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.locationBtn.Location = new System.Drawing.Point(33, 548);
             this.locationBtn.Name = "locationBtn";
-            this.locationBtn.Size = new System.Drawing.Size(926, 165);
+            this.locationBtn.Size = new System.Drawing.Size(594, 107);
             this.locationBtn.TabIndex = 4;
             this.locationBtn.Text = "Τοποθεσία / Πρόσβαση";
             this.locationBtn.UseVisualStyleBackColor = false;
@@ -83,10 +81,9 @@
             this.featureBtn.FlatAppearance.BorderSize = 0;
             this.featureBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.featureBtn.Font = new System.Drawing.Font("Arial", 20.25F);
-            this.featureBtn.Location = new System.Drawing.Point(956, 860);
-            this.featureBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.featureBtn.Location = new System.Drawing.Point(637, 548);
             this.featureBtn.Name = "featureBtn";
-            this.featureBtn.Size = new System.Drawing.Size(926, 165);
+            this.featureBtn.Size = new System.Drawing.Size(594, 107);
             this.featureBtn.TabIndex = 6;
             this.featureBtn.Text = "Παροχές";
             this.featureBtn.UseVisualStyleBackColor = false;
@@ -99,10 +96,9 @@
             this.greetingBtn.FlatAppearance.BorderSize = 0;
             this.greetingBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.greetingBtn.Font = new System.Drawing.Font("Arial", 20.25F);
-            this.greetingBtn.Location = new System.Drawing.Point(956, 680);
-            this.greetingBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.greetingBtn.Location = new System.Drawing.Point(637, 431);
             this.greetingBtn.Name = "greetingBtn";
-            this.greetingBtn.Size = new System.Drawing.Size(926, 165);
+            this.greetingBtn.Size = new System.Drawing.Size(594, 107);
             this.greetingBtn.TabIndex = 5;
             this.greetingBtn.Text = "Χαιρετισμός Πρύτανη";
             this.greetingBtn.UseVisualStyleBackColor = false;
@@ -115,10 +111,9 @@
             this.historyBtn.FlatAppearance.BorderSize = 0;
             this.historyBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.historyBtn.Font = new System.Drawing.Font("Arial", 20.25F);
-            this.historyBtn.Location = new System.Drawing.Point(15, 680);
-            this.historyBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.historyBtn.Location = new System.Drawing.Point(33, 431);
             this.historyBtn.Name = "historyBtn";
-            this.historyBtn.Size = new System.Drawing.Size(926, 165);
+            this.historyBtn.Size = new System.Drawing.Size(594, 107);
             this.historyBtn.TabIndex = 7;
             this.historyBtn.Text = "Ιστορία";
             this.historyBtn.UseVisualStyleBackColor = false;
@@ -126,16 +121,18 @@
             // 
             // leftPanel
             // 
-            this.leftPanel.Location = new System.Drawing.Point(70, 65);
+            this.leftPanel.Location = new System.Drawing.Point(47, 42);
+            this.leftPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.leftPanel.Name = "leftPanel";
-            this.leftPanel.Size = new System.Drawing.Size(624, 551);
+            this.leftPanel.Size = new System.Drawing.Size(416, 358);
             this.leftPanel.TabIndex = 8;
             // 
             // rightPanel
             // 
-            this.rightPanel.Location = new System.Drawing.Point(1219, 66);
+            this.rightPanel.Location = new System.Drawing.Point(813, 43);
+            this.rightPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.rightPanel.Name = "rightPanel";
-            this.rightPanel.Size = new System.Drawing.Size(677, 550);
+            this.rightPanel.Size = new System.Drawing.Size(451, 358);
             this.rightPanel.TabIndex = 9;
             // 
             // photoTimer
@@ -146,41 +143,40 @@
             // 
             // galleryTwo
             // 
-            this.galleryTwo.Location = new System.Drawing.Point(129, 202);
-            this.galleryTwo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.galleryTwo.Location = new System.Drawing.Point(86, 131);
             this.galleryTwo.Name = "galleryTwo";
-            this.galleryTwo.Size = new System.Drawing.Size(550, 340);
+            this.galleryTwo.Size = new System.Drawing.Size(367, 221);
             this.galleryTwo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.galleryTwo.TabIndex = 10;
             this.galleryTwo.TabStop = false;
             // 
             // Home
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.ClientSize = new System.Drawing.Size(1896, 1048);
+            this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.greetingBtn);
             this.Controls.Add(this.leftPanel);
             this.Controls.Add(this.rightPanel);
             this.Controls.Add(this.gallery);
             this.Controls.Add(this.locationBtn);
             this.Controls.Add(this.historyBtn);
             this.Controls.Add(this.featureBtn);
-            this.Controls.Add(this.greetingBtn);
             this.Controls.Add(this.galleryTwo);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Home";
             this.Text = "Αρχική | UNIPI-GUIDE";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Controls.SetChildIndex(this.galleryTwo, 0);
-            this.Controls.SetChildIndex(this.greetingBtn, 0);
             this.Controls.SetChildIndex(this.featureBtn, 0);
             this.Controls.SetChildIndex(this.historyBtn, 0);
             this.Controls.SetChildIndex(this.locationBtn, 0);
             this.Controls.SetChildIndex(this.gallery, 0);
             this.Controls.SetChildIndex(this.rightPanel, 0);
             this.Controls.SetChildIndex(this.leftPanel, 0);
+            this.Controls.SetChildIndex(this.greetingBtn, 0);
             ((System.ComponentModel.ISupportInitialize)(this.gallery)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.galleryTwo)).EndInit();
             this.ResumeLayout(false);

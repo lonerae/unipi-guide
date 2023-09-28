@@ -70,5 +70,10 @@ namespace UNIPI_GUIDE
                 changeForm(new Home(), false);
             }
         }
+
+        private void gunetLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://gunet2.cs.unipi.gr/");
+        }
     }
 }

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OurForm));
             this.questionBox = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.questionBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -37,7 +38,7 @@
             // 
             this.questionBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.questionBox.Image = ((System.Drawing.Image)(resources.GetObject("questionBox.Image")));
-            this.questionBox.Location = new System.Drawing.Point(1190, 64);
+            this.questionBox.Location = new System.Drawing.Point(1179, 64);
             this.questionBox.Name = "questionBox";
             this.questionBox.Size = new System.Drawing.Size(62, 50);
             this.questionBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -45,16 +46,28 @@
             this.questionBox.TabStop = false;
             this.questionBox.Click += new System.EventHandler(this.questionBox_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.label1.Location = new System.Drawing.Point(50, 64);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(718, 32);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Διάλεξε ένα Τμήμα για να δεις περισσότερες λεπτομέρειες!";
+            // 
             // OurForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.questionBox);
             this.Name = "OurForm";
             this.Text = "OurForm";
             this.Load += new System.EventHandler(this.OurForm_Load);
             this.Controls.SetChildIndex(this.questionBox, 0);
+            this.Controls.SetChildIndex(this.label1, 0);
             ((System.ComponentModel.ISupportInitialize)(this.questionBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -64,5 +77,6 @@
         #endregion
 
         private System.Windows.Forms.PictureBox questionBox;
+        private System.Windows.Forms.Label label1;
     }
 }

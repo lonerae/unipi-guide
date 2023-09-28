@@ -37,16 +37,20 @@
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.exportButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.gunetLink = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.professorGrid)).BeginInit();
             this.SuspendLayout();
             // 
             // csTextBox
             // 
             this.csTextBox.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.csTextBox.Location = new System.Drawing.Point(726, 162);
+            this.csTextBox.Location = new System.Drawing.Point(50, 136);
             this.csTextBox.Name = "csTextBox";
             this.csTextBox.ReadOnly = true;
-            this.csTextBox.Size = new System.Drawing.Size(511, 375);
+            this.csTextBox.Size = new System.Drawing.Size(400, 421);
             this.csTextBox.TabIndex = 4;
             this.csTextBox.Text = "";
             // 
@@ -78,9 +82,9 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.professorGrid.DefaultCellStyle = dataGridViewCellStyle3;
-            this.professorGrid.Location = new System.Drawing.Point(251, 162);
+            this.professorGrid.Location = new System.Drawing.Point(493, 181);
             this.professorGrid.Name = "professorGrid";
-            this.professorGrid.Size = new System.Drawing.Size(454, 326);
+            this.professorGrid.Size = new System.Drawing.Size(335, 326);
             this.professorGrid.TabIndex = 5;
             // 
             // name
@@ -101,19 +105,65 @@
             this.exportButton.FlatAppearance.BorderSize = 0;
             this.exportButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exportButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.exportButton.Location = new System.Drawing.Point(251, 504);
+            this.exportButton.Location = new System.Drawing.Point(493, 524);
             this.exportButton.Name = "exportButton";
-            this.exportButton.Size = new System.Drawing.Size(454, 33);
+            this.exportButton.Size = new System.Drawing.Size(335, 33);
             this.exportButton.TabIndex = 6;
             this.exportButton.Text = "Εξαγωγή σε αρχείο txt";
             this.exportButton.UseVisualStyleBackColor = false;
             this.exportButton.Click += new System.EventHandler(this.exportButton_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.label1.Location = new System.Drawing.Point(50, 65);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(262, 29);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Τμήμα Πληροφορικής";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.label2.Location = new System.Drawing.Point(488, 136);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(104, 22);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Μέλη ΔΕΠ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.label3.Location = new System.Drawing.Point(891, 139);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(208, 22);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Σημαντικοί Σύνδεσμοι";
+            // 
+            // gunetLink
+            // 
+            this.gunetLink.AutoSize = true;
+            this.gunetLink.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.gunetLink.Location = new System.Drawing.Point(891, 181);
+            this.gunetLink.Name = "gunetLink";
+            this.gunetLink.Size = new System.Drawing.Size(158, 22);
+            this.gunetLink.TabIndex = 10;
+            this.gunetLink.TabStop = true;
+            this.gunetLink.Text = "Ηλεκτρονική Τάξη";
+            this.gunetLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.gunetLink_LinkClicked);
             // 
             // CSForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.gunetLink);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.exportButton);
             this.Controls.Add(this.professorGrid);
             this.Controls.Add(this.csTextBox);
@@ -124,6 +174,10 @@
             this.Controls.SetChildIndex(this.csTextBox, 0);
             this.Controls.SetChildIndex(this.professorGrid, 0);
             this.Controls.SetChildIndex(this.exportButton, 0);
+            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.label2, 0);
+            this.Controls.SetChildIndex(this.label3, 0);
+            this.Controls.SetChildIndex(this.gunetLink, 0);
             ((System.ComponentModel.ISupportInitialize)(this.professorGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -137,5 +191,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn email;
         private System.Windows.Forms.Button exportButton;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.LinkLabel gunetLink;
     }
 }

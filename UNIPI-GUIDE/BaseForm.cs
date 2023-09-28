@@ -209,6 +209,7 @@ namespace UNIPI_GUIDE
                     this.Dispose();
                     if (isOnHome) ((BaseForm) Application.OpenForms[0]).updateToolstrip(); // toolstrip was resurfaced, not reinitialized
                     form.Controls["navPanel"].Visible = false;
+                    form.Controls["papeiButton"].Visible = false;
                 }
             }
             else form.ShowDialog();

@@ -53,6 +53,7 @@
             this.richTextBox1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.richTextBox1.Location = new System.Drawing.Point(909, 67);
             this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
             this.richTextBox1.Size = new System.Drawing.Size(291, 213);
             this.richTextBox1.TabIndex = 5;
             this.richTextBox1.Text = "Κεντρικό Κτίριο:\nΜ. Καραολή & Α. Δημητρίου 80\n18534, Πειραιάς\n\nΤηλ. Κέντρο: \n210 " +
