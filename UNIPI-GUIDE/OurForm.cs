@@ -4,19 +4,15 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace UNIPI_GUIDE
 {
     public partial class OurForm : BaseForm
     {
-        // TODO: on logout redirect to home
         public OurForm()
         {
             InitializeComponent();
@@ -25,45 +21,37 @@ namespace UNIPI_GUIDE
         private void OurForm_Load(object sender, EventArgs e)
         {
             using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
-            using (SQLiteCommand command = new SQLiteCommand(Constants.RETURN_TEXT, connection))
+            using (SQLiteCommand command = new SQLiteCommand(Constants.RETURN_DEPARTMENTS, connection))
             {
                 connection.Open();
-                command.Parameters.AddWithValue("@key", "cs");
-                using (SQLiteDataReader reader = command.ExecuteReader())
+                using (SQLiteDataReader reader = command.ExecuteReader()) 
                 {
-                    if (reader.Read()) csTextBox.Text = Utils.readMultilineFromDB(reader.GetString(reader.GetOrdinal("description")));
-                }
-            }
-            using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
-            using (SQLiteCommand command = new SQLiteCommand(Constants.RETURN_PROFESSOR, connection))
-            {
-                connection.Open();
-                using (SQLiteDataReader reader = command.ExecuteReader())
-                {
+                    int i = 0;
+                    int j = 0;
                     while (reader.Read())
                     {
-                        professorGrid.Rows.Add(new object[] { reader.GetString(reader.GetOrdinal("name")), reader.GetString(reader.GetOrdinal("email")) });
+                        Button button = new Button();
+                        button.Text = reader.GetString(reader.GetOrdinal("name"));
+                        button.Location = new Point(400*(1+i),100*(j+1));
+                        button.Size = new Size(300, 50);
+                        button.Font = new Font("Arial", 16);
+                        button.BackColor = Color.FromArgb(128, 128, 255);
+                        button.FlatStyle = FlatStyle.Flat;
+                        
+                        i++;
+                        if (i == 2)
+                        {
+                            i = 0;
+                            j++;
+                        }
+
+                        this.Controls.Add(button);
                     }
                 }
             }
         }
 
-        private void exportButton_Click(object sender, EventArgs e)
-        {
-            using (StreamWriter content = File.CreateText("cs_info.txt"))
-            {
-                StringBuilder builder = new StringBuilder();
-                builder.Append("Καθηγητής").Append(" | ").Append("E-mail").Append("\n");
-                foreach (DataGridViewRow row in professorGrid.Rows)
-                {
-                    builder.Append(row.Cells[0].Value).Append(" : ").Append(row.Cells[1].Value).Append("\n");
-                }
-                content.Write(builder.ToString());
-                MessageBox.Show("Επιτυχής εξαγωγή!", Constants.POPUP_SOURCE);
-            }
-        }
-
-        override protected void resetForm(bool loggedIn)
+        protected override void resetForm(bool loggedIn)
         {
             if (!loggedIn)
             {
@@ -71,5 +59,11 @@ namespace UNIPI_GUIDE
                 changeForm(new Home(), false);
             }
         }
+
+        private void questionBox_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Από τους φοιτητές, για τους φοιτητές! Αν ενδιαφέρεσαι να προσθέσεις πληροφορίες και για το δικό σου τμήμα, επικοινώνησε μαζί μας από την φόρμα επικοινωνίας.", Constants.POPUP_SOURCE);
+        }
+
     }
 }

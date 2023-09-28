@@ -82,5 +82,6 @@ namespace UNIPI_GUIDE
                                                                 WHERE ic.category = 'carousel'";
         // OUR PAPEI
         public static readonly string RETURN_PROFESSOR = "SELECT * FROM professor";
+        public static readonly string RETURN_DEPARTMENTS = "SELECT name FROM department";
     }
 }
