@@ -214,7 +214,7 @@
             this.Controls.Add(this.csTextBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CSForm";
-            this.Text = "Το ΠΑΠΕΙ μας | UNIPI-GUIDE";
+            this.Text = "Τμήμα Πληροφορικής | UNIPI-GUIDE";
             this.Load += new System.EventHandler(this.OurForm_Load);
             this.Controls.SetChildIndex(this.csTextBox, 0);
             this.Controls.SetChildIndex(this.professorGrid, 0);

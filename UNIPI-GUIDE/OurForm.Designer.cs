@@ -75,8 +75,9 @@
             this.Controls.Add(this.iconPictureBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.questionBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "OurForm";
-            this.Text = "OurForm";
+            this.Text = "Το ΠΑΠΕΙ μας | UNIPI-GUIDE";
             this.Load += new System.EventHandler(this.OurForm_Load);
             this.Controls.SetChildIndex(this.questionBox, 0);
             this.Controls.SetChildIndex(this.label1, 0);

@@ -144,8 +144,9 @@
             this.Controls.Add(this.locationBtn);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.pictureBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Location";
-            this.Text = "LocationForm";
+            this.Text = "Πρόσβαση | UNIPI-GUIDE";
             this.Controls.SetChildIndex(this.pictureBox1, 0);
             this.Controls.SetChildIndex(this.richTextBox1, 0);
             this.Controls.SetChildIndex(this.locationBtn, 0);

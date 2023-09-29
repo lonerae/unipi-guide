@@ -18,6 +18,8 @@ namespace UNIPI_GUIDE
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
         }
 
         private void BaseForm_Load(object sender, EventArgs e)

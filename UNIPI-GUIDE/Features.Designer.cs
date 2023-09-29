@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Features));
             this.descrBox = new System.Windows.Forms.RichTextBox();
             this.locationBtn = new System.Windows.Forms.Button();
             this.greetingBtn = new System.Windows.Forms.Button();
@@ -124,8 +125,9 @@
             this.Controls.Add(this.greetingBtn);
             this.Controls.Add(this.historyBtn);
             this.Controls.Add(this.descrBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Features";
-            this.Text = "Features";
+            this.Text = "Παροχές | UNIPI-GUIDE";
             this.Load += new System.EventHandler(this.Features_Load);
             this.Controls.SetChildIndex(this.descrBox, 0);
             this.Controls.SetChildIndex(this.historyBtn, 0);
