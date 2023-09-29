@@ -75,5 +75,20 @@ namespace UNIPI_GUIDE
         {
             System.Diagnostics.Process.Start("https://gunet2.cs.unipi.gr/");
         }
+
+        private void dptLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.cs.unipi.gr/index.php?lang=el");
+        }
+
+        private void ieeeLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://ieee.unipi.gr/");
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            changeForm(new OurForm(), false);
+        }
     }
 }

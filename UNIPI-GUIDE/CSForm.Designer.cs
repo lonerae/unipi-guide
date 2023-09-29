@@ -41,6 +41,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.gunetLink = new System.Windows.Forms.LinkLabel();
+            this.ieeeLink = new System.Windows.Forms.LinkLabel();
+            this.dptLink = new System.Windows.Forms.LinkLabel();
+            this.backButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.professorGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,7 +87,8 @@
             this.professorGrid.DefaultCellStyle = dataGridViewCellStyle3;
             this.professorGrid.Location = new System.Drawing.Point(493, 181);
             this.professorGrid.Name = "professorGrid";
-            this.professorGrid.Size = new System.Drawing.Size(335, 326);
+            this.professorGrid.RowHeadersVisible = false;
+            this.professorGrid.Size = new System.Drawing.Size(440, 326);
             this.professorGrid.TabIndex = 5;
             // 
             // name
@@ -105,9 +109,9 @@
             this.exportButton.FlatAppearance.BorderSize = 0;
             this.exportButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exportButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.exportButton.Location = new System.Drawing.Point(493, 524);
+            this.exportButton.Location = new System.Drawing.Point(492, 524);
             this.exportButton.Name = "exportButton";
-            this.exportButton.Size = new System.Drawing.Size(335, 33);
+            this.exportButton.Size = new System.Drawing.Size(441, 33);
             this.exportButton.TabIndex = 6;
             this.exportButton.Text = "Εξαγωγή σε αρχείο txt";
             this.exportButton.UseVisualStyleBackColor = false;
@@ -137,17 +141,17 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.label3.Location = new System.Drawing.Point(891, 139);
+            this.label3.Location = new System.Drawing.Point(990, 136);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(208, 22);
+            this.label3.Size = new System.Drawing.Size(195, 22);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Σημαντικοί Σύνδεσμοι";
+            this.label3.Text = "Χρήσιμοι Σύνδεσμοι";
             // 
             // gunetLink
             // 
             this.gunetLink.AutoSize = true;
             this.gunetLink.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.gunetLink.Location = new System.Drawing.Point(891, 181);
+            this.gunetLink.Location = new System.Drawing.Point(990, 181);
             this.gunetLink.Name = "gunetLink";
             this.gunetLink.Size = new System.Drawing.Size(158, 22);
             this.gunetLink.TabIndex = 10;
@@ -155,11 +159,52 @@
             this.gunetLink.Text = "Ηλεκτρονική Τάξη";
             this.gunetLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.gunetLink_LinkClicked);
             // 
+            // ieeeLink
+            // 
+            this.ieeeLink.AutoSize = true;
+            this.ieeeLink.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.ieeeLink.Location = new System.Drawing.Point(990, 277);
+            this.ieeeLink.Name = "ieeeLink";
+            this.ieeeLink.Size = new System.Drawing.Size(55, 22);
+            this.ieeeLink.TabIndex = 15;
+            this.ieeeLink.TabStop = true;
+            this.ieeeLink.Text = "IEEE";
+            this.ieeeLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ieeeLink_LinkClicked);
+            // 
+            // dptLink
+            // 
+            this.dptLink.AutoSize = true;
+            this.dptLink.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.dptLink.Location = new System.Drawing.Point(990, 231);
+            this.dptLink.Name = "dptLink";
+            this.dptLink.Size = new System.Drawing.Size(152, 22);
+            this.dptLink.TabIndex = 16;
+            this.dptLink.TabStop = true;
+            this.dptLink.Text = "Σελίδα Τμήματος";
+            this.dptLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.dptLink_LinkClicked);
+            // 
+            // backButton
+            // 
+            this.backButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.backButton.FlatAppearance.BorderSize = 0;
+            this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.backButton.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.backButton.Location = new System.Drawing.Point(1079, 617);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(150, 40);
+            this.backButton.TabIndex = 17;
+            this.backButton.Text = "Επιστροφή";
+            this.backButton.UseVisualStyleBackColor = false;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            // 
             // CSForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.backButton);
+            this.Controls.Add(this.dptLink);
+            this.Controls.Add(this.ieeeLink);
             this.Controls.Add(this.gunetLink);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -178,6 +223,9 @@
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.gunetLink, 0);
+            this.Controls.SetChildIndex(this.ieeeLink, 0);
+            this.Controls.SetChildIndex(this.dptLink, 0);
+            this.Controls.SetChildIndex(this.backButton, 0);
             ((System.ComponentModel.ISupportInitialize)(this.professorGrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -195,5 +243,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.LinkLabel gunetLink;
+        private System.Windows.Forms.LinkLabel ieeeLink;
+        private System.Windows.Forms.LinkLabel dptLink;
+        private System.Windows.Forms.Button backButton;
     }
 }
