@@ -72,6 +72,8 @@ namespace UNIPI_GUIDE
                                 INNER JOIN department AS d
                                     ON ui.departmentId = d.id
                                 WHERE userId = @userId";
+        public static readonly string UPDATE_EMAIL = "UPDATE userInfo SET email = @email WHERE userId = @id";
+
         // APPTEXT
         public static readonly string RETURN_TEXT = "SELECT description FROM appText WHERE key = @key";
         // APPIMAGE

@@ -92,6 +92,12 @@ namespace UNIPI_GUIDE
         {
             if (User.loggedIn)
             {
+                bool found = false;
+                string firstName = "";
+                string lastName = "";
+                string department = "";
+                string email = "";
+
                 using (SQLiteConnection connection = new SQLiteConnection(Constants.CONNECTION_STRING))
                 using (SQLiteCommand command = new SQLiteCommand(Constants.RETURN_ACCOUNT_INFO_SQL, connection))
                 {
@@ -101,16 +107,19 @@ namespace UNIPI_GUIDE
                     {
                         if (reader.Read())
                         {
-                            string accountInfo = "Όνομα: " + reader.GetString(0) + "\n\n" +
-                                             "Επώνυμο: " + reader.GetString(1) + "\n\n" +
-                                             "E-mail: " + reader.GetString(2) + "\n\n" +
-                                             "Τμήμα: " + reader.GetString(3);
-                            MessageBox.Show(accountInfo, "Πληροφορίες", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            found = true;
+                            firstName = reader.GetString(0);
+                            lastName = reader.GetString(1);
+                            department = reader.GetString(2);
+                            email = reader.GetString(3);
                         }
                     }
                 }
+                if (found)
+                {
+                    changeForm(new AccountForm(firstName, lastName, department, email), true);
+                }
             }
-           
         }
 
         // ONLY WORKS FOR THE LINK LABELS OF EVENTS FORM FOR NOW
@@ -211,7 +220,7 @@ namespace UNIPI_GUIDE
                     this.Dispose();
                     if (isOnHome) ((BaseForm) Application.OpenForms[0]).updateToolstrip(); // toolstrip was resurfaced, not reinitialized
                     form.Controls["navPanel"].Visible = false;
-                    form.Controls["papeiButton"].Visible = false;
+                    if (form.Controls["papeiButton"] != null) form.Controls["papeiButton"].Visible = false;
                 }
             }
             else form.ShowDialog();
