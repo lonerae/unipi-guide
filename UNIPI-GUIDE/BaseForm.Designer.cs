@@ -38,7 +38,6 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.navPanel = new System.Windows.Forms.Panel();
             this.eventsButton = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.homeBtn = new System.Windows.Forms.Button();
             this.papeiButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
@@ -95,7 +94,7 @@
             // 
             this.aboutToolStripMenuItem.Font = new System.Drawing.Font("Arial", 15F);
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(166, 28);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 28);
             this.aboutToolStripMenuItem.Text = "Σχετικά...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -103,19 +102,19 @@
             // 
             this.exitToolStripMenuItem.Font = new System.Drawing.Font("Arial", 15F);
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(166, 28);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 28);
             this.exitToolStripMenuItem.Text = "Έξοδος";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // navPanel
             // 
-            this.navPanel.BackColor = System.Drawing.Color.White;
+            this.navPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.navPanel.Controls.Add(this.papeiButton);
             this.navPanel.Controls.Add(this.eventsButton);
-            this.navPanel.Controls.Add(this.button2);
             this.navPanel.Controls.Add(this.homeBtn);
             this.navPanel.Location = new System.Drawing.Point(0, 43);
             this.navPanel.Name = "navPanel";
-            this.navPanel.Size = new System.Drawing.Size(200, 209);
+            this.navPanel.Size = new System.Drawing.Size(200, 207);
             this.navPanel.TabIndex = 3;
             this.navPanel.Visible = false;
             // 
@@ -123,24 +122,13 @@
             // 
             this.eventsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.eventsButton.Font = new System.Drawing.Font("Arial", 20.25F);
-            this.eventsButton.Location = new System.Drawing.Point(0, 138);
+            this.eventsButton.Location = new System.Drawing.Point(0, 68);
             this.eventsButton.Name = "eventsButton";
             this.eventsButton.Size = new System.Drawing.Size(200, 71);
             this.eventsButton.TabIndex = 2;
             this.eventsButton.Text = "Εκδηλώσεις";
             this.eventsButton.UseVisualStyleBackColor = true;
             this.eventsButton.Click += new System.EventHandler(this.eventsButton_Click);
-            // 
-            // button2
-            // 
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.Font = new System.Drawing.Font("Arial", 20.25F);
-            this.button2.Location = new System.Drawing.Point(0, 69);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(200, 71);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Σχολές";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // homeBtn
             // 
@@ -158,7 +146,7 @@
             // 
             this.papeiButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.papeiButton.Font = new System.Drawing.Font("Arial", 20.25F);
-            this.papeiButton.Location = new System.Drawing.Point(0, 250);
+            this.papeiButton.Location = new System.Drawing.Point(0, 135);
             this.papeiButton.Name = "papeiButton";
             this.papeiButton.Size = new System.Drawing.Size(200, 71);
             this.papeiButton.TabIndex = 3;
@@ -174,7 +162,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.ClientSize = new System.Drawing.Size(1264, 681);
-            this.Controls.Add(this.papeiButton);
             this.Controls.Add(this.navPanel);
             this.Controls.Add(this.menuStrip1);
             this.Name = "BaseForm";
@@ -201,7 +188,6 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Panel navPanel;
         private System.Windows.Forms.Button eventsButton;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button homeBtn;
         private System.Windows.Forms.Button papeiButton;
     }
