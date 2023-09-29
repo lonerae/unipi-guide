@@ -35,6 +35,7 @@
             this.historyBtn = new System.Windows.Forms.Button();
             this.titleLabel = new System.Windows.Forms.Label();
             this.speakerBox = new System.Windows.Forms.PictureBox();
+            this.backButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.speakerBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,9 +56,9 @@
             this.featuresButton.FlatAppearance.BorderSize = 0;
             this.featuresButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.featuresButton.Font = new System.Drawing.Font("Arial", 20.25F);
-            this.featuresButton.Location = new System.Drawing.Point(854, 542);
+            this.featuresButton.Location = new System.Drawing.Point(740, 542);
             this.featuresButton.Name = "featuresButton";
-            this.featuresButton.Size = new System.Drawing.Size(374, 107);
+            this.featuresButton.Size = new System.Drawing.Size(312, 107);
             this.featuresButton.TabIndex = 11;
             this.featuresButton.Text = "Παροχές";
             this.featuresButton.UseVisualStyleBackColor = false;
@@ -70,9 +71,9 @@
             this.locationButton.FlatAppearance.BorderSize = 0;
             this.locationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.locationButton.Font = new System.Drawing.Font("Arial", 20.25F);
-            this.locationButton.Location = new System.Drawing.Point(444, 542);
+            this.locationButton.Location = new System.Drawing.Point(387, 542);
             this.locationButton.Name = "locationButton";
-            this.locationButton.Size = new System.Drawing.Size(374, 107);
+            this.locationButton.Size = new System.Drawing.Size(312, 107);
             this.locationButton.TabIndex = 10;
             this.locationButton.Text = "Τοποθεσία / Πρόσβαση";
             this.locationButton.UseVisualStyleBackColor = false;
@@ -87,7 +88,7 @@
             this.historyBtn.Font = new System.Drawing.Font("Arial", 20.25F);
             this.historyBtn.Location = new System.Drawing.Point(33, 542);
             this.historyBtn.Name = "historyBtn";
-            this.historyBtn.Size = new System.Drawing.Size(374, 107);
+            this.historyBtn.Size = new System.Drawing.Size(312, 107);
             this.historyBtn.TabIndex = 9;
             this.historyBtn.Text = "Ιστορία";
             this.historyBtn.UseVisualStyleBackColor = false;
@@ -115,11 +116,26 @@
             this.speakerBox.TabStop = false;
             this.speakerBox.Click += new System.EventHandler(this.speakerBox_Click);
             // 
+            // backButton
+            // 
+            this.backButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.backButton.FlatAppearance.BorderSize = 0;
+            this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.backButton.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.backButton.Location = new System.Drawing.Point(1078, 609);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(150, 40);
+            this.backButton.TabIndex = 19;
+            this.backButton.Text = "Επιστροφή";
+            this.backButton.UseVisualStyleBackColor = false;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            // 
             // Greeting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.backButton);
             this.Controls.Add(this.speakerBox);
             this.Controls.Add(this.titleLabel);
             this.Controls.Add(this.featuresButton);
@@ -136,6 +152,7 @@
             this.Controls.SetChildIndex(this.featuresButton, 0);
             this.Controls.SetChildIndex(this.titleLabel, 0);
             this.Controls.SetChildIndex(this.speakerBox, 0);
+            this.Controls.SetChildIndex(this.backButton, 0);
             ((System.ComponentModel.ISupportInitialize)(this.speakerBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -150,5 +167,6 @@
         private System.Windows.Forms.Button historyBtn;
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.PictureBox speakerBox;
+        private System.Windows.Forms.Button backButton;
     }
 }

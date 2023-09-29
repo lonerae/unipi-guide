@@ -93,5 +93,10 @@ namespace UNIPI_GUIDE
                 }
             }
         }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            changeForm(new Home(), false);
+        }
     }
 }

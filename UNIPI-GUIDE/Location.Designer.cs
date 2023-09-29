@@ -35,6 +35,7 @@
             this.featureBtn = new System.Windows.Forms.Button();
             this.greetingBtn = new System.Windows.Forms.Button();
             this.historyBtn = new System.Windows.Forms.Button();
+            this.backButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,9 +81,9 @@
             this.featureBtn.FlatAppearance.BorderSize = 0;
             this.featureBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.featureBtn.Font = new System.Drawing.Font("Arial", 20.25F);
-            this.featureBtn.Location = new System.Drawing.Point(855, 542);
+            this.featureBtn.Location = new System.Drawing.Point(731, 542);
             this.featureBtn.Name = "featureBtn";
-            this.featureBtn.Size = new System.Drawing.Size(374, 107);
+            this.featureBtn.Size = new System.Drawing.Size(312, 107);
             this.featureBtn.TabIndex = 11;
             this.featureBtn.Text = "Παροχές";
             this.featureBtn.UseVisualStyleBackColor = false;
@@ -95,9 +96,9 @@
             this.greetingBtn.FlatAppearance.BorderSize = 0;
             this.greetingBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.greetingBtn.Font = new System.Drawing.Font("Arial", 20.25F);
-            this.greetingBtn.Location = new System.Drawing.Point(445, 542);
+            this.greetingBtn.Location = new System.Drawing.Point(380, 542);
             this.greetingBtn.Name = "greetingBtn";
-            this.greetingBtn.Size = new System.Drawing.Size(374, 107);
+            this.greetingBtn.Size = new System.Drawing.Size(312, 107);
             this.greetingBtn.TabIndex = 10;
             this.greetingBtn.Text = "Χαιρετισμός";
             this.greetingBtn.UseVisualStyleBackColor = false;
@@ -112,17 +113,31 @@
             this.historyBtn.Font = new System.Drawing.Font("Arial", 20.25F);
             this.historyBtn.Location = new System.Drawing.Point(33, 542);
             this.historyBtn.Name = "historyBtn";
-            this.historyBtn.Size = new System.Drawing.Size(374, 107);
+            this.historyBtn.Size = new System.Drawing.Size(312, 107);
             this.historyBtn.TabIndex = 9;
             this.historyBtn.Text = "Ιστορία";
             this.historyBtn.UseVisualStyleBackColor = false;
             this.historyBtn.Click += new System.EventHandler(this.historyButton_Click);
+            // 
+            // backButton
+            // 
+            this.backButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.backButton.FlatAppearance.BorderSize = 0;
+            this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.backButton.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.backButton.Location = new System.Drawing.Point(1078, 609);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(150, 40);
+            this.backButton.TabIndex = 19;
+            this.backButton.Text = "Επιστροφή";
+            this.backButton.UseVisualStyleBackColor = false;
             // 
             // Location
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.backButton);
             this.Controls.Add(this.featureBtn);
             this.Controls.Add(this.greetingBtn);
             this.Controls.Add(this.historyBtn);
@@ -137,6 +152,7 @@
             this.Controls.SetChildIndex(this.historyBtn, 0);
             this.Controls.SetChildIndex(this.greetingBtn, 0);
             this.Controls.SetChildIndex(this.featureBtn, 0);
+            this.Controls.SetChildIndex(this.backButton, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -151,5 +167,6 @@
         private System.Windows.Forms.Button featureBtn;
         private System.Windows.Forms.Button greetingBtn;
         private System.Windows.Forms.Button historyBtn;
+        private System.Windows.Forms.Button backButton;
     }
 }

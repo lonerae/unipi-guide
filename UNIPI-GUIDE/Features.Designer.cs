@@ -33,6 +33,7 @@
             this.greetingBtn = new System.Windows.Forms.Button();
             this.historyBtn = new System.Windows.Forms.Button();
             this.featureTree = new System.Windows.Forms.TreeView();
+            this.backButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // descrBox
@@ -51,9 +52,9 @@
             this.locationBtn.FlatAppearance.BorderSize = 0;
             this.locationBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.locationBtn.Font = new System.Drawing.Font("Arial", 20.25F);
-            this.locationBtn.Location = new System.Drawing.Point(854, 542);
+            this.locationBtn.Location = new System.Drawing.Point(730, 542);
             this.locationBtn.Name = "locationBtn";
-            this.locationBtn.Size = new System.Drawing.Size(374, 107);
+            this.locationBtn.Size = new System.Drawing.Size(312, 107);
             this.locationBtn.TabIndex = 14;
             this.locationBtn.Text = "Τοποθεσία/Πρόσβαση";
             this.locationBtn.UseVisualStyleBackColor = false;
@@ -66,9 +67,9 @@
             this.greetingBtn.FlatAppearance.BorderSize = 0;
             this.greetingBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.greetingBtn.Font = new System.Drawing.Font("Arial", 20.25F);
-            this.greetingBtn.Location = new System.Drawing.Point(444, 542);
+            this.greetingBtn.Location = new System.Drawing.Point(382, 542);
             this.greetingBtn.Name = "greetingBtn";
-            this.greetingBtn.Size = new System.Drawing.Size(374, 107);
+            this.greetingBtn.Size = new System.Drawing.Size(312, 107);
             this.greetingBtn.TabIndex = 13;
             this.greetingBtn.Text = "Χαιρετισμός";
             this.greetingBtn.UseVisualStyleBackColor = false;
@@ -83,7 +84,7 @@
             this.historyBtn.Font = new System.Drawing.Font("Arial", 20.25F);
             this.historyBtn.Location = new System.Drawing.Point(33, 542);
             this.historyBtn.Name = "historyBtn";
-            this.historyBtn.Size = new System.Drawing.Size(374, 107);
+            this.historyBtn.Size = new System.Drawing.Size(312, 107);
             this.historyBtn.TabIndex = 12;
             this.historyBtn.Text = "Ιστορία";
             this.historyBtn.UseVisualStyleBackColor = false;
@@ -98,11 +99,26 @@
             this.featureTree.TabIndex = 15;
             this.featureTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.featureTree_AfterSelect);
             // 
+            // backButton
+            // 
+            this.backButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.backButton.FlatAppearance.BorderSize = 0;
+            this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.backButton.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.backButton.Location = new System.Drawing.Point(1078, 609);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(150, 40);
+            this.backButton.TabIndex = 18;
+            this.backButton.Text = "Επιστροφή";
+            this.backButton.UseVisualStyleBackColor = false;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            // 
             // Features
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.backButton);
             this.Controls.Add(this.featureTree);
             this.Controls.Add(this.locationBtn);
             this.Controls.Add(this.greetingBtn);
@@ -116,6 +132,7 @@
             this.Controls.SetChildIndex(this.greetingBtn, 0);
             this.Controls.SetChildIndex(this.locationBtn, 0);
             this.Controls.SetChildIndex(this.featureTree, 0);
+            this.Controls.SetChildIndex(this.backButton, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -128,5 +145,6 @@
         private System.Windows.Forms.Button greetingBtn;
         private System.Windows.Forms.Button historyBtn;
         private System.Windows.Forms.TreeView featureTree;
+        private System.Windows.Forms.Button backButton;
     }
 }

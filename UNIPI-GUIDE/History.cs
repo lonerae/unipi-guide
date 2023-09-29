@@ -67,5 +67,10 @@ namespace UNIPI_GUIDE
         {
             changeForm(new Features(), false);
         }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            changeForm(new Home(), false);
+        }
     }
 }
