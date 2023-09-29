@@ -33,14 +33,17 @@ namespace UNIPI_GUIDE
                         Button button = new Button();
                         button.Text = reader.GetString(reader.GetOrdinal("name"));
                         button.Name = reader.GetString(reader.GetOrdinal("name"));
+                        button.Tag = reader.GetString(reader.GetOrdinal("icon"));
                         button.Location = new Point(50+400*i,150 + 100*j);
-                        button.Size = new Size(300, 50);
+                        button.Size = new Size(300, 80);
                         button.Font = new Font("Arial", 16);
                         button.BackColor = Color.FromArgb(128, 128, 255);
                         button.FlatStyle = FlatStyle.Flat;
                         button.FlatAppearance.BorderSize = 0;
                         button.Cursor = Cursors.Hand;
+                        
                         addClickEvents(button);
+                        button.MouseHover += new EventHandler(changeIcon);
                         
                         i++;
                         if (i == 2)
@@ -59,6 +62,11 @@ namespace UNIPI_GUIDE
         {
             if (button.Name.Equals("Πληροφορικής")) button.Click += new EventHandler(navigateToCSForm);
             else button.Click += new EventHandler(notYetPopup);
+        }
+
+        private void changeIcon(object sender, EventArgs e)
+        {
+            iconPictureBox.ImageLocation = ((Button)sender).Tag.ToString();
         }
 
         private void navigateToCSForm(object sender, EventArgs e)
