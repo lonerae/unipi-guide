@@ -32,6 +32,7 @@
             this.questionBox = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.iconPictureBox = new System.Windows.Forms.PictureBox();
+            this.backButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.questionBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -67,11 +68,26 @@
             this.iconPictureBox.TabIndex = 10;
             this.iconPictureBox.TabStop = false;
             // 
+            // backButton
+            // 
+            this.backButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.backButton.FlatAppearance.BorderSize = 0;
+            this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.backButton.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.backButton.Location = new System.Drawing.Point(1079, 624);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(150, 40);
+            this.backButton.TabIndex = 20;
+            this.backButton.Text = "Επιστροφή";
+            this.backButton.UseVisualStyleBackColor = false;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            // 
             // OurForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.backButton);
             this.Controls.Add(this.iconPictureBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.questionBox);
@@ -82,6 +98,7 @@
             this.Controls.SetChildIndex(this.questionBox, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.iconPictureBox, 0);
+            this.Controls.SetChildIndex(this.backButton, 0);
             ((System.ComponentModel.ISupportInitialize)(this.questionBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox)).EndInit();
             this.ResumeLayout(false);
@@ -94,5 +111,6 @@
         private System.Windows.Forms.PictureBox questionBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox iconPictureBox;
+        private System.Windows.Forms.Button backButton;
     }
 }

@@ -93,5 +93,9 @@ namespace UNIPI_GUIDE
             MessageBox.Show("Από τους φοιτητές, για τους φοιτητές! Αν ενδιαφέρεσαι να προσθέσεις πληροφορίες και για το δικό σου τμήμα, επικοινώνησε μαζί μας από την φόρμα επικοινωνίας.", Constants.POPUP_SOURCE);
         }
 
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            changeForm(new Home(), false);
+        }
     }
 }
