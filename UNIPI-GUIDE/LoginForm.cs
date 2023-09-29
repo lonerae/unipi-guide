@@ -26,7 +26,7 @@ namespace UNIPI_GUIDE
             {
                 connection.Open();
                 command.Parameters.AddWithValue("@username", usernameTextBox.Text);
-                command.Parameters.AddWithValue("@password", passwordTextBox.Text);
+                command.Parameters.AddWithValue("@password", Utils.Hash(passwordTextBox.Text));
 
                 using(SQLiteDataReader reader = command.ExecuteReader())
                 {
