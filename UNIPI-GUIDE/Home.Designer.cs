@@ -46,9 +46,9 @@
             // 
             // gallery
             // 
-            this.gallery.Location = new System.Drawing.Point(458, 131);
+            this.gallery.Location = new System.Drawing.Point(426, 120);
             this.gallery.Name = "gallery";
-            this.gallery.Size = new System.Drawing.Size(367, 221);
+            this.gallery.Size = new System.Drawing.Size(420, 263);
             this.gallery.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.gallery.TabIndex = 1;
             this.gallery.TabStop = false;
@@ -121,18 +121,18 @@
             // 
             // leftPanel
             // 
-            this.leftPanel.Location = new System.Drawing.Point(47, 42);
-            this.leftPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.leftPanel.Location = new System.Drawing.Point(2, 43);
+            this.leftPanel.Margin = new System.Windows.Forms.Padding(2);
             this.leftPanel.Name = "leftPanel";
-            this.leftPanel.Size = new System.Drawing.Size(416, 358);
+            this.leftPanel.Size = new System.Drawing.Size(435, 358);
             this.leftPanel.TabIndex = 8;
             // 
             // rightPanel
             // 
-            this.rightPanel.Location = new System.Drawing.Point(813, 43);
-            this.rightPanel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rightPanel.Location = new System.Drawing.Point(842, 45);
+            this.rightPanel.Margin = new System.Windows.Forms.Padding(2);
             this.rightPanel.Name = "rightPanel";
-            this.rightPanel.Size = new System.Drawing.Size(451, 358);
+            this.rightPanel.Size = new System.Drawing.Size(422, 358);
             this.rightPanel.TabIndex = 9;
             // 
             // photoTimer
@@ -143,9 +143,9 @@
             // 
             // galleryTwo
             // 
-            this.galleryTwo.Location = new System.Drawing.Point(86, 131);
+            this.galleryTwo.Location = new System.Drawing.Point(0, 120);
             this.galleryTwo.Name = "galleryTwo";
-            this.galleryTwo.Size = new System.Drawing.Size(367, 221);
+            this.galleryTwo.Size = new System.Drawing.Size(420, 263);
             this.galleryTwo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.galleryTwo.TabIndex = 10;
             this.galleryTwo.TabStop = false;

@@ -53,7 +53,7 @@ namespace UNIPI_GUIDE
             {
                 counter++;
                 gallery.Image = Image.FromFile(imagePaths[counter%maxCounter + 1]);
-                gallery.Location = new Point(93, gallery.Location.Y);
+                gallery.Location = new Point(1, gallery.Location.Y);
                 gallery.SendToBack();
                 galleryTimer.Enabled = false;
             }
@@ -65,7 +65,7 @@ namespace UNIPI_GUIDE
             {
                 counter++;
                 galleryTwo.Image = Image.FromFile(imagePaths[counter%maxCounter + 1]);
-                galleryTwo.Location = new Point(93, galleryTwo.Location.Y);
+                galleryTwo.Location = new Point(1, galleryTwo.Location.Y);
                 galleryTwo.SendToBack();
                 galleryTimer.Enabled = false;
             }
