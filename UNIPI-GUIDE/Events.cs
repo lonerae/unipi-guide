@@ -163,6 +163,7 @@ namespace UNIPI_GUIDE
                 panel.Name = "p" + reader.GetInt32(0).ToString();
 
                 RichTextBox bodyBox = new RichTextBox();
+                bodyBox.BackColor = SystemColors.ControlLight;
                 bodyBox.Size = new Size(commentsPanel.Width - 100, commentBox.Height / 2);
                 bodyBox.Text = reader.GetString(2);
                 bodyBox.Font = new Font("Arial", 18);
@@ -176,6 +177,7 @@ namespace UNIPI_GUIDE
                 authorLabel.Name = "l" + reader.GetInt32(1);
 
                 RichTextBox ratingBox = new RichTextBox();
+                ratingBox.BackColor = SystemColors.ControlLight;
                 ratingBox.Size = new Size(50, commentBox.Height / 2);
                 ratingBox.Location = new Point(bodyBox.Location.X + bodyBox.Width + 40, bodyBox.Location.Y);
                 ratingBox.Text = reader.GetInt32(3).ToString();
@@ -183,6 +185,9 @@ namespace UNIPI_GUIDE
                 ratingBox.ReadOnly = true;
 
                 Button downvote = new Button();
+                downvote.BackColor = Constants.BUTTONS;
+                downvote.FlatStyle = FlatStyle.Flat;
+                downvote.FlatAppearance.BorderSize = 1;
                 downvote.Size = new Size(25, commentBox.Height / 2 - 5);
                 downvote.Location = new Point(bodyBox.Location.X + bodyBox.Width + 40, ratingBox.Location.Y + ratingBox.Height + 5);
                 downvote.Font = new Font("Arial", 16, FontStyle.Bold);
@@ -192,6 +197,9 @@ namespace UNIPI_GUIDE
                 downvote.FlatAppearance.BorderSize = 0;
 
                 Button upvote = new Button();
+                upvote.BackColor = Constants.BUTTONS;
+                upvote.FlatStyle = FlatStyle.Flat;
+                upvote.FlatAppearance.BorderSize = 1;
                 upvote.Size = new Size(25, commentBox.Height / 2 - 5);
                 upvote.Location = new Point(downvote.Location.X + downvote.Width, ratingBox.Location.Y + ratingBox.Height + 5);
                 upvote.Font = new Font("Arial", 16, FontStyle.Bold);

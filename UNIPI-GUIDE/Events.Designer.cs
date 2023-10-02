@@ -53,7 +53,7 @@
             // 
             // eventDescrBox
             // 
-            this.eventDescrBox.BackColor = System.Drawing.SystemColors.Window;
+            this.eventDescrBox.BackColor = System.Drawing.SystemColors.ControlLight;
             this.eventDescrBox.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.eventDescrBox.Location = new System.Drawing.Point(257, 53);
             this.eventDescrBox.Name = "eventDescrBox";
@@ -73,24 +73,30 @@
             // 
             // clearBtn
             // 
+            this.clearBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(217)))), ((int)(((byte)(89)))));
+            this.clearBtn.FlatAppearance.BorderSize = 0;
+            this.clearBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clearBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.clearBtn.Location = new System.Drawing.Point(1031, 578);
             this.clearBtn.Name = "clearBtn";
             this.clearBtn.Size = new System.Drawing.Size(221, 34);
             this.clearBtn.TabIndex = 7;
             this.clearBtn.Text = "Εκκαθάριση";
-            this.clearBtn.UseVisualStyleBackColor = true;
+            this.clearBtn.UseVisualStyleBackColor = false;
             this.clearBtn.Click += new System.EventHandler(this.clearBtn_Click);
             // 
             // uploadBtn
             // 
+            this.uploadBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(217)))), ((int)(((byte)(89)))));
+            this.uploadBtn.FlatAppearance.BorderSize = 0;
+            this.uploadBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.uploadBtn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.uploadBtn.Location = new System.Drawing.Point(1031, 538);
             this.uploadBtn.Name = "uploadBtn";
             this.uploadBtn.Size = new System.Drawing.Size(221, 34);
             this.uploadBtn.TabIndex = 8;
             this.uploadBtn.Text = "Ανάρτηση";
-            this.uploadBtn.UseVisualStyleBackColor = true;
+            this.uploadBtn.UseVisualStyleBackColor = false;
             this.uploadBtn.Click += new System.EventHandler(this.uploadBtn_Click);
             // 
             // commentsPanel
@@ -102,39 +108,49 @@
             // 
             // prevButton
             // 
+            this.prevButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(217)))), ((int)(((byte)(89)))));
+            this.prevButton.FlatAppearance.BorderSize = 0;
+            this.prevButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.prevButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.prevButton.Location = new System.Drawing.Point(481, 483);
             this.prevButton.Name = "prevButton";
             this.prevButton.Size = new System.Drawing.Size(49, 34);
             this.prevButton.TabIndex = 10;
             this.prevButton.Text = "<";
-            this.prevButton.UseVisualStyleBackColor = true;
+            this.prevButton.UseVisualStyleBackColor = false;
             this.prevButton.Click += new System.EventHandler(this.prevButton_Click);
             // 
             // nextButton
             // 
+            this.nextButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(217)))), ((int)(((byte)(89)))));
+            this.nextButton.FlatAppearance.BorderSize = 0;
+            this.nextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.nextButton.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.nextButton.Location = new System.Drawing.Point(536, 483);
             this.nextButton.Name = "nextButton";
             this.nextButton.Size = new System.Drawing.Size(49, 34);
             this.nextButton.TabIndex = 11;
             this.nextButton.Text = ">";
-            this.nextButton.UseVisualStyleBackColor = true;
+            this.nextButton.UseVisualStyleBackColor = false;
             this.nextButton.Click += new System.EventHandler(this.nextButton_Click);
             // 
             // pageBtn
             // 
+            this.pageBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(217)))), ((int)(((byte)(89)))));
+            this.pageBtn.FlatAppearance.BorderSize = 0;
+            this.pageBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.pageBtn.Font = new System.Drawing.Font("Arial", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.pageBtn.Location = new System.Drawing.Point(1031, 491);
             this.pageBtn.Name = "pageBtn";
             this.pageBtn.Size = new System.Drawing.Size(102, 21);
             this.pageBtn.TabIndex = 13;
             this.pageBtn.Text = "άλμα στην...";
-            this.pageBtn.UseVisualStyleBackColor = true;
+            this.pageBtn.UseVisualStyleBackColor = false;
             this.pageBtn.Click += new System.EventHandler(this.pageBtn_Click);
             // 
             // pageDropdown
             // 
+            this.pageDropdown.BackColor = System.Drawing.SystemColors.ControlLight;
             this.pageDropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.pageDropdown.FormattingEnabled = true;
             this.pageDropdown.Location = new System.Drawing.Point(1139, 491);
@@ -147,7 +163,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.pageDropdown);
             this.Controls.Add(this.pageBtn);

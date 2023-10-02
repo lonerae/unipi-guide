@@ -92,6 +92,7 @@
             // 
             // nameTextBox
             // 
+            this.nameTextBox.BackColor = System.Drawing.SystemColors.ControlLight;
             this.nameTextBox.Cursor = System.Windows.Forms.Cursors.Default;
             this.nameTextBox.Font = new System.Drawing.Font("Arial", 14.25F);
             this.nameTextBox.Location = new System.Drawing.Point(100, 67);
@@ -110,6 +111,7 @@
             // 
             // departmentTextBox
             // 
+            this.departmentTextBox.BackColor = System.Drawing.SystemColors.ControlLight;
             this.departmentTextBox.Cursor = System.Windows.Forms.Cursors.Default;
             this.departmentTextBox.Font = new System.Drawing.Font("Arial", 14.25F);
             this.departmentTextBox.Location = new System.Drawing.Point(100, 124);
@@ -120,7 +122,7 @@
             // 
             // backButton
             // 
-            this.backButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.backButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(217)))), ((int)(((byte)(89)))));
             this.backButton.FlatAppearance.BorderSize = 0;
             this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.backButton.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
@@ -134,7 +136,7 @@
             // 
             // saveButton
             // 
-            this.saveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.saveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(217)))), ((int)(((byte)(89)))));
             this.saveButton.FlatAppearance.BorderSize = 0;
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveButton.Font = new System.Drawing.Font("Arial", 12.25F);
@@ -150,7 +152,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.ClientSize = new System.Drawing.Size(576, 340);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.backButton);

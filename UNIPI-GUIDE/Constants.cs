@@ -31,7 +31,7 @@ namespace UNIPI_GUIDE
         /**
          * COLORS
          */
-        public static readonly Color MAINTHEME = ColorTranslator.FromHtml("#F2F2F2");
+        public static readonly Color MAIN_THEME = ColorTranslator.FromHtml("#F2F2F2");
         public static readonly Color BUTTONS = ColorTranslator.FromHtml("#D4D959");
         
         /** 

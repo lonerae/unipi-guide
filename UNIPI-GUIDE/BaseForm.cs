@@ -27,15 +27,29 @@ namespace UNIPI_GUIDE
         private void BaseForm_Load(object sender, EventArgs e)
         {
             initializeToolstrip();
-            this.BackColor = Constants.MAINTHEME;
+            this.BackColor = Constants.MAIN_THEME;
+            setButtonSounds();
+        }
+
+        private void setButtonSounds()
+        {
             foreach (var button in Controls.OfType<Button>())
             {
                 button.MouseClick += anyButton_Click;
                 button.BackColor = Constants.BUTTONS;
             }
-            foreach (ToolStripItem menuItem in this.menuStrip1.Items)
+            foreach (var button in navPanel.Controls.OfType<Button>())
+            {
+                button.MouseClick += anyButton_Click;
+                button.BackColor = Constants.BUTTONS;
+            }
+            foreach (ToolStripMenuItem menuItem in this.menuStrip1.Items)
             {
                 menuItem.Click += anyButton_Click;
+                foreach (ToolStripItem toolStripItem in menuItem.DropDownItems)
+                {
+                    toolStripItem.Click += anyButton_Click;
+                }
             }
         }
 

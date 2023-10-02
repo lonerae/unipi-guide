@@ -41,7 +41,7 @@
             // 
             // greetingTextBox
             // 
-            this.greetingTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.greetingTextBox.BackColor = System.Drawing.SystemColors.ControlLight;
             this.greetingTextBox.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.greetingTextBox.Location = new System.Drawing.Point(33, 153);
             this.greetingTextBox.Name = "greetingTextBox";
@@ -52,7 +52,7 @@
             // 
             // featuresButton
             // 
-            this.featuresButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.featuresButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(217)))), ((int)(((byte)(89)))));
             this.featuresButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.featuresButton.FlatAppearance.BorderSize = 0;
             this.featuresButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -67,7 +67,7 @@
             // 
             // locationButton
             // 
-            this.locationButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.locationButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(217)))), ((int)(((byte)(89)))));
             this.locationButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.locationButton.FlatAppearance.BorderSize = 0;
             this.locationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -82,7 +82,7 @@
             // 
             // historyBtn
             // 
-            this.historyBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.historyBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(217)))), ((int)(((byte)(89)))));
             this.historyBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.historyBtn.FlatAppearance.BorderSize = 0;
             this.historyBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -119,7 +119,7 @@
             // 
             // backButton
             // 
-            this.backButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.backButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(212)))), ((int)(((byte)(217)))), ((int)(((byte)(89)))));
             this.backButton.FlatAppearance.BorderSize = 0;
             this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.backButton.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
