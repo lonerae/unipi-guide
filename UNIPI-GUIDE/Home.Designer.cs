@@ -121,10 +121,10 @@
             // 
             // leftPanel
             // 
-            this.leftPanel.Location = new System.Drawing.Point(2, 43);
+            this.leftPanel.Location = new System.Drawing.Point(0, 43);
             this.leftPanel.Margin = new System.Windows.Forms.Padding(2);
             this.leftPanel.Name = "leftPanel";
-            this.leftPanel.Size = new System.Drawing.Size(435, 358);
+            this.leftPanel.Size = new System.Drawing.Size(437, 358);
             this.leftPanel.TabIndex = 8;
             // 
             // rightPanel

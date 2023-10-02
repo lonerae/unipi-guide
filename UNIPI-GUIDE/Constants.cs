@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Media;
+using System.Drawing;
 using System.Threading.Tasks;
 
 namespace UNIPI_GUIDE
@@ -26,6 +28,12 @@ namespace UNIPI_GUIDE
         public static readonly string POPUP_SOURCE = "Σύστημα";       
         public static readonly string INVALID_CREDENTIALS_ERROR = "Λάθος στοιχεία χρήστη";
 
+        /**
+         * COLORS
+         */
+        public static readonly Color MAINTHEME = ColorTranslator.FromHtml("#F2F2F2");
+        public static readonly Color BUTTONS = ColorTranslator.FromHtml("#D4D959");
+        
         /** 
          * SQL STATEMENTS
          */

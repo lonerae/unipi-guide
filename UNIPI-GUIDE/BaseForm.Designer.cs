@@ -37,9 +37,9 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.navPanel = new System.Windows.Forms.Panel();
+            this.papeiButton = new System.Windows.Forms.Button();
             this.eventsButton = new System.Windows.Forms.Button();
             this.homeBtn = new System.Windows.Forms.Button();
-            this.papeiButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.navPanel.SuspendLayout();
             this.SuspendLayout();
@@ -118,6 +118,20 @@
             this.navPanel.TabIndex = 3;
             this.navPanel.Visible = false;
             // 
+            // papeiButton
+            // 
+            this.papeiButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.papeiButton.Font = new System.Drawing.Font("Arial", 20.25F);
+            this.papeiButton.Location = new System.Drawing.Point(0, 135);
+            this.papeiButton.Name = "papeiButton";
+            this.papeiButton.Size = new System.Drawing.Size(200, 71);
+            this.papeiButton.TabIndex = 3;
+            this.papeiButton.Tag = "premium";
+            this.papeiButton.Text = "Το ΠΑΠΕΙ μας";
+            this.papeiButton.UseVisualStyleBackColor = true;
+            this.papeiButton.Visible = false;
+            this.papeiButton.Click += new System.EventHandler(this.papeiButton_Click);
+            // 
             // eventsButton
             // 
             this.eventsButton.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -141,20 +155,6 @@
             this.homeBtn.Text = "Αρχική";
             this.homeBtn.UseVisualStyleBackColor = true;
             this.homeBtn.Click += new System.EventHandler(this.homeBtn_Click);
-            // 
-            // papeiButton
-            // 
-            this.papeiButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.papeiButton.Font = new System.Drawing.Font("Arial", 20.25F);
-            this.papeiButton.Location = new System.Drawing.Point(0, 135);
-            this.papeiButton.Name = "papeiButton";
-            this.papeiButton.Size = new System.Drawing.Size(200, 71);
-            this.papeiButton.TabIndex = 3;
-            this.papeiButton.Tag = "premium";
-            this.papeiButton.Text = "Το ΠΑΠΕΙ μας";
-            this.papeiButton.UseVisualStyleBackColor = true;
-            this.papeiButton.Visible = false;
-            this.papeiButton.Click += new System.EventHandler(this.papeiButton_Click);
             // 
             // BaseForm
             // 

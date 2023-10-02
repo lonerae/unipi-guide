@@ -41,6 +41,7 @@
             // 
             // greetingTextBox
             // 
+            this.greetingTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.greetingTextBox.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.greetingTextBox.Location = new System.Drawing.Point(33, 153);
             this.greetingTextBox.Name = "greetingTextBox";

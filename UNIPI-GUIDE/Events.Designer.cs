@@ -53,6 +53,7 @@
             // 
             // eventDescrBox
             // 
+            this.eventDescrBox.BackColor = System.Drawing.SystemColors.Window;
             this.eventDescrBox.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.eventDescrBox.Location = new System.Drawing.Point(257, 53);
             this.eventDescrBox.Name = "eventDescrBox";

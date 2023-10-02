@@ -8,12 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 using static UNIPI_GUIDE.Program;
 
 namespace UNIPI_GUIDE
 {
     public partial class BaseForm : Form
     {
+        SoundPlayer clickSound = new SoundPlayer(@"assets\sounds\clickSound.wav");
         public BaseForm()
         {
             InitializeComponent();
@@ -25,6 +27,16 @@ namespace UNIPI_GUIDE
         private void BaseForm_Load(object sender, EventArgs e)
         {
             initializeToolstrip();
+            this.BackColor = Constants.MAINTHEME;
+            foreach (var button in Controls.OfType<Button>())
+            {
+                button.MouseClick += anyButton_Click;
+                button.BackColor = Constants.BUTTONS;
+            }
+            foreach (ToolStripItem menuItem in this.menuStrip1.Items)
+            {
+                menuItem.Click += anyButton_Click;
+            }
         }
 
         private void initializeToolstrip()
@@ -189,7 +201,12 @@ namespace UNIPI_GUIDE
                 Application.Exit();
             }
         }
-
+        private void anyButton_Click(object sender, EventArgs e)
+        {
+            clickSound.LoadAsync();
+            clickSound.Play();
+            
+        }
         // HELPER FUNCTIONS
 
         /**
@@ -251,7 +268,6 @@ namespace UNIPI_GUIDE
                 return "";
             }
         }
-
         private void papeiButton_Click(object sender, EventArgs e)
         {
             changeForm(new OurForm(), false);
